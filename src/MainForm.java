@@ -16,6 +16,10 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
+            //Array to store users
+           static user[] userArray = new user[3];
+
+    
     public MainForm() {
         initComponents();
     }
@@ -72,18 +76,33 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // since there is no database or permenant storage of users some defaults will be created here.
+    // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
+    //since its not being saved anywhere
+        
+    
+    
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
-// since there is no database or permenant storage of users some defaults will be created here.
-        user[] userArray = new user[3];
-        userArray[0] = new user(); // Default user
-        userArray[1] = new user("Technician", "BestAcInstallerEver");
-        userArray[2] = new user("Admin", "Admin123");
-        userArray[3] = new user("Caleb", "I Made This Program");
+        int i;
+        for (i = 0; i < userArray.length; i++) {
+
+            // accessing each element of array
+            if(userNameField.getText() == userArray[i].getUsername() && userArray[i].checkPassword(passwordField.getPassword()))
+            {
+                //Let them in
+            }
+            //x = userArray[i];
+            //System.out.print(x + " ");
+        }
     }//GEN-LAST:event_logInBtnActionPerformed
 
     public static void main(String args[]) {
         try {
+        userArray[1] = new user("Technician", "BestAcInstallerEver");
+        userArray[2] = new user("Admin", "Admin123");
+        userArray[3] = new user("Caleb", "I Made This Program");
+        
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
