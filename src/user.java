@@ -9,28 +9,25 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.swing.JOptionPane;
 
-
 public class user {
 //private variables for user class
+
     private String userName;
     private byte[] hashedPassword;
 
     //checks a string if it matches the password for the particular user
-    boolean checkPassword(String password)
-    {
+    boolean checkPassword(String password) {
         byte[] pwdHash = hashPassword(password);
         //if the entered password matches the objects hashedPassword it will return true
-        if(pwdHash == hashedPassword)
-        {
+        if (pwdHash == hashedPassword) {
             return true;
-            
-        }else
-        {
+
+        } else {
             //else it will return false
-        return false;
+            return false;
         }
     }
-    
+
     byte[] hashPassword(String password) {
         try {
             // create a new SecureRandom object
@@ -72,20 +69,17 @@ public class user {
         userName = usersName;
         hashedPassword = hashPassword(password);
     }
-    
+
     //Gets the username of the object
-    String getUsername()
-    {
+    String getUsername() {
         return userName;
     }
-    
+
     //Sets a new password for the user
-    void setPassword(String password)
-    {
+    void setPassword(String password) {
         hashedPassword = hashPassword(password);
     }
-    
-    //There isnt a getter for password hash because there is no need for anyone to view the hash itself
-   //There also isnt any need to get an unhashed password from this class and there isnt any way of doing that.
 
+    //There isnt a getter for password hash because there is no need for anyone to view the hash itself
+    //There also isnt any need to get an unhashed password from this class and there isnt any way of doing that.
 }
