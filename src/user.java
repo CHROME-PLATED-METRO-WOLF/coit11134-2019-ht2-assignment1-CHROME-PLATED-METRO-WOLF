@@ -19,19 +19,22 @@ import javax.swing.JOptionPane;
  * @author caleb
  */
 public class user {
-
+//private variables for user class
     private String userName;
     private byte[] hashedPassword;
 
+    //checks a string if it matches the password for the particular user
     boolean checkPassword(String password)
     {
         byte[] pwdHash = hashPassword(password);
+        //if the entered password matches the objects hashedPassword it will return true
         if(pwdHash == hashedPassword)
         {
             return true;
             
         }else
         {
+            //else it will return false
         return false;
         }
     }
