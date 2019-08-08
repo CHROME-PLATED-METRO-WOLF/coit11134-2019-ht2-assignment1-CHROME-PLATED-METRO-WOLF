@@ -80,5 +80,17 @@ public class user {
         userName = usersName;
         hashedPassword = hashPassword(password);
     }
+    
+    //Gets the username of the object
+    String getUsername()
+    {
+        return userName;
+    }
+    
+    //Sets a new password for the user
+    void setPassword(String password)
+    {
+        hashedPassword = hashPassword(password);
+    }
 
 }
