@@ -92,5 +92,8 @@ public class user {
     {
         hashedPassword = hashPassword(password);
     }
+    
+    //There isnt a getter for password hash because there is no need for anyone to view the hash itself
+   //There also isnt any need to get an unhashed password from this class and there isnt any way of doing that.
 
 }
