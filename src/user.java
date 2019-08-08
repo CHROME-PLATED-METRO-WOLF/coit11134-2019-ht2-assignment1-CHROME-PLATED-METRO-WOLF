@@ -23,6 +23,19 @@ public class user {
     private String userName;
     private byte[] hashedPassword;
 
+    boolean checkPassword(String password)
+    {
+        byte[] pwdHash = hashPassword(password);
+        if(pwdHash == hashedPassword)
+        {
+            return true;
+            
+        }else
+        {
+        return false;
+        }
+    }
+    
     byte[] hashPassword(String password) {
         try {
             // create a new SecureRandom object
