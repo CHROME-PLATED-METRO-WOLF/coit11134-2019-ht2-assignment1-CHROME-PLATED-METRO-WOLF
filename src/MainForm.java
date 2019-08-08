@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 import javax.swing.WindowConstants;
 import javax.swing.JOptionPane;
@@ -20,25 +21,25 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new JButton();
+        jLabel1 = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jLabel1.setText("CQAC Installation Manager");
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jButton1, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButton1)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,6 +72,6 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton jButton1;
+    private JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
