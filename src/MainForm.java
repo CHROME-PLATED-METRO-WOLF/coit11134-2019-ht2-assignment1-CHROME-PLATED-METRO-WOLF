@@ -75,11 +75,11 @@ public class MainForm extends javax.swing.JFrame {
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
 // since there is no database or permenant storage of users some defaults will be created here.
-    user[] userArray = new user[3];
-    userArray[0] = new user(); // Default user
-    userArray[1] = new user("Technician", "BestAcInstallerEver");
-    userArray[2] = new user("Admin", "Admin123");
-    userArray[3] = new user("Caleb", "I Made This Program");
+        user[] userArray = new user[3];
+        userArray[0] = new user(); // Default user
+        userArray[1] = new user("Technician", "BestAcInstallerEver");
+        userArray[2] = new user("Admin", "Admin123");
+        userArray[3] = new user("Caleb", "I Made This Program");
     }//GEN-LAST:event_logInBtnActionPerformed
 
     public static void main(String args[]) {
