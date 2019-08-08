@@ -25,22 +25,26 @@ public class user {
 
     byte[] hashPassword(String password) {
         try {
-            userName = "Default";
-            password = "Default";
-
+            // create a new SecureRandom object
             SecureRandom random = new SecureRandom();
+            //Create a new random salt
             byte[] salt = new byte[16];
             random.nextBytes(salt);
+            //Specify the key and strength of the hash
             KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+            //Specify the algoryth to be used
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            //Try hashing the password
             try {
                 byte[] hash = factory.generateSecret(spec).getEncoded();
                 return hash;
             } catch (InvalidKeySpecException ex) {
+                //Catch key errors
                 Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "ERROR: invalid key used for hash algorythm", "Error Box: " + "Key algorythm exception", JOptionPane.ERROR_MESSAGE);
             }
         } catch (NoSuchAlgorithmException ex) {
+            //Catch Algorithm errors
             Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERROR: invalid algorithm used for passowrd hash", "Error Box: " + "hash algorythm exception", JOptionPane.ERROR_MESSAGE);
 
@@ -50,14 +54,15 @@ public class user {
     }
 
     user() {
-            userName = "Default";
-            String password = "Default";
-         hashedPassword = hashPassword(password);
+        userName = "Default";
+        String password = "Default";
+        hashedPassword = hashPassword(password);
 
     }
-    user(String usersName, String password)
-    {
+
+    user(String usersName, String password) {
         userName = usersName;
         hashedPassword = hashPassword(password);
     }
+
 }
