@@ -21,12 +21,13 @@ import javax.swing.JOptionPane;
 public class user {
 
     private String userName;
-    private String password;
+    private byte[] hashedPassword;
 
-    user() {
+    byte[] hashPassword(String password) {
         try {
             userName = "Default";
             password = "Default";
+
             SecureRandom random = new SecureRandom();
             byte[] salt = new byte[16];
             random.nextBytes(salt);
@@ -34,6 +35,7 @@ public class user {
             SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             try {
                 byte[] hash = factory.generateSecret(spec).getEncoded();
+                return hash;
             } catch (InvalidKeySpecException ex) {
                 Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "ERROR: invalid key used for hash algorythm", "Error Box: " + "Key algorythm exception", JOptionPane.ERROR_MESSAGE);
@@ -43,6 +45,19 @@ public class user {
             JOptionPane.showMessageDialog(null, "ERROR: invalid algorithm used for passowrd hash", "Error Box: " + "hash algorythm exception", JOptionPane.ERROR_MESSAGE);
 
         }
+        //if hashing fails return null
+        return null;
+    }
 
+    user() {
+            userName = "Default";
+            String password = "Default";
+         hashedPassword = hashPassword(password);
+
+    }
+    user(String usersName, String password)
+    {
+        userName = usersName;
+        hashedPassword = hashPassword(password);
     }
 }
