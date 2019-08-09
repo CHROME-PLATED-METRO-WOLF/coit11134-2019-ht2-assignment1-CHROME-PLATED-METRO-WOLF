@@ -74,6 +74,11 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void debugMessage(String message)
+    {
+        System.out.println(message);
+    }
+    
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         int i;
