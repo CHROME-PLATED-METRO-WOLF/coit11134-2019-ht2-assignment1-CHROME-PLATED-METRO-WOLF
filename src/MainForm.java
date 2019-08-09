@@ -30,6 +30,7 @@ public class MainForm extends javax.swing.JFrame {
         logInBtn = new JButton();
         passwordField = new JPasswordField();
         userNameField = new JTextField();
+        exitBtn = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,21 +43,34 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        exitBtn.setText("Exit");
+        exitBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                exitBtnActionPerformed(evt);
+            }
+        });
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordField)
-                            .addComponent(logInBtn, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userNameField))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(passwordField)
+                                    .addComponent(logInBtn, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userNameField))))
+                        .addGap(0, 118, Short.MAX_VALUE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(exitBtn)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -68,7 +82,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(logInBtn)
-                .addGap(82, 82, 82))
+                .addGap(44, 44, 44)
+                .addComponent(exitBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -101,6 +117,9 @@ public class MainForm extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_logInBtnActionPerformed
+
+    private void exitBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+    }//GEN-LAST:event_exitBtnActionPerformed
 
     public static void main(String args[]) {
         
@@ -135,6 +154,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton exitBtn;
     private JLabel jLabel1;
     private JButton logInBtn;
     private JPasswordField passwordField;
