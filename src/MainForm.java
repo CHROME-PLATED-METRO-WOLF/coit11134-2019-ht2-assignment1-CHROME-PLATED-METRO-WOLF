@@ -122,14 +122,17 @@ public class MainForm extends javax.swing.JFrame {
         //exits the program on click
 
         //Creates a yes no dialog
+        debugMessage("Exit was clicked dialog displayed");
         int dialogButton = JOptionPane.YES_NO_OPTION;
         //Saves the result of the dialog in a variable
         int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you would like to exit?", "Exit?", dialogButton);
         //if yes was clicked
         if (dialogResult == JOptionPane.YES_OPTION) {
+            debugMessage("Yes was clicked exiting");
             //exits the program without error
             System.exit(0);
         }
+        debugMessage("The dialog was closed or no was selected. NOT exiting.");
 
     }//GEN-LAST:event_exitBtnActionPerformed
 
