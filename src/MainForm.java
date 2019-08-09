@@ -79,6 +79,8 @@ public class MainForm extends javax.swing.JFrame {
         System.out.println(message);
     }
     
+    
+    
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         int i;
@@ -89,7 +91,7 @@ public class MainForm extends javax.swing.JFrame {
                 //Let them in
 
                 JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("Password and Username Matches");
+                debugMessage("Password and Username Matches");
 
             }
 
@@ -97,6 +99,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_logInBtnActionPerformed
 
     public static void main(String args[]) {
+        
         try {
             // since there is no database or permenant storage of users some defaults will be created here.
             // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
