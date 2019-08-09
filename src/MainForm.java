@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JToggleButton;
 import javax.swing.WindowConstants;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -16,10 +15,9 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
-            //Array to store users
-           static user[] userArray = new user[3];
+    //Array to store users
+    static user[] userArray = new user[4];
 
-    
     public MainForm() {
         initComponents();
     }
@@ -76,54 +74,51 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // since there is no database or permenant storage of users some defaults will be created here.
-    // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
-    //since its not being saved anywhere
-        
-    
-    
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         int i;
         for (i = 0; i < userArray.length; i++) {
 
             // accessing each element of array
-            if(userNameField.getText() == userArray[i].getUsername() && userArray[i].checkPassword(passwordField.getPassword()))
-            {
+            if (userNameField.getText().compareTo(userArray[i].getUsername()) == 0 && userArray[i].checkPassword(new String(passwordField.getPassword()))) {
                 //Let them in
+
+                JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Password and Username Matches");
+
             }
-            //x = userArray[i];
-            //System.out.print(x + " ");
+
         }
     }//GEN-LAST:event_logInBtnActionPerformed
 
     public static void main(String args[]) {
         try {
-        userArray[1] = new user("Technician", "BestAcInstallerEver");
-        userArray[2] = new user("Admin", "Admin123");
-        userArray[3] = new user("Caleb", "I Made This Program");
-        
+            // since there is no database or permenant storage of users some defaults will be created here.
+            // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
+            //since its not being saved anywhere
+            userArray[0] = new user("CEO", "BestBossEver");
+            userArray[1] = new user("Technician", "BestAcInstallerEver");
+            userArray[2] = new user("Admin", "Admin123");
+            userArray[3] = new user("Caleb", "I Made This Program");
+            // prints out all the users
+            int i;
+            for (i = 0; i < userArray.length; i++) {
+                System.out.println("Created User: " + userArray[i].getUsername());
+            }
+
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainForm().setVisible(true);
         });
     }
 
