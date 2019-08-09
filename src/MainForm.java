@@ -119,6 +119,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_logInBtnActionPerformed
 
     private void exitBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+        //exits the program on click
+        System.exit(0);
     }//GEN-LAST:event_exitBtnActionPerformed
 
     public static void main(String args[]) {
