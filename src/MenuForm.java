@@ -58,7 +58,9 @@ public class MenuForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-        // TODO add your handling code here:
+        MainForm loginForm = new MainForm();
+        loginForm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     /**
