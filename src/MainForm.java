@@ -92,6 +92,10 @@ public class MainForm extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
                 debugMessage("Password and Username Matches");
+                
+                MenuForm menuForm = new MenuForm();
+                menuForm.setVisible(true);
+                this.setVisible(false);
 
             }
 
