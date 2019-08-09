@@ -120,7 +120,14 @@ public class MainForm extends javax.swing.JFrame {
 
     private void exitBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
         //exits the program on click
-        System.exit(0);
+
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you would like to exit?", "Exit?", dialogButton);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            //exits the program without error
+            System.exit(0);
+        }
+
     }//GEN-LAST:event_exitBtnActionPerformed
 
     public static void main(String args[]) {
