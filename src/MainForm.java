@@ -99,6 +99,7 @@ public class MainForm extends javax.swing.JFrame {
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         int i;
+        Boolean loggedin = false;
         for (i = 0; i < userArray.length; i++) {
 
             // accessing each element of array
@@ -112,12 +113,15 @@ public class MainForm extends javax.swing.JFrame {
                 menuForm.setVisible(true);
                 this.setVisible(false);
                 this.dispose();
-
+loggedin = true;
             }
             
         }
+        if (loggedin == false)
+        {
         JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
             debugMessage("Wrong username or password");
+        }
     }//GEN-LAST:event_logInBtnActionPerformed
 
     private void exitBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
