@@ -108,18 +108,17 @@ public class MainForm extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
                 debugMessage("Password and Username Matches");
-                
+
                 MenuForm menuForm = new MenuForm();
                 menuForm.setVisible(true);
                 this.setVisible(false);
                 this.dispose();
-loggedin = true;
+                loggedin = true;
             }
-            
+
         }
-        if (loggedin == false)
-        {
-        JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+        if (loggedin == false) {
+            JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
             debugMessage("Wrong username or password");
         }
     }//GEN-LAST:event_logInBtnActionPerformed
