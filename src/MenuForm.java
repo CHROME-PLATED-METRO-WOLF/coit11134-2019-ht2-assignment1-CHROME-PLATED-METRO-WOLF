@@ -61,6 +61,7 @@ public class MenuForm extends javax.swing.JFrame {
         MainForm loginForm = new MainForm();
         loginForm.setVisible(true);
         this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     /**
