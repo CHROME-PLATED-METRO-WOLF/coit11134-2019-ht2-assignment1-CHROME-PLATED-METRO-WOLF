@@ -13,5 +13,7 @@ public class Building {
     //less basic data
     private int rooms;
     private String notes;
+    //Building type apartment, house, commercial, industrial ect. 
+    private String buildingType;
 
 }
