@@ -3,16 +3,16 @@
 public class Building {
    //Data assumes australia as the country
    //Basic data for a building
-   int unitNumber;
-   String address;
-   int postcode;
-   String suburb;
-   String city;
-   String state;
+   private int unitNumber;
+   private String address;
+   private int postcode;
+   private String suburb;
+   private String city;
+   private String state;
    
    //less basic data
-   int rooms;
-   int zones;
-   String notes;
+   private int rooms;
+   private int zones;
+   private String notes;
    
 }
