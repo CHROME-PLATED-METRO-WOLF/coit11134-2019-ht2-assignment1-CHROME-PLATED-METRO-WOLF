@@ -114,9 +114,10 @@ public class MainForm extends javax.swing.JFrame {
                 this.dispose();
 
             }
-            JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
-            debugMessage("Wrong username or password");
+            
         }
+        JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+            debugMessage("Wrong username or password");
     }//GEN-LAST:event_logInBtnActionPerformed
 
     private void exitBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
