@@ -1,4 +1,3 @@
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
@@ -89,34 +88,38 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void debugMessage(String message)
-    {
+    public void debugMessage(String message) {
         System.out.println(message);
     }
-    
-    
-    
+
     // Login button event
     private void logInBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
+        // loop tracking variable
         int i;
+        //this boolean value keeps track of the login status
         Boolean loggedin = false;
+        //loop to check the array of users
         for (i = 0; i < userArray.length; i++) {
 
-            // accessing each element of array
+            //if the name and pasword match a user in the array of users
             if (userNameField.getText().compareTo(userArray[i].getUsername()) == 0 && userArray[i].checkPassword(new String(passwordField.getPassword()))) {
                 //Let them in
-
+                //message box and debug message of a successful login.
                 JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
                 debugMessage("Password and Username Matches");
-
+                //creates a new logged in form
                 MenuForm menuForm = new MenuForm();
+                //makes it visible
                 menuForm.setVisible(true);
+                //gets rid of the current window
                 this.setVisible(false);
+                //disposes of the current form (release memory and system resources)
                 this.dispose();
+                //set the loggedin value to true so the error message box doesnt display.
                 loggedin = true;
             }
-
         }
+        //if login fails display error mesage and send debug message
         if (loggedin == false) {
             JOptionPane.showMessageDialog(null, "ERROR: Username or password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
             debugMessage("Wrong username or password");
@@ -142,7 +145,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     public static void main(String args[]) {
-        
+
         try {
             // since there is no database or permenant storage of users some defaults will be created here.
             // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
