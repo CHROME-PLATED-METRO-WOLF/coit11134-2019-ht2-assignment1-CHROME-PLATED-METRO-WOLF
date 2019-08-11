@@ -42,6 +42,15 @@ public class Building {
     //no parameterised constructor will be created because data can be entered in any order
     //may consider using optional class
     
+    @Override
+    public String toString()
+    {
+        return "Unit Number: " + unitNumber + "\n" + "Address: " + address + "\n" + "Suburb: " + suburb
+                + "\n" + "Postcode: " + postcode + "\n" + "City: " + city + "\n" + "State: " + state + "\n"
+                + "BuildingName: " + buildingName + "\n" + "Rooms: " + rooms + "\n" + "Notes: " + notes + "\n"
+                + "Building Type: " + buildingType; 
+    }
+    
     //setters
     void setUnitNumber(int number)
     {
