@@ -40,5 +40,48 @@ public class Building {
         buildingType = "";
     }
     //no parameterised constructor will be created because data can be entered in any order
+    //may consider using optional class
+    
+    //setters
+    void setUnitNumber(int number)
+    {
+     unitNumber = number;   
+    }
+    void setAddress(String Address)
+    {
+       address = Address; 
+    }
+    void setPostCode(int code)
+    {
+        postcode = code;
+    }
+    void setSuburb(String Suburb)
+    {
+        suburb = Suburb;
+    }
+    void setCity(String cityName)
+    {
+        city = cityName;
+    }
+    void setState(String State)
+    {
+        state = State;
+    }
+    void setBuildingName(String BuildingName)
+    {
+        buildingName = BuildingName;
+    }
+    void setRooms(int numOfRooms)
+    {
+        rooms = numOfRooms;
+    }
+    void setNotes(String note)
+    {
+        notes = note;
+    }
+    void setBuildingType(String BuildingType)
+    {
+        buildingType = BuildingType;
+    }
     
 }
