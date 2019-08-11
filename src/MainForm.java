@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -39,6 +41,12 @@ public class MainForm extends javax.swing.JFrame {
         logInBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 logInBtnActionPerformed(evt);
+            }
+        });
+
+        userNameField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                userNameFieldKeyPressed(evt);
             }
         });
 
@@ -105,7 +113,7 @@ public class MainForm extends javax.swing.JFrame {
             if (userNameField.getText().compareTo(userArray[i].getUsername()) == 0 && userArray[i].checkPassword(new String(passwordField.getPassword()))) {
                 //Let them in
                 //message box and debug message of a successful login.
-                JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox: " + "Nice", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User and password matches", "InfoBox:", JOptionPane.INFORMATION_MESSAGE);
                 debugMessage("Password and Username Matches");
                 //creates a new logged in form
                 MenuForm menuForm = new MenuForm();
@@ -144,6 +152,10 @@ public class MainForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_exitBtnActionPerformed
 
+    private void userNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameFieldKeyPressed
+
     public static void main(String args[]) {
 
         try {
@@ -154,6 +166,7 @@ public class MainForm extends javax.swing.JFrame {
             userArray[1] = new user("Technician", "BestAcInstallerEver");
             userArray[2] = new user("Admin", "Admin123");
             userArray[3] = new user("Caleb", "I Made This Program");
+            
             // prints out all the users
             int i;
             for (i = 0; i < userArray.length; i++) {
