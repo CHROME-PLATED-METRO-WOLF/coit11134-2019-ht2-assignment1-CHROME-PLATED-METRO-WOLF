@@ -44,6 +44,12 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
+
         userNameField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent evt) {
                 userNameFieldKeyPressed(evt);
@@ -153,8 +159,12 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void userNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_userNameFieldKeyPressed
+
+    private void passwordFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+
+    }//GEN-LAST:event_passwordFieldKeyPressed
 
     public static void main(String args[]) {
 
