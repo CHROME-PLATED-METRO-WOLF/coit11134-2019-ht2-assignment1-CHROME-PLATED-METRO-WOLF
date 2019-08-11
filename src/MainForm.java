@@ -159,11 +159,17 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void userNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            debugMessage("ENTER key pressed on username field");
+            logInBtn.doClick();            
+        }
     }//GEN-LAST:event_userNameFieldKeyPressed
 
     private void passwordFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            debugMessage("ENTER key pressed on password field");
+            logInBtn.doClick();
+        }
     }//GEN-LAST:event_passwordFieldKeyPressed
 
     public static void main(String args[]) {
