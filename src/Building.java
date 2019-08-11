@@ -84,4 +84,46 @@ public class Building {
         buildingType = BuildingType;
     }
     
+    //Getters
+    int setUnitNumber()
+    {
+     return unitNumber;   
+    }
+    String setAddress()
+    {
+       return address; 
+    }
+    int setPostCode()
+    {
+        return postcode;
+    }
+    String setSuburb()
+    {
+        return suburb;
+    }
+    String setCity()
+    {
+        return city;
+    }
+    String setState()
+    {
+       return state;
+    }
+    String setBuildingName()
+    {
+        return buildingName;
+    }
+    int setRooms()
+    {
+        return rooms;
+    }
+    String setNotes()
+    {
+        return notes;
+    }
+    String setBuildingType()
+    {
+        return buildingType;
+    }
+    
 }
