@@ -80,4 +80,26 @@ public class Installation extends Building {
     {
         endDate = EndDate;
     }
+    
+    //Getters
+    int getHorsePower() {
+        return horsePower;
+    }
+
+    int getNumZones() {
+        return numZones;
+    }
+
+    int getOutlets() {
+        return numOutlets;
+    }
+    
+    Date getStartDate()
+    {
+        return startDate;
+    }
+    Date getEnddate()
+    {
+        return endDate;
+    }
 }
