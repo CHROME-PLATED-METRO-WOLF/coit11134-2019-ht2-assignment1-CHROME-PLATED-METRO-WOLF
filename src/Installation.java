@@ -72,4 +72,12 @@ public class Installation extends Building {
     void setTechnitian(Technician Technician) {
         technician = Technician;
     }
+    void setStartDate(Date StartDate)
+    {
+        startDate = StartDate;
+    }
+    void setEnddate(Date EndDate)
+    {
+        endDate = EndDate;
+    }
 }
