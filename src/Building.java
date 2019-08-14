@@ -39,8 +39,147 @@ public class Building {
         notes = "";
         buildingType = "";
     }
-    //no parameterised constructor will be created because data can be entered in any order
-    //may consider using optional class
+    Building(int UnitNumber)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = "";
+        postcode = 0;
+        suburb = "";
+        city = "";
+        state = "";
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = 0;
+        suburb = "";
+        city = "";
+        state = "";
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = "";
+        city = "";
+        state = "";
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = "";
+        state = "";
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb, String City)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = "";
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = State;
+        buildingName = "";
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = State;
+        buildingName = BuildingName;
+        rooms = 0;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = State;
+        buildingName = BuildingName;
+        rooms = Rooms;
+        notes = "";
+        buildingType = "";
+    }
+    Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms, String Notes)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = State;
+        buildingName = BuildingName;
+        rooms = Rooms;
+        notes = Notes;
+        buildingType = "";
+    }
+     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms, String Notes, String BuildingType)
+    {
+        //creates a blank building object
+        unitNumber = UnitNumber;
+        address = Address;
+        postcode = PostCode;
+        suburb = Suburb;
+        city = City;
+        state = State;
+        buildingName = BuildingName;
+        rooms = Rooms;
+        notes = Notes;
+        buildingType = BuildingType;
+    }
+    
     
     @Override
     public String toString()
