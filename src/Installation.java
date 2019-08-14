@@ -1,4 +1,7 @@
 
+import java.util.Date;
+
+
 public class Installation extends Building {
 
     private int horsePower;
@@ -6,6 +9,8 @@ public class Installation extends Building {
     private int numOutlets;
     //Assume that only one technitian can be assigned to one installation for now.
     private Technician technician;
+    private Date startDate;
+    private Date endDate;
 
     //Constructors
     Installation(Technician Technician) {
@@ -34,6 +39,21 @@ public class Installation extends Building {
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
+    }
+    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets, Date StartDate) {
+        horsePower = HorsePower;
+        numZones = NumZones;
+        numOutlets = NumOutlets;
+        technician = Technician;
+        startDate = StartDate;
+    }
+    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets, Date StartDate, Date EndDate) {
+        horsePower = HorsePower;
+        numZones = NumZones;
+        numOutlets = NumOutlets;
+        technician = Technician;
+        startDate = StartDate;
+        endDate = EndDate;
     }
 
     //Setters
