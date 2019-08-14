@@ -217,44 +217,44 @@ public class Building {
     }
 
     //Getters
-    int setUnitNumber() {
+    int getUnitNumber() {
         return unitNumber;
     }
 
-    String setAddress() {
+    String getAddress() {
         return address;
     }
 
-    int setPostCode() {
+    int getPostCode() {
         return postcode;
     }
 
-    String setSuburb() {
+    String getSuburb() {
         return suburb;
     }
 
-    String setCity() {
+    String getCity() {
         return city;
     }
 
-    String setState() {
+    String getState() {
         return state;
     }
 
-    String setBuildingName() {
+    String getBuildingName() {
         return buildingName;
     }
 
-    int setRooms() {
+    int getRooms() {
         return rooms;
     }
 
-    String setNotes() {
+    String getNotes() {
         return notes;
     }
 
-    String setBuildingType() {
+    String getBuildingType() {
         return buildingType;
     }
-
+ 
 }
