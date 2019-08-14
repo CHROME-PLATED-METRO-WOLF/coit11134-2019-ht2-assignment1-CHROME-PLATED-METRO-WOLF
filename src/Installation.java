@@ -1,55 +1,55 @@
-public class Installation extends Building{
+
+public class Installation extends Building {
+
     private int horsePower;
     private int numZones;
     private int numOutlets;
     //Assume that only one technitian can be assigned to one installation for now.
     private Technician technician;
-    
+
     //Constructors
-    Installation(Technician Technician)
-    {
+    Installation(Technician Technician) {
         horsePower = 0;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
     }
-    Installation(Technician Technician, int HorsePower)
-    {
+
+    Installation(Technician Technician, int HorsePower) {
         horsePower = HorsePower;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
     }
-    Installation(Technician Technician, int HorsePower, int NumZones)
-    {
+
+    Installation(Technician Technician, int HorsePower, int NumZones) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = 0;
         technician = Technician;
     }
-    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets)
-    {
+
+    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
     }
-    
+
     //Setters
-    void setHorsePower(int HorsePower)
-    {
-       horsePower = HorsePower; 
+    void setHorsePower(int HorsePower) {
+        horsePower = HorsePower;
     }
-    void setNumZones(int numberOfZones)
-    {
+
+    void setNumZones(int numberOfZones) {
         numZones = numberOfZones;
     }
-    void setOutlets(int numberOfOutlets)
-    {
+
+    void setOutlets(int numberOfOutlets) {
         numOutlets = numberOfOutlets;
     }
-    void setTechnitian(Technician Technician)
-    {
+
+    void setTechnitian(Technician Technician) {
         technician = Technician;
     }
 }
