@@ -41,7 +41,6 @@ public class Building {
     }
     Building(int UnitNumber)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = "";
         postcode = 0;
@@ -55,7 +54,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = 0;
@@ -69,7 +67,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -83,7 +80,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -97,7 +93,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -111,7 +106,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -125,7 +119,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -139,7 +132,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -153,7 +145,6 @@ public class Building {
     }
     Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms, String Notes)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
@@ -167,7 +158,6 @@ public class Building {
     }
      Building(int UnitNumber, String Address, int PostCode, String Suburb, String City, String State, String BuildingName, int Rooms, String Notes, String BuildingType)
     {
-        //creates a blank building object
         unitNumber = UnitNumber;
         address = Address;
         postcode = PostCode;
