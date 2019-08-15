@@ -90,7 +90,9 @@ public class MenuForm extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
-        // TODO add your handling code here:
+ModifyTechnician form = new ModifyTechnician();
+form.setVisible(true);
+this.setEnabled(false);
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
 
     /**
