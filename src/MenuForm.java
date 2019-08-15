@@ -6,7 +6,6 @@ import javax.swing.JFrame;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Terry
@@ -84,21 +83,22 @@ public class MenuForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
         MainForm loginForm = new MainForm();
         loginForm.setVisible(true);
         this.setVisible(false);
         this.dispose();
+        modifyTechnicianForm.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
-    ModifyTechnician form = new ModifyTechnician();
+
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
-        form.setVisible(true);
+        modifyTechnicianForm.setVisible(true);
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
-        form.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-              
+        modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
 
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
 
