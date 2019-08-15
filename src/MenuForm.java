@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import javax.swing.JFrame;
 
 /*
@@ -11,7 +12,9 @@ import javax.swing.JFrame;
  * @author Terry
  */
 public class MenuForm extends javax.swing.JFrame {
-
+ArrayList<Technician> technicians = new ArrayList<Technician>();
+ArrayList<Building> buildings = new ArrayList<Building>();
+ArrayList<Installation> installations = new ArrayList<Installation>();
     /**
      * Creates new form MenuForm
      */
