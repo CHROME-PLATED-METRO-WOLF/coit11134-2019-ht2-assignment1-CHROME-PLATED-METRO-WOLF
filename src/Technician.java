@@ -1,102 +1,101 @@
 //This class will probably extend from user on assignment 2 when data is permenantly saved on disk.
+
 public class Technician {
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private short age;
     private String notes;
-    
+
     //Constructors
-    Technician()
-    {
+    Technician() {
         firstName = "";
         lastName = "";
         phoneNumber = "";
         age = 0;
         notes = "";
     }
-    Technician(String FirstName)
-    {
+
+    Technician(String FirstName) {
         firstName = FirstName;
         lastName = "";
         phoneNumber = "";
         age = 0;
         notes = "";
     }
-    Technician(String FirstName, String LastName)
-    {
+
+    Technician(String FirstName, String LastName) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = "";
         age = 0;
         notes = "";
     }
-    Technician(String FirstName, String LastName, String PhoneNumber)
-    {
+
+    Technician(String FirstName, String LastName, String PhoneNumber) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = PhoneNumber;
         age = 0;
         notes = "";
     }
-    Technician(String FirstName, String LastName, String PhoneNumber, short Age)
-    {
+
+    Technician(String FirstName, String LastName, String PhoneNumber, short Age) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = PhoneNumber;
         age = Age;
         notes = "";
     }
-    Technician(String FirstName, String LastName, String PhoneNumber, short Age, String Notes)
-    {
+
+    Technician(String FirstName, String LastName, String PhoneNumber, short Age, String Notes) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = PhoneNumber;
         age = Age;
         notes = Notes;
     }
-    
+
     //Setters
-    void setFirstName(String FirstName)
-    {
+    void setFirstName(String FirstName) {
         firstName = FirstName;
     }
-    void setLastName(String LastName)
-    {
+
+    void setLastName(String LastName) {
         lastName = LastName;
     }
-    void setPhoneNumber(String PhoneNumber)
-    {
+
+    void setPhoneNumber(String PhoneNumber) {
         phoneNumber = PhoneNumber;
     }
-    void setAge(Short Age)
-    {
+
+    void setAge(Short Age) {
         age = Age;
     }
-    void setNotes(String Notes)
-    {
+
+    void setNotes(String Notes) {
         notes = Notes;
     }
-    
+
     //Getters
-    String getFirstName()
-    {
+    String getFirstName() {
         return firstName;
     }
-    String getLastName()
-    {
+
+    String getLastName() {
         return lastName;
     }
-    String getPhoneNumber()
-    {
+
+    String getPhoneNumber() {
         return phoneNumber;
     }
-    Short getAge()
-    {
+
+    Short getAge() {
         return age;
     }
-    String getNotes()
-    {
+
+    String getNotes() {
         return notes;
     }
 }
