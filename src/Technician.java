@@ -55,4 +55,27 @@ public class Technician {
         age = Age;
         notes = Notes;
     }
+    
+    //Setters
+    void setFirstName(String FirstName)
+    {
+        firstName = FirstName;
+    }
+    void setLastName(String LastName)
+    {
+        lastName = LastName;
+    }
+    void setPhoneNumber(String PhoneNumber)
+    {
+        phoneNumber = PhoneNumber;
+    }
+    void setAge(Short Age)
+    {
+        age = Age;
+    }
+    void setNotes(String Notes)
+    {
+        notes = Notes;
+    }
+    
 }
