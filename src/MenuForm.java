@@ -28,6 +28,7 @@ public class MenuForm extends javax.swing.JFrame {
 
         LogoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        modifyTechniciansBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,17 +41,30 @@ public class MenuForm extends javax.swing.JFrame {
 
         jLabel1.setText("CQAC Management System");
 
+        modifyTechniciansBtn.setText("Modify Technicians");
+        modifyTechniciansBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyTechniciansBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(451, Short.MAX_VALUE)
-                .addComponent(LogoutBtn)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(451, Short.MAX_VALUE)
+                        .addComponent(LogoutBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(modifyTechniciansBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -58,7 +72,9 @@ public class MenuForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
+                .addComponent(modifyTechniciansBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
         );
@@ -72,6 +88,10 @@ public class MenuForm extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
+
+    private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,5 +131,6 @@ public class MenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton modifyTechniciansBtn;
     // End of variables declaration//GEN-END:variables
 }
