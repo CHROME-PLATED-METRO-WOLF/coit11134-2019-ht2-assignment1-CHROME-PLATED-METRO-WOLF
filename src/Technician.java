@@ -78,4 +78,25 @@ public class Technician {
         notes = Notes;
     }
     
+    //Getters
+    String getFirstName()
+    {
+        return firstName;
+    }
+    String getLastName()
+    {
+        return lastName;
+    }
+    String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+    Short getAge()
+    {
+        return age;
+    }
+    String getNotes()
+    {
+        return notes;
+    }
 }
