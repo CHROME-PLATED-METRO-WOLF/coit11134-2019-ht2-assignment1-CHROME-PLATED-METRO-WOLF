@@ -1,3 +1,6 @@
+
+import javax.swing.JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -89,10 +92,14 @@ public class MenuForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
+    ModifyTechnician form = new ModifyTechnician();
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
-        ModifyTechnician form = new ModifyTechnician();
         form.setVisible(true);
-        this.setEnabled(false);
+        //This will keep the form alive incase the user leaves data in the data fields
+        //the next time the user opens the form it will still have the data entered
+        form.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+              
+
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
 
     /**
