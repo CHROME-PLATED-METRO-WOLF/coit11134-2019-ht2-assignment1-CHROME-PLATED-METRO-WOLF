@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -13,6 +14,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,9 +25,8 @@ import javax.swing.table.*;
  * @author caleb
  */
 
-
 public class ModifyTechnician extends javax.swing.JFrame {
-ArrayList<Technician> technicians;
+//ArrayList<Technician> technicians;
 
     /**
      * Creates new form ModifyTechnician
@@ -118,17 +119,24 @@ ArrayList<Technician> technicians;
 
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
+//MenuForm.technicians.add(new Technician("AddForm", "AddForm", "123131", 22, "Ttests"));
     }//GEN-LAST:event_addBtnActionPerformed
 
-    
-    
-    public void yourAddRow(String firstName, String lastName, String phoneNumber, int age, String notes){
-  DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
-  yourModel.addRow(new Object[]{firstName, lastName, phoneNumber, age, notes});
-}
-    
-    
-    
+    private void RemoveRows(int index) {
+        DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
+        yourModel.removeRow(index);
+    }
+
+    private void AddRow(String firstName, String lastName, String phoneNumber, int age, String notes) {
+        DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
+        yourModel.addRow(new Object[]{firstName, lastName, phoneNumber, age, notes});
+    }
+
+    private void clearRows() {
+        DefaultTableModel Model = (DefaultTableModel) technicianViewBox.getModel();
+        Model.setRowCount(0);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -156,16 +164,27 @@ ArrayList<Technician> technicians;
         }
         //</editor-fold>
         /* Create and display the form */
-        
-        technicians = technicianArray;
-        technicians.add(new Technician("Swag", "sadad", "12312312", 1, "asdad"));
-        yourAddRow(technicians.get(0).getFirstName(), technicians.get(0).getLastName(), technicians.get(0).getPhoneNumber(), technicians.get(0).getAge(),
-                technicians.get(0).getNotes());
-        
-        
+
+        // technicians = technicianArray;
+        System.out.println("List Size" + MenuForm.technicians.size());
+
+        //technicianViewBox.removeAll();
+        System.out.println("row count:" + technicianViewBox.getRowCount());
+        System.out.println("colum count:" + technicianViewBox.getColumnCount());
+
+        clearRows();
+
+        int i = 0;
+        while (i < MenuForm.technicians.size()) {
+            AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
+                    MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
+                    MenuForm.technicians.get(i).getNotes());
+            i++;
+        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
