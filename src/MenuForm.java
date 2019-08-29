@@ -12,14 +12,16 @@ import javax.swing.JFrame;
  * @author Terry
  */
 public class MenuForm extends javax.swing.JFrame {
-ArrayList<Technician> technicians = new ArrayList<Technician>();
-ArrayList<Building> buildings = new ArrayList<Building>();
-ArrayList<Installation> installations = new ArrayList<Installation>();
+
+    public static ArrayList<Technician> technicians = new ArrayList<Technician>();
+    public static ArrayList<Building> buildings = new ArrayList<Building>();
+    public static ArrayList<Installation> installations = new ArrayList<Installation>();
+
     /**
      * Creates new form MenuForm
      */
     public MenuForm() {
-        initComponents();       
+        initComponents();
     }
 
     /**
@@ -34,7 +36,6 @@ ArrayList<Installation> installations = new ArrayList<Installation>();
         LogoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         modifyTechniciansBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,8 +55,6 @@ ArrayList<Installation> installations = new ArrayList<Installation>();
             }
         });
 
-        jButton1.setText("jButton1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,23 +72,16 @@ ArrayList<Installation> installations = new ArrayList<Installation>();
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(modifyTechniciansBtn)
-                .addGap(93, 93, 93)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(75, 75, 75)
-                        .addComponent(modifyTechniciansBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(75, 75, 75)
+                .addComponent(modifyTechniciansBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
         );
@@ -113,7 +105,6 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        
 
 
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
@@ -155,7 +146,6 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modifyTechniciansBtn;
     // End of variables declaration//GEN-END:variables
