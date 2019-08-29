@@ -5,7 +5,7 @@ public class Technician {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private short age;
+    private int age;
     private String notes;
 
     //Constructors
@@ -41,7 +41,7 @@ public class Technician {
         notes = "";
     }
 
-    Technician(String FirstName, String LastName, String PhoneNumber, short Age) {
+    Technician(String FirstName, String LastName, String PhoneNumber, int Age) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = PhoneNumber;
@@ -49,7 +49,7 @@ public class Technician {
         notes = "";
     }
 
-    Technician(String FirstName, String LastName, String PhoneNumber, short Age, String Notes) {
+    Technician(String FirstName, String LastName, String PhoneNumber, int Age, String Notes) {
         firstName = FirstName;
         lastName = LastName;
         phoneNumber = PhoneNumber;
@@ -70,7 +70,7 @@ public class Technician {
         phoneNumber = PhoneNumber;
     }
 
-    void setAge(Short Age) {
+    void setAge(int Age) {
         age = Age;
     }
 
@@ -91,7 +91,7 @@ public class Technician {
         return phoneNumber;
     }
 
-    Short getAge() {
+    int getAge() {
         return age;
     }
 
