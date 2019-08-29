@@ -1,6 +1,14 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
 
 /*
@@ -12,7 +20,10 @@ import javax.swing.WindowConstants;
  *
  * @author caleb
  */
+
+
 public class ModifyTechnician extends javax.swing.JFrame {
+ArrayList<Technician> technicians;
 
     /**
      * Creates new form ModifyTechnician
@@ -31,33 +42,66 @@ public class ModifyTechnician extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new JLabel();
+        addBtn = new JToggleButton();
+        jScrollPane1 = new JScrollPane();
+        technicianViewBox = new JList<>();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Technician Editor");
 
+        addBtn.setText("Add");
+        addBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        technicianViewBox.setModel(new AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(technicianViewBox);
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jLabel1)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(201, 201, 201)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(addBtn, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(addBtn)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+
+    }//GEN-LAST:event_addBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public  void main(ArrayList<Technician> technicianArray) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -81,6 +125,9 @@ public class ModifyTechnician extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
+        
+        technicians = technicianArray;
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ModifyTechnician().setVisible(true);
@@ -89,6 +136,9 @@ public class ModifyTechnician extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JToggleButton addBtn;
     private JLabel jLabel1;
+    private JScrollPane jScrollPane1;
+    private JList<String> technicianViewBox;
     // End of variables declaration//GEN-END:variables
 }
