@@ -122,7 +122,7 @@ ArrayList<Technician> technicians;
 
     
     
-    public void yourAddRow(String firstName, String lastName, String phoneNumber, short age, String notes){
+    public void yourAddRow(String firstName, String lastName, String phoneNumber, int age, String notes){
   DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
   yourModel.addRow(new Object[]{firstName, lastName, phoneNumber, age, notes});
 }
@@ -132,7 +132,7 @@ ArrayList<Technician> technicians;
     /**
      * @param args the command line arguments
      */
-    public  void main(ArrayList<Technician> technicianArray) {
+    public void main(ArrayList<Technician> technicianArray) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -158,8 +158,9 @@ ArrayList<Technician> technicians;
         /* Create and display the form */
         
         technicians = technicianArray;
-        technicians.add(new Technician("Swag"));
-        yourAddRow(technicians.get(0).getFirstName(), technicians.get(0).getLastName(), technicians.get(0).getPhoneNumber());
+        technicians.add(new Technician("Swag", "sadad", "12312312", 1, "asdad"));
+        yourAddRow(technicians.get(0).getFirstName(), technicians.get(0).getLastName(), technicians.get(0).getPhoneNumber(), technicians.get(0).getAge(),
+                technicians.get(0).getNotes());
         
         
         java.awt.EventQueue.invokeLater(new Runnable() {
