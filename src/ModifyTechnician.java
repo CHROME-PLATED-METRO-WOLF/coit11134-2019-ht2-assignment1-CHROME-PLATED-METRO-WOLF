@@ -247,60 +247,56 @@ public class ModifyTechnician extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void editSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_editSelectedBtnActionPerformed
-        try{
-        int selectedRow = technicianViewBox.getSelectedRow();
-        
-        ageField.setText(Integer.toString(MenuForm.technicians.get(selectedRow).getAge()));
-        nameField.setText(MenuForm.technicians.get(selectedRow).getFirstName());
-        lastNameField.setText(MenuForm.technicians.get(selectedRow).getLastName());
-        phoneNumberField.setText(MenuForm.technicians.get(selectedRow).getPhoneNumber());
-        notesField.setText(MenuForm.technicians.get(selectedRow).getNotes());
-        }catch(java.lang.IndexOutOfBoundsException exception)
-       {
-           JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
-       }
+        try {
+            int selectedRow = technicianViewBox.getSelectedRow();
+
+            ageField.setText(Integer.toString(MenuForm.technicians.get(selectedRow).getAge()));
+            nameField.setText(MenuForm.technicians.get(selectedRow).getFirstName());
+            lastNameField.setText(MenuForm.technicians.get(selectedRow).getLastName());
+            phoneNumberField.setText(MenuForm.technicians.get(selectedRow).getPhoneNumber());
+            notesField.setText(MenuForm.technicians.get(selectedRow).getNotes());
+        } catch (java.lang.IndexOutOfBoundsException exception) {
+            JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_editSelectedBtnActionPerformed
 
     private void updateSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_updateSelectedBtnActionPerformed
-       try
-       {
-        int selectedRow = technicianViewBox.getSelectedRow();
-        if (nameField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            int selectedRow = technicianViewBox.getSelectedRow();
+            if (nameField.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
 
-        } else {
-            if (ageField.getText().equals("")) {
-                ageField.setText(Integer.toString(0));
+            } else {
+                if (ageField.getText().equals("")) {
+                    ageField.setText(Integer.toString(0));
 
+                }
+
+                try {
+                    MenuForm.technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
+                    MenuForm.technicians.get(selectedRow).setFirstName(nameField.getText());
+                    MenuForm.technicians.get(selectedRow).setLastName(lastNameField.getText());
+                    MenuForm.technicians.get(selectedRow).setPhoneNumber(phoneNumberField.getText());
+                    MenuForm.technicians.get(selectedRow).setNotes(notesField.getText());
+                } catch (java.lang.NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
+                    //remove the last one since it errors
+                    MenuForm.technicians.remove(MenuForm.technicians.size() - 1);
+                }
             }
-            
-            try {
-                MenuForm.technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
-                MenuForm.technicians.get(selectedRow).setFirstName(nameField.getText());
-                MenuForm.technicians.get(selectedRow).setLastName(lastNameField.getText());
-                MenuForm.technicians.get(selectedRow).setPhoneNumber(phoneNumberField.getText());
-                MenuForm.technicians.get(selectedRow).setNotes(notesField.getText());
-            } catch (java.lang.NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-                //remove the last one since it errors
-                MenuForm.technicians.remove(MenuForm.technicians.size() - 1);
-            }
+        } catch (java.lang.IndexOutOfBoundsException exception) {
+            JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-       }catch(java.lang.IndexOutOfBoundsException exception)
-       {
-           JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
-       }
         UpdateTable();
     }//GEN-LAST:event_updateSelectedBtnActionPerformed
 
     private void removeSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeSelectedBtnActionPerformed
-        try{
-        int selectedRow = technicianViewBox.getSelectedRow();
-        MenuForm.technicians.remove(selectedRow);
-        }catch(java.lang.IndexOutOfBoundsException exception)
-       {
-           JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
-       }
+        try {
+            int selectedRow = technicianViewBox.getSelectedRow();
+            MenuForm.technicians.remove(selectedRow);
+        } catch (java.lang.IndexOutOfBoundsException exception) {
+            JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         UpdateTable();
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
