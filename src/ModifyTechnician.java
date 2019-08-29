@@ -24,7 +24,6 @@ import javax.swing.table.*;
  *
  * @author caleb
  */
-
 public class ModifyTechnician extends javax.swing.JFrame {
 //ArrayList<Technician> technicians;
 
@@ -122,6 +121,17 @@ public class ModifyTechnician extends javax.swing.JFrame {
 //MenuForm.technicians.add(new Technician("AddForm", "AddForm", "123131", 22, "Ttests"));
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void UpdateTable() {
+        clearRows();
+        int i = 0;
+        while (i < MenuForm.technicians.size()) {
+            AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
+                    MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
+                    MenuForm.technicians.get(i).getNotes());
+            i++;
+        }
+    }
+
     private void RemoveRows(int index) {
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
         yourModel.removeRow(index);
@@ -171,16 +181,6 @@ public class ModifyTechnician extends javax.swing.JFrame {
         //technicianViewBox.removeAll();
         System.out.println("row count:" + technicianViewBox.getRowCount());
         System.out.println("colum count:" + technicianViewBox.getColumnCount());
-
-        clearRows();
-
-        int i = 0;
-        while (i < MenuForm.technicians.size()) {
-            AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
-                    MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
-                    MenuForm.technicians.get(i).getNotes());
-            i++;
-        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
