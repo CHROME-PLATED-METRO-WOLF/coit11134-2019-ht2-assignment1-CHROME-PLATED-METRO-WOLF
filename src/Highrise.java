@@ -9,7 +9,7 @@
  * @author Terry
  */
 public class Highrise extends Building {
-    int numOfFloors;
+    private int numOfFloors;
     
     Highrise()
     {
