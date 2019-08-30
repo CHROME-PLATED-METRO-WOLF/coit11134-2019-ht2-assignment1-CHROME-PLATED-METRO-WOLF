@@ -75,8 +75,8 @@ public class ModifyBuilding extends javax.swing.JFrame {
         roomsField = new JTextField();
         notesField = new JTextField();
         jLabel10 = new JLabel();
-        jCheckBox1 = new JCheckBox();
-        jTextField1 = new JTextField();
+        highRiseCheck = new JCheckBox();
+        numOfFloorsField = new JTextField();
 
         jList1.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -155,14 +155,17 @@ public class ModifyBuilding extends javax.swing.JFrame {
 
         jLabel10.setText("notes");
 
-        jCheckBox1.setText("Highrise Building");
-        jCheckBox1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+        highRiseCheck.setText("Highrise Building");
+        highRiseCheck.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
+                highRiseCheckStateChanged(evt);
             }
         });
-
-        jTextField1.setText("jTextField1");
+        highRiseCheck.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                highRiseCheckActionPerformed(evt);
+            }
+        });
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,51 +174,55 @@ public class ModifyBuilding extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                    .addComponent(unitNumberField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(postCodeField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(suburbField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                    .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(buildingNameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(roomsField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(notesField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jCheckBox1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(201, 201, 201)
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(unitNumberField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(addressField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(postCodeField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(suburbField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cityField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel10))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(buildingNameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(roomsField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(notesField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(highRiseCheck)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
                                 .addComponent(addBtn, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(editSelectedBtn)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(updateSelectedBtn)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removeSelectedBtn)))
+                                .addComponent(updateSelectedBtn)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(removeSelectedBtn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(331, 331, 331)
+                .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -262,17 +269,16 @@ public class ModifyBuilding extends javax.swing.JFrame {
                             .addComponent(notesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(highRiseCheck)
                         .addGap(6, 6, 6)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(editSelectedBtn)
                     .addComponent(updateSelectedBtn)
                     .addComponent(removeSelectedBtn))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -359,9 +365,19 @@ public class ModifyBuilding extends javax.swing.JFrame {
         UpdateTable();
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
-    private void jCheckBox1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void highRiseCheckActionPerformed(ActionEvent evt) {//GEN-FIRST:event_highRiseCheckActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_highRiseCheckActionPerformed
+
+    private void highRiseCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_highRiseCheckStateChanged
+        if(highRiseCheck.isSelected())
+        {
+            numOfFloorsField.setEnabled(true);
+        }else
+        {
+            numOfFloorsField.setEnabled(false);
+        }
+    }//GEN-LAST:event_highRiseCheckStateChanged
 
     private void UpdateTable() {
         clearRows();
@@ -437,7 +453,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
     private JTextField buildingNameField;
     private JTextField cityField;
     private JButton editSelectedBtn;
-    private JCheckBox jCheckBox1;
+    private JCheckBox highRiseCheck;
     private JLabel jLabel1;
     private JLabel jLabel10;
     private JLabel jLabel2;
@@ -451,8 +467,8 @@ public class ModifyBuilding extends javax.swing.JFrame {
     private JList<String> jList1;
     private JScrollPane jScrollPane1;
     private JScrollPane jScrollPane2;
-    private JTextField jTextField1;
     private JTextField notesField;
+    private JTextField numOfFloorsField;
     private JTextField postCodeField;
     private JButton removeSelectedBtn;
     private JTextField roomsField;
