@@ -19,11 +19,11 @@ public class MainForm extends javax.swing.JFrame {
      */
     //Array to store users
     static user[] userArray = new user[4];
-
+    
     public MainForm() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -191,9 +191,9 @@ public class MainForm extends javax.swing.JFrame {
         aboutForm.setVisible(true);
         aboutForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     public static void main(String args[]) {
-
+        
         try {
             // since there is no database or permenant storage of users some defaults will be created here.
             // Would be a vector instead of an array to allow expanding the list of users however in this case there is no point
@@ -208,7 +208,7 @@ public class MainForm extends javax.swing.JFrame {
             for (i = 0; i < userArray.length; i++) {
                 System.out.println("Created User: " + userArray[i].getUsername());
             }
-
+            
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
