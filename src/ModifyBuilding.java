@@ -90,7 +90,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Technician Editor");
+        jLabel1.setText("Building Manager");
 
         addBtn.setText("Add");
         addBtn.addActionListener(new ActionListener() {
@@ -185,9 +185,6 @@ public class ModifyBuilding extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -239,6 +236,10 @@ public class ModifyBuilding extends javax.swing.JFrame {
                                 .addComponent(removeSelectedBtn)))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(303, 303, 303)
+                .addComponent(jLabel1)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -466,6 +467,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
     }//GEN-LAST:event_highRiseCheckStateChanged
 
     private void UpdateTable() {
+        System.out.println("Running UpdateTable");
         clearRows();
         int i = 0;
         while (i < MenuForm.buildings.size()) {
