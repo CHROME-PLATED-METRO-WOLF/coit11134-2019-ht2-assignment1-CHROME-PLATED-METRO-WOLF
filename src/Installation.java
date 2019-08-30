@@ -10,39 +10,47 @@ public class Installation{
     //Might need to be a pointer to technician to avoid copying of class
     public Technician technician;
     public Building building;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
 
     //Constructors
-    Installation(Technician Technician) {
+    
+    Installation() {
+        horsePower = 0;
+        numZones = 0;
+        numOutlets = 0;
+        
+    }
+    
+    Installation(Technician Technician, Building building) {
         horsePower = 0;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
     }
 
-    Installation(Technician Technician, int HorsePower) {
+    Installation(Technician Technician, Building building, int HorsePower) {
         horsePower = HorsePower;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
     }
 
-    Installation(Technician Technician, int HorsePower, int NumZones) {
+    Installation(Technician Technician, Building building, int HorsePower, int NumZones) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = 0;
         technician = Technician;
     }
 
-    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets) {
+    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
     }
 
-    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets, Date StartDate) {
+    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets, String StartDate) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
@@ -50,7 +58,7 @@ public class Installation{
         startDate = StartDate;
     }
 
-    Installation(Technician Technician, int HorsePower, int NumZones, int NumOutlets, Date StartDate, Date EndDate) {
+    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets, String StartDate, String EndDate) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
@@ -67,6 +75,10 @@ public class Installation{
     void setNumZones(int numberOfZones) {
         numZones = numberOfZones;
     }
+    
+    void setBuilding(Building Building1) {
+        building = Building1;
+    }
 
     void setOutlets(int numberOfOutlets) {
         numOutlets = numberOfOutlets;
@@ -75,12 +87,13 @@ public class Installation{
     void setTechnitian(Technician Technician) {
         technician = Technician;
     }
+    
 
-    void setStartDate(Date StartDate) {
+    void setStartDate(String StartDate) {
         startDate = StartDate;
     }
 
-    void setEnddate(Date EndDate) {
+    void setEnddate(String EndDate) {
         endDate = EndDate;
     }
 
@@ -97,11 +110,11 @@ public class Installation{
         return numOutlets;
     }
 
-    Date getStartDate() {
+    String getStartDate() {
         return startDate;
     }
 
-    Date getEnddate() {
+    String getEnddate() {
         return endDate;
     }
 
