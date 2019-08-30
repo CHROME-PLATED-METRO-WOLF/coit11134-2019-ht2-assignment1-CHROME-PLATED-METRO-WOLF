@@ -1,10 +1,10 @@
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 import javax.swing.JOptionPane;
@@ -124,7 +124,7 @@ public class MainForm extends javax.swing.JFrame {
                 debugMessage("Password and Username Matches");
                 //creates a new logged in form
                 MenuForm menuForm = new MenuForm();
-                
+
                 //makes it visible
                 menuForm.setVisible(true);
                 //gets rid of the current window
@@ -163,7 +163,7 @@ public class MainForm extends javax.swing.JFrame {
     private void userNameFieldKeyPressed(KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             debugMessage("ENTER key pressed on username field");
-            logInBtn.doClick();            
+            logInBtn.doClick();
         }
     }//GEN-LAST:event_userNameFieldKeyPressed
 
@@ -184,7 +184,7 @@ public class MainForm extends javax.swing.JFrame {
             userArray[1] = new user("Technician", "BestAcInstallerEver");
             userArray[2] = new user("Admin", "Admin123");
             userArray[3] = new user("Caleb", "I Made This Program");
-            
+
             // prints out all the users
             int i;
             for (i = 0; i < userArray.length; i++) {
