@@ -1,7 +1,7 @@
 
 import java.util.Date;
 
-public class Installation{
+public class Installation {
 
     private int horsePower;
     private int numZones;
@@ -14,14 +14,13 @@ public class Installation{
     private String endDate;
 
     //Constructors
-    
     Installation() {
         horsePower = 0;
         numZones = 0;
         numOutlets = 0;
-        
+
     }
-    
+
     Installation(Technician Technician, Building building) {
         horsePower = 0;
         numZones = 0;
@@ -75,7 +74,7 @@ public class Installation{
     void setNumZones(int numberOfZones) {
         numZones = numberOfZones;
     }
-    
+
     void setBuilding(Building Building1) {
         building = Building1;
     }
@@ -87,7 +86,6 @@ public class Installation{
     void setTechnitian(Technician Technician) {
         technician = Technician;
     }
-    
 
     void setStartDate(String StartDate) {
         startDate = StartDate;
