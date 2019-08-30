@@ -256,5 +256,5 @@ public class Building {
     String getBuildingType() {
         return buildingType;
     }
- 
+
 }
