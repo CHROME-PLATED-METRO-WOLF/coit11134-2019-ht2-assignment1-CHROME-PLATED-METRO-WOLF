@@ -33,6 +33,7 @@ public class MainForm extends javax.swing.JFrame {
         passwordField = new JPasswordField();
         userNameField = new JTextField();
         exitBtn = new JButton();
+        jButton1 = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +65,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("About");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -77,7 +85,9 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(userNameField))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitBtn)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -96,7 +106,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(logInBtn)
                 .addGap(44, 44, 44)
-                .addComponent(exitBtn)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(exitBtn)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -174,6 +186,12 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
 
+    private void jButton1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AboutForm aboutForm = new AboutForm();
+        aboutForm.setVisible(true);
+        aboutForm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -209,6 +227,7 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton exitBtn;
+    private JButton jButton1;
     private JLabel jLabel1;
     private JButton logInBtn;
     private JPasswordField passwordField;
