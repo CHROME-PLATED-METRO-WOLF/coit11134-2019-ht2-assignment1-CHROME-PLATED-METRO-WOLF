@@ -1,14 +1,15 @@
 
 import java.util.Date;
 
-public class Installation extends Building {
+public class Installation{
 
     private int horsePower;
     private int numZones;
     private int numOutlets;
     //Assume that only one technitian can be assigned to one installation for now.
     //Might need to be a pointer to technician to avoid copying of class
-    private Technician technician;
+    public Technician technician;
+    public Building building;
     private Date startDate;
     private Date endDate;
 
