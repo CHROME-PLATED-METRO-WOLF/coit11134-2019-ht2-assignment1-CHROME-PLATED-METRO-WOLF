@@ -264,9 +264,8 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setEnddate(endDateField.getText());
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
-                
+
                 //MenuForm.technicians.get(technicianBox.getSelectedIndex()), MenuForm.buildings.get(buildingBox.getSelectedIndex()))
-                
             } catch (java.lang.NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
                 //remove the last one since it errors
@@ -281,15 +280,12 @@ public class ModifyInstallations extends javax.swing.JFrame {
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
 
-            
             horsePowerField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getHorsePower()));
             numZonesField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getNumZones()));
             numOutletsField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getOutlets()));
             technicianBox.setSelectedIndex(selectedRow);
             buildingBox.setSelectedIndex(selectedRow);
-       
-        
-        
+
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -317,7 +313,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                     MenuForm.installations.get(selectedRow).setEnddate(endDateField.getText());
                 } catch (java.lang.NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-                    
+
                 }
             }
         } catch (java.lang.IndexOutOfBoundsException exception) {
@@ -346,38 +342,35 @@ public class ModifyInstallations extends javax.swing.JFrame {
         UpdateTechnicians();
         UpdateBuildings();
         int i = 0;
-        
+
         while (i < MenuForm.installations.size()) {
             AddRow(Integer.toString(MenuForm.installations.get(i).getHorsePower()), Integer.toString(MenuForm.installations.get(i).getNumZones()),
                     Integer.toString(MenuForm.installations.get(i).getOutlets()),
                     MenuForm.installations.get(i).technician.getFirstName() + " " + MenuForm.installations.get(i).technician.getLastName(),
                     MenuForm.installations.get(i).building.getAddress(), MenuForm.installations.get(i).getStartDate(), MenuForm.installations.get(i).getEnddate());
-           
+
             i++;
         }
     }
-    
-    private void UpdateTechnicians()
-    {
+
+    private void UpdateTechnicians() {
         System.out.println("Running UpdateTechnicians");
         technicianBox.removeAllItems();
         int i = 0;
         while (i < MenuForm.technicians.size()) {
-            
-                    technicianBox.addItem(MenuForm.technicians.get(i).getFirstName() + " " + MenuForm.technicians.get(i).getLastName());
-        i++;
+
+            technicianBox.addItem(MenuForm.technicians.get(i).getFirstName() + " " + MenuForm.technicians.get(i).getLastName());
+            i++;
         }
     }
-    
-    private void UpdateBuildings()
-    {
+
+    private void UpdateBuildings() {
         System.out.println("Running UpdateBuildings");
         buildingBox.removeAllItems();
         int i = 0;
-        while (i < MenuForm.buildings.size())
-        {
-        buildingBox.addItem(MenuForm.buildings.get(i).getAddress());
-        i++;
+        while (i < MenuForm.buildings.size()) {
+            buildingBox.addItem(MenuForm.buildings.get(i).getAddress());
+            i++;
         }
     }
 
@@ -423,10 +416,9 @@ public class ModifyInstallations extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-        
+
         // technicians = technicianArray;
-        
-       UpdateTable();
+        UpdateTable();
         System.out.println("List Size" + MenuForm.installations.size());
 
         //technicianViewBox.removeAll();
