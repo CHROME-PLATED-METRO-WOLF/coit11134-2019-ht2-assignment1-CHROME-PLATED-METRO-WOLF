@@ -275,7 +275,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
                     MenuForm.technicians.get(selectedRow).setNotes(notesField.getText());
                 } catch (java.lang.NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-                    
+
                 }
             }
         } catch (java.lang.IndexOutOfBoundsException exception) {
