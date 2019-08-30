@@ -37,6 +37,7 @@ public class MenuForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         modifyTechniciansBtn = new javax.swing.JButton();
         modifyBuildingsBtn = new javax.swing.JButton();
+        modifyInstallationsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,13 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        modifyInstallationsBtn.setText("Modify Installations");
+        modifyInstallationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyInstallationsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,6 +90,8 @@ public class MenuForm extends javax.swing.JFrame {
                 .addComponent(modifyTechniciansBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(modifyInstallationsBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,7 +102,8 @@ public class MenuForm extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifyTechniciansBtn)
-                    .addComponent(modifyBuildingsBtn))
+                    .addComponent(modifyBuildingsBtn)
+                    .addComponent(modifyInstallationsBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
@@ -113,7 +124,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
 
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
         modifyTechnicianForm.setVisible(true);
-        modifyTechnicianForm.main(technicians);
+        modifyTechnicianForm.main();
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -123,11 +134,17 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
     ModifyBuilding modifyBuildingForm = new ModifyBuilding();
     private void modifyBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBuildingsBtnActionPerformed
         modifyBuildingForm.setVisible(true);
-        modifyBuildingForm.main(technicians);
+        modifyBuildingForm.main();
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyBuildingForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_modifyBuildingsBtnActionPerformed
+
+    ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
+    private void modifyInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInstallationsBtnActionPerformed
+        modifyInstallationsForm.setVisible(true);
+        
+    }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,6 +185,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton modifyBuildingsBtn;
+    private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
     // End of variables declaration//GEN-END:variables
 }
