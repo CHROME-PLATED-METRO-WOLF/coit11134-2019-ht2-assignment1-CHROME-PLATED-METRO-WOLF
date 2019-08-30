@@ -337,7 +337,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                         Highrise d = new Highrise();
                         d = (Highrise) MenuForm.buildings.get(MenuForm.buildings.size() - 1);
                         d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
-                        System.out.println();
+                        
                     }
 
                 
@@ -355,7 +355,16 @@ public class ModifyBuilding extends javax.swing.JFrame {
     private void editSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_editSelectedBtnActionPerformed
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
+if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
+{
+    highRiseCheck.setSelected(true);
 
+    Highrise d = new Highrise();
+    d = (Highrise) MenuForm.buildings.get(selectedRow);
+    
+
+    numOfFloorsField.setText(Integer.toString(d.getNumOfFloors()));
+}
             suburbField.setText(MenuForm.buildings.get(selectedRow).getSuburb());
             unitNumberField.setText(Integer.toString(MenuForm.buildings.get(selectedRow).getUnitNumber()));
             addressField.setText(MenuForm.buildings.get(selectedRow).getAddress());
