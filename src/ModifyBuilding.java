@@ -169,6 +169,8 @@ public class ModifyBuilding extends javax.swing.JFrame {
             }
         });
 
+        numOfFloorsField.setEnabled(false);
+
         jLabel11.setText("Building Type");
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -300,43 +302,49 @@ public class ModifyBuilding extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-if(unitNumberField.getText().equals(""))
-{
-    System.out.println("Changing unitNumber to 0");
-    unitNumberField.setText("0");
-}
-        if (highRiseCheck.isSelected()) {
+        if (unitNumberField.getText().equals("")) {
+            System.out.println("Changing unitNumber to 0");
+            unitNumberField.setText("0");
+        }
 
-            
-            MenuForm.buildings.add(new Highrise());
-            
-            
+        if (addressField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a address", "Error", JOptionPane.ERROR_MESSAGE);
+
         } else {
-            if (addressField.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a address", "Error", JOptionPane.ERROR_MESSAGE);
+            if (suburbField.getText().equals("")) {
+                suburbField.setText(Integer.toString(0));
 
+            }
+            if (highRiseCheck.isSelected()) {
+                MenuForm.buildings.add(new Highrise());
             } else {
-                if (suburbField.getText().equals("")) {
-                    suburbField.setText(Integer.toString(0));
-
-                }
                 MenuForm.buildings.add(new Building());
-                try {
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setSuburb((suburbField.getText()));
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setAddress(addressField.getText());
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setPostCode(Integer.parseInt(postCodeField.getText()));
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setCity(cityField.getText());
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setState(stateField.getText());
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingName(buildingNameField.getText());
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setRooms(Integer.parseInt(roomsField.getText()));
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setNotes(notesField.getText());
-                    MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingType(buildingTypeField.getText());
-                } catch (java.lang.NumberFormatException exception) {
-                    JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
-                    //remove the last one since it errors
-                    MenuForm.buildings.remove(MenuForm.buildings.size() - 1);
-                }
+            }
+            try {
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setSuburb((suburbField.getText()));
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setAddress(addressField.getText());
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setPostCode(Integer.parseInt(postCodeField.getText()));
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setCity(cityField.getText());
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setState(stateField.getText());
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingName(buildingNameField.getText());
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setRooms(Integer.parseInt(roomsField.getText()));
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setNotes(notesField.getText());
+                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingType(buildingTypeField.getText());
+                
+                if (MenuForm.buildings.get(MenuForm.buildings.size() - 1) instanceof Highrise) {
+                        System.out.println("Index:" + (MenuForm.buildings.size() - 1) + "is a highrise");
+                        Highrise d = new Highrise();
+                        d = (Highrise) MenuForm.buildings.get(MenuForm.buildings.size() - 1);
+                        d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
+                        System.out.println();
+                    }
+
+                
+            } catch (java.lang.NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
+                //remove the last one since it errors
+                MenuForm.buildings.remove(MenuForm.buildings.size() - 1);
             }
         }
 
@@ -376,7 +384,7 @@ if(unitNumberField.getText().equals(""))
                 }
 
                 try {
-                                    
+
                     MenuForm.buildings.get(selectedRow).setSuburb((suburbField.getText()));
                     MenuForm.buildings.get(selectedRow).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
                     MenuForm.buildings.get(selectedRow).setAddress(addressField.getText());
@@ -386,11 +394,11 @@ if(unitNumberField.getText().equals(""))
                     MenuForm.buildings.get(selectedRow).setBuildingName(buildingNameField.getText());
                     MenuForm.buildings.get(selectedRow).setRooms(Integer.parseInt(roomsField.getText()));
                     MenuForm.buildings.get(selectedRow).setNotes(notesField.getText());
-                    MenuForm.buildings.get(selectedRow).setBuildingType(buildingTypeField.getText());                    
-                    
+                    MenuForm.buildings.get(selectedRow).setBuildingType(buildingTypeField.getText());
+
                 } catch (java.lang.NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
-                    
+
                 }
             }
         } catch (java.lang.IndexOutOfBoundsException exception) {
@@ -414,11 +422,9 @@ if(unitNumberField.getText().equals(""))
     }//GEN-LAST:event_highRiseCheckActionPerformed
 
     private void highRiseCheckStateChanged(ChangeEvent evt) {//GEN-FIRST:event_highRiseCheckStateChanged
-        if(highRiseCheck.isSelected())
-        {
+        if (highRiseCheck.isSelected()) {
             numOfFloorsField.setEnabled(true);
-        }else
-        {
+        } else {
             numOfFloorsField.setEnabled(false);
         }
     }//GEN-LAST:event_highRiseCheckStateChanged
@@ -430,7 +436,7 @@ if(unitNumberField.getText().equals(""))
             AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
                     Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
                     MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
-                    Integer.toString(MenuForm.buildings.get(i).getRooms()),MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType());
+                    Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType());
             i++;
         }
     }
@@ -440,9 +446,8 @@ if(unitNumberField.getText().equals(""))
         yourModel.removeRow(index);
     }
 
-    private void AddRow(String unitNumber, String address, String postCode, String suburb, String city, String state, String buildingName,String numRooms, String notes,
-            String buildingType) 
-    {
+    private void AddRow(String unitNumber, String address, String postCode, String suburb, String city, String state, String buildingName, String numRooms, String notes,
+            String buildingType) {
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
         yourModel.addRow(new Object[]{unitNumber, address, postCode, suburb, city, state, buildingName, numRooms, notes, buildingType});
     }
