@@ -79,6 +79,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
         numOfFloorsField = new JTextField();
         jLabel11 = new JLabel();
         buildingTypeField = new JTextField();
+        jLabel12 = new JLabel();
 
         jList1.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -103,11 +104,11 @@ public class ModifyBuilding extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Unit #", "Address", "Post Code", "Suburb", "City", "State", "Building Name", "Rooms", "Notes", "Building Type"
+                "Unit #", "Address", "Post Code", "Suburb", "City", "State", "Building Name", "Rooms", "Notes", "Building Type", "Num Floors"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -173,12 +174,14 @@ public class ModifyBuilding extends javax.swing.JFrame {
 
         jLabel11.setText("Building Type");
 
+        jLabel12.setText("# of Floors");
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -209,19 +212,22 @@ public class ModifyBuilding extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(roomsField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(buildingTypeField, GroupLayout.Alignment.LEADING)
+                                        .addComponent(notesField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                             .addComponent(stateField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(buildingNameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                            .addComponent(highRiseCheck)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
-                                                .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(buildingTypeField, GroupLayout.Alignment.LEADING)
-                                        .addComponent(notesField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))
+                                                .addComponent(jLabel12)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(34, 34, 34)
+                                                .addComponent(highRiseCheck))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(addBtn, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
@@ -231,7 +237,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                                 .addComponent(updateSelectedBtn)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(removeSelectedBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -264,18 +270,16 @@ public class ModifyBuilding extends javax.swing.JFrame {
                             .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(stateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buildingNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(highRiseCheck)
-                                .addGap(6, 6, 6)
-                                .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(stateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(highRiseCheck))
+                            .addComponent(jLabel7))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(buildingNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel12)
+                            .addComponent(numOfFloorsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(roomsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -315,6 +319,12 @@ public class ModifyBuilding extends javax.swing.JFrame {
                 suburbField.setText(Integer.toString(0));
 
             }
+            if (postCodeField.getText().equals("")) {
+                postCodeField.setText("0");
+            }
+            if (roomsField.getText().equals("")) {
+                roomsField.setText("0");
+            }
             if (highRiseCheck.isSelected()) {
                 MenuForm.buildings.add(new Highrise());
             } else {
@@ -331,16 +341,15 @@ public class ModifyBuilding extends javax.swing.JFrame {
                 MenuForm.buildings.get(MenuForm.buildings.size() - 1).setRooms(Integer.parseInt(roomsField.getText()));
                 MenuForm.buildings.get(MenuForm.buildings.size() - 1).setNotes(notesField.getText());
                 MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingType(buildingTypeField.getText());
-                
-                if (MenuForm.buildings.get(MenuForm.buildings.size() - 1) instanceof Highrise) {
-                        System.out.println("Index:" + (MenuForm.buildings.size() - 1) + "is a highrise");
-                        Highrise d = new Highrise();
-                        d = (Highrise) MenuForm.buildings.get(MenuForm.buildings.size() - 1);
-                        d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
-                        
-                    }
 
-                
+                if (MenuForm.buildings.get(MenuForm.buildings.size() - 1) instanceof Highrise) {
+                    System.out.println("Index:" + (MenuForm.buildings.size() - 1) + "is a highrise");
+                    Highrise d = new Highrise();
+                    d = (Highrise) MenuForm.buildings.get(MenuForm.buildings.size() - 1);
+                    d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
+
+                }
+
             } catch (java.lang.NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
                 //remove the last one since it errors
@@ -355,16 +364,14 @@ public class ModifyBuilding extends javax.swing.JFrame {
     private void editSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_editSelectedBtnActionPerformed
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
-if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
-{
-    highRiseCheck.setSelected(true);
+            if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+                highRiseCheck.setSelected(true);
 
-    Highrise d = new Highrise();
-    d = (Highrise) MenuForm.buildings.get(selectedRow);
-    
+                Highrise d = new Highrise();
+                d = (Highrise) MenuForm.buildings.get(selectedRow);
 
-    numOfFloorsField.setText(Integer.toString(d.getNumOfFloors()));
-}
+                numOfFloorsField.setText(Integer.toString(d.getNumOfFloors()));
+            }
             suburbField.setText(MenuForm.buildings.get(selectedRow).getSuburb());
             unitNumberField.setText(Integer.toString(MenuForm.buildings.get(selectedRow).getUnitNumber()));
             addressField.setText(MenuForm.buildings.get(selectedRow).getAddress());
@@ -391,6 +398,12 @@ if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
                     suburbField.setText(Integer.toString(0));
 
                 }
+                if (postCodeField.getText().equals("")) {
+                    postCodeField.setText("0");
+                }
+                if (roomsField.getText().equals("")) {
+                    roomsField.setText("0");
+                }
 
                 try {
 
@@ -405,8 +418,22 @@ if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
                     MenuForm.buildings.get(selectedRow).setNotes(notesField.getText());
                     MenuForm.buildings.get(selectedRow).setBuildingType(buildingTypeField.getText());
 
+                    if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+
+                        Highrise d = new Highrise();
+                        d = (Highrise) MenuForm.buildings.get(selectedRow);
+
+                        d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
+                    }
+
                 } catch (java.lang.NumberFormatException exception) {
-                    JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
+                    String message;
+                    if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+                        message = "ERROR: Please enter a number for Unit Number, Post Code, Number of Rooms and Number of Floors";
+                    } else {
+                        message = "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms";
+                    }
+                    JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
 
                 }
             }
@@ -442,10 +469,22 @@ if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
         clearRows();
         int i = 0;
         while (i < MenuForm.buildings.size()) {
-            AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
-                    Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
-                    MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
-                    Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType());
+            if (MenuForm.buildings.get(i) instanceof Highrise) {
+
+                Highrise d = new Highrise();
+                d = (Highrise) MenuForm.buildings.get(i);
+
+                AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
+                        Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
+                        MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
+                        Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType(), Integer.toString(d.getNumOfFloors()));
+
+            } else {
+                AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
+                        Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
+                        MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
+                        Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType());
+            }
             i++;
         }
     }
@@ -459,6 +498,12 @@ if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
             String buildingType) {
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
         yourModel.addRow(new Object[]{unitNumber, address, postCode, suburb, city, state, buildingName, numRooms, notes, buildingType});
+    }
+
+    private void AddRow(String unitNumber, String address, String postCode, String suburb, String city, String state, String buildingName, String numRooms, String notes,
+            String buildingType, String numFloors) {
+        DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
+        yourModel.addRow(new Object[]{unitNumber, address, postCode, suburb, city, state, buildingName, numRooms, notes, buildingType, numFloors});
     }
 
     private void clearRows() {
@@ -519,6 +564,7 @@ if(MenuForm.buildings.get(selectedRow) instanceof Highrise)
     private JLabel jLabel1;
     private JLabel jLabel10;
     private JLabel jLabel11;
+    private JLabel jLabel12;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JLabel jLabel4;
