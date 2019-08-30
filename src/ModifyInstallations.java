@@ -3,9 +3,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -54,11 +56,9 @@ public class ModifyInstallations extends javax.swing.JFrame {
         addBtn = new JToggleButton();
         jScrollPane2 = new JScrollPane();
         technicianViewBox = new JTable();
-        nameField = new JTextField();
-        lastNameField = new JTextField();
-        phoneNumberField = new JTextField();
-        ageField = new JTextField();
-        notesField = new JTextField();
+        horsePowerField = new JTextField();
+        numZonesField = new JTextField();
+        numOutletsField = new JTextField();
         jLabel2 = new JLabel();
         jLabel3 = new JLabel();
         jLabel4 = new JLabel();
@@ -67,6 +67,12 @@ public class ModifyInstallations extends javax.swing.JFrame {
         editSelectedBtn = new JButton();
         updateSelectedBtn = new JButton();
         removeSelectedBtn = new JButton();
+        jLabel7 = new JLabel();
+        jLabel8 = new JLabel();
+        startDateField = new JTextField();
+        endDateField = new JTextField();
+        technicianBox = new JComboBox<>();
+        buildingBox = new JComboBox<>();
 
         jList1.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -75,9 +81,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Technician Editor");
+        jLabel1.setText("Installation Manager");
 
         addBtn.setText("Add");
         addBtn.addActionListener(new ActionListener() {
@@ -91,11 +95,11 @@ public class ModifyInstallations extends javax.swing.JFrame {
 
             },
             new String [] {
-                "First Name", "Last Name", "Phone Number", "Age", "Notes"
+                "HorsePower", "Num Zones", "Num Outlets", "Technician", "Building", "Start Date", "End Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -106,15 +110,15 @@ public class ModifyInstallations extends javax.swing.JFrame {
         technicianViewBox.setEditingRow(1);
         jScrollPane2.setViewportView(technicianViewBox);
 
-        jLabel2.setText("First Name");
+        jLabel2.setText("HorsePower");
 
-        jLabel3.setText("Last Name");
+        jLabel3.setText("NumZones");
 
-        jLabel4.setText("Phone Number");
+        jLabel4.setText("Num Outlets");
 
-        jLabel5.setText("Age");
+        jLabel5.setText("Technician");
 
-        jLabel6.setText("Notes");
+        jLabel6.setText("Building");
 
         editSelectedBtn.setText("Edit Selected");
         editSelectedBtn.addActionListener(new ActionListener() {
@@ -137,6 +141,16 @@ public class ModifyInstallations extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Start Date");
+
+        jLabel8.setText("End Date");
+
+        startDateField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                startDateFieldActionPerformed(evt);
+            }
+        });
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -146,9 +160,6 @@ public class ModifyInstallations extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(201, 201, 201)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(addBtn, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -156,25 +167,39 @@ public class ModifyInstallations extends javax.swing.JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(updateSelectedBtn)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(removeSelectedBtn)))
+                                .addComponent(removeSelectedBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(horsePowerField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(numZonesField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(31, 31, 31)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(startDateField, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                            .addComponent(endDateField)))
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(buildingBox, GroupLayout.Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(technicianBox, GroupLayout.Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(numOutletsField, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneNumberField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ageField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(notesField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(232, 232, 232))
         );
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -184,31 +209,37 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                    .addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(horsePowerField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(startDateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(numZonesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8)
+                    .addComponent(endDateField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneNumberField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numOutletsField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(technicianBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(notesField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
-                    .addComponent(editSelectedBtn)
-                    .addComponent(updateSelectedBtn)
-                    .addComponent(removeSelectedBtn))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(addBtn)
+                            .addComponent(editSelectedBtn)
+                            .addComponent(updateSelectedBtn)
+                            .addComponent(removeSelectedBtn)))
+                    .addComponent(buildingBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,25 +247,30 @@ public class ModifyInstallations extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
-        if (nameField.getText().equals("")) {
+        if (horsePowerField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            if (ageField.getText().equals("")) {
-                ageField.setText(Integer.toString(0));
+            if (horsePowerField.getText().equals("")) {
+                horsePowerField.setText(Integer.toString(0));
 
             }
-            MenuForm.technicians.add(new Technician());
+            MenuForm.installations.add(new Installation());
             try {
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setAge(Integer.parseInt(ageField.getText()));
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setFirstName(nameField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setLastName(lastNameField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setPhoneNumber(phoneNumberField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setNotes(notesField.getText());
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setHorsePower(Integer.parseInt(horsePowerField.getText()));
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setNumZones(Integer.parseInt(numZonesField.getText()));
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setOutlets(Integer.parseInt(numOutletsField.getText()));
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setStartDate(startDateField.getText());
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setEnddate(endDateField.getText());
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
+                MenuForm.installations.get(MenuForm.installations.size() - 1).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
+                
+                //MenuForm.technicians.get(technicianBox.getSelectedIndex()), MenuForm.buildings.get(buildingBox.getSelectedIndex()))
+                
             } catch (java.lang.NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
                 //remove the last one since it errors
-                MenuForm.technicians.remove(MenuForm.technicians.size() - 1);
+                MenuForm.installations.remove(MenuForm.installations.size() - 1);
             }
         }
         UpdateTable();
@@ -245,11 +281,15 @@ public class ModifyInstallations extends javax.swing.JFrame {
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
 
-            ageField.setText(Integer.toString(MenuForm.technicians.get(selectedRow).getAge()));
-            nameField.setText(MenuForm.technicians.get(selectedRow).getFirstName());
-            lastNameField.setText(MenuForm.technicians.get(selectedRow).getLastName());
-            phoneNumberField.setText(MenuForm.technicians.get(selectedRow).getPhoneNumber());
-            notesField.setText(MenuForm.technicians.get(selectedRow).getNotes());
+            
+            horsePowerField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getHorsePower()));
+            numZonesField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getNumZones()));
+            numOutletsField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getOutlets()));
+            technicianBox.setSelectedIndex(selectedRow);
+            buildingBox.setSelectedIndex(selectedRow);
+       
+        
+        
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -258,21 +298,23 @@ public class ModifyInstallations extends javax.swing.JFrame {
     private void updateSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_updateSelectedBtnActionPerformed
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
-            if (nameField.getText().equals("")) {
+            if (horsePowerField.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
 
             } else {
-                if (ageField.getText().equals("")) {
-                    ageField.setText(Integer.toString(0));
+                if (horsePowerField.getText().equals("")) {
+                    horsePowerField.setText(Integer.toString(0));
 
                 }
 
                 try {
-                    MenuForm.technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
-                    MenuForm.technicians.get(selectedRow).setFirstName(nameField.getText());
-                    MenuForm.technicians.get(selectedRow).setLastName(lastNameField.getText());
-                    MenuForm.technicians.get(selectedRow).setPhoneNumber(phoneNumberField.getText());
-                    MenuForm.technicians.get(selectedRow).setNotes(notesField.getText());
+                    MenuForm.installations.get(selectedRow).setHorsePower(Integer.parseInt(horsePowerField.getText()));
+                    MenuForm.installations.get(selectedRow).setNumZones(Integer.parseInt(numZonesField.getText()));
+                    MenuForm.installations.get(selectedRow).setOutlets(Integer.parseInt(numOutletsField.getText()));
+                    MenuForm.installations.get(selectedRow).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
+                    MenuForm.installations.get(selectedRow).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
+                    MenuForm.installations.get(selectedRow).setStartDate(startDateField.getText());
+                    MenuForm.installations.get(selectedRow).setEnddate(endDateField.getText());
                 } catch (java.lang.NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
                     
@@ -287,21 +329,55 @@ public class ModifyInstallations extends javax.swing.JFrame {
     private void removeSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeSelectedBtnActionPerformed
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
-            MenuForm.technicians.remove(selectedRow);
+            MenuForm.installations.remove(selectedRow);
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         UpdateTable();
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
-    private void UpdateTable() {
+    private void startDateFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDateFieldActionPerformed
+
+    public void UpdateTable() {
+        System.out.println("Running UpdateTable");
         clearRows();
+        UpdateTechnicians();
+        UpdateBuildings();
+        int i = 0;
+        
+        while (i < MenuForm.installations.size()) {
+            AddRow(Integer.toString(MenuForm.installations.get(i).getHorsePower()), Integer.toString(MenuForm.installations.get(i).getNumZones()),
+                    Integer.toString(MenuForm.installations.get(i).getOutlets()),
+                    MenuForm.installations.get(i).technician.getFirstName() + " " + MenuForm.installations.get(i).technician.getLastName(),
+                    MenuForm.installations.get(i).building.getAddress(), MenuForm.installations.get(i).getStartDate(), MenuForm.installations.get(i).getEnddate());
+           
+            i++;
+        }
+    }
+    
+    private void UpdateTechnicians()
+    {
+        System.out.println("Running UpdateTechnicians");
+        technicianBox.removeAllItems();
         int i = 0;
         while (i < MenuForm.technicians.size()) {
-            AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
-                    MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
-                    MenuForm.technicians.get(i).getNotes());
-            i++;
+            
+                    technicianBox.addItem(MenuForm.technicians.get(i).getFirstName() + " " + MenuForm.technicians.get(i).getLastName());
+        i++;
+        }
+    }
+    
+    private void UpdateBuildings()
+    {
+        System.out.println("Running UpdateBuildings");
+        buildingBox.removeAllItems();
+        int i = 0;
+        while (i < MenuForm.buildings.size())
+        {
+        buildingBox.addItem(MenuForm.buildings.get(i).getAddress());
+        i++;
         }
     }
 
@@ -310,9 +386,9 @@ public class ModifyInstallations extends javax.swing.JFrame {
         yourModel.removeRow(index);
     }
 
-    private void AddRow(String firstName, String lastName, String phoneNumber, int age, String notes) {
+    private void AddRow(String horsePower, String numZones, String numOutlets, String technician, String building, String startDate, String endDate) {
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
-        yourModel.addRow(new Object[]{firstName, lastName, phoneNumber, age, notes});
+        yourModel.addRow(new Object[]{horsePower, numZones, numOutlets, technician, building, startDate, endDate});
     }
 
     private void clearRows() {
@@ -347,9 +423,11 @@ public class ModifyInstallations extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-
+        
         // technicians = technicianArray;
-        System.out.println("List Size" + MenuForm.technicians.size());
+        
+       UpdateTable();
+        System.out.println("List Size" + MenuForm.installations.size());
 
         //technicianViewBox.removeAll();
         System.out.println("row count:" + technicianViewBox.getRowCount());
@@ -364,22 +442,26 @@ public class ModifyInstallations extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JToggleButton addBtn;
-    private JTextField ageField;
+    private JComboBox<String> buildingBox;
     private JButton editSelectedBtn;
+    private JTextField endDateField;
+    private JTextField horsePowerField;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JLabel jLabel4;
     private JLabel jLabel5;
     private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
     private JList<String> jList1;
     private JScrollPane jScrollPane1;
     private JScrollPane jScrollPane2;
-    private JTextField lastNameField;
-    private JTextField nameField;
-    private JTextField notesField;
-    private JTextField phoneNumberField;
+    private JTextField numOutletsField;
+    private JTextField numZonesField;
     private JButton removeSelectedBtn;
+    private JTextField startDateField;
+    private JComboBox<String> technicianBox;
     private JTable technicianViewBox;
     private JButton updateSelectedBtn;
     // End of variables declaration//GEN-END:variables
