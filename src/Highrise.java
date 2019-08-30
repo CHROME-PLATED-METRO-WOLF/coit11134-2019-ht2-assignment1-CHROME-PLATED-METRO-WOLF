@@ -19,7 +19,7 @@ public class Highrise extends Building {
     {
       numOfFloors = NumOfFloors;  
     }
-        
+            
     void setNumOfFloors(int NumOfFloors)
     {
         numOfFloors = NumOfFloors; 
