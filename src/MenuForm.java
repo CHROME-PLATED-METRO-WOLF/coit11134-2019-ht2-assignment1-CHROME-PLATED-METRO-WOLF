@@ -36,6 +36,7 @@ public class MenuForm extends javax.swing.JFrame {
         LogoutBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         modifyTechniciansBtn = new javax.swing.JButton();
+        modifyBuildingsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +53,13 @@ public class MenuForm extends javax.swing.JFrame {
         modifyTechniciansBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifyTechniciansBtnActionPerformed(evt);
+            }
+        });
+
+        modifyBuildingsBtn.setText("Modify Buildings");
+        modifyBuildingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBuildingsBtnActionPerformed(evt);
             }
         });
 
@@ -72,6 +80,8 @@ public class MenuForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(modifyTechniciansBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,7 +90,9 @@ public class MenuForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(75, 75, 75)
-                .addComponent(modifyTechniciansBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifyTechniciansBtn)
+                    .addComponent(modifyBuildingsBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
@@ -108,6 +120,14 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
 
 
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
+    ModifyBuilding modifyBuildingForm = new ModifyBuilding();
+    private void modifyBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBuildingsBtnActionPerformed
+        modifyBuildingForm.setVisible(true);
+        modifyBuildingForm.main(technicians);
+        //This will keep the form alive incase the user leaves data in the data fields
+        //the next time the user opens the form it will still have the data entered
+        modifyBuildingForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_modifyBuildingsBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +167,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
     // End of variables declaration//GEN-END:variables
 }
