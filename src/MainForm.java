@@ -124,8 +124,7 @@ public class MainForm extends javax.swing.JFrame {
                 debugMessage("Password and Username Matches");
                 //creates a new logged in form
                 MenuForm menuForm = new MenuForm();
-                //Set its default close operation
-                menuForm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                
                 //makes it visible
                 menuForm.setVisible(true);
                 //gets rid of the current window
