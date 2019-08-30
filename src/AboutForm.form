@@ -59,7 +59,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="This Program was created by Caleb Davidson &#xa;student number: 12110634.&#xa;&#xa;Below are a collection of users and their passwords that&#xa;can be used to login.&#xa;&#xa;UserName&#x9;Password&#xa;------------------------------------&#xa;CEO &#x9;BestBossEver&#xa;uTechnician &#x9;BestAcInstallerEver&#xa;Admin &#x9;Admin123&#xa;Caleb&#x9;I Made This Program&#xa;&#xa;&#xa;Thank you for using my program :)."/>
+            <Property name="text" type="java.lang.String" value="This Program was created by Caleb Davidson &#xa;student number: 12110634.&#xa;&#xa;Below are a collection of users and their passwords that&#xa;can be used to login.&#xa;&#xa;UserName&#x9;Password&#xa;------------------------------------&#xa;CEO &#x9;BestBossEver&#xa;Technician &#x9;BestAcInstallerEver&#xa;Admin &#x9;Admin123&#xa;Caleb&#x9;I Made This Program&#xa;&#xa;&#xa;Thank you for using my program :)."/>
           </Properties>
         </Component>
       </SubComponents>

@@ -34,7 +34,7 @@ public class AboutForm extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("This Program was created by Caleb Davidson \nstudent number: 12110634.\n\nBelow are a collection of users and their passwords that\ncan be used to login.\n\nUserName\tPassword\n------------------------------------\nCEO \tBestBossEver\nuTechnician \tBestAcInstallerEver\nAdmin \tAdmin123\nCaleb\tI Made This Program\n\n\nThank you for using my program :).");
+        jTextArea1.setText("This Program was created by Caleb Davidson \nstudent number: 12110634.\n\nBelow are a collection of users and their passwords that\ncan be used to login.\n\nUserName\tPassword\n------------------------------------\nCEO \tBestBossEver\nTechnician \tBestAcInstallerEver\nAdmin \tAdmin123\nCaleb\tI Made This Program\n\n\nThank you for using my program :).");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setText("About");
