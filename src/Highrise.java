@@ -9,24 +9,22 @@
  * @author Terry
  */
 public class Highrise extends Building {
+
     private int numOfFloors;
-    
-    Highrise()
-    {
-      numOfFloors = 0;  
+
+    Highrise() {
+        numOfFloors = 0;
     }
-    Highrise(int NumOfFloors)
-    {
-      numOfFloors = NumOfFloors;  
+
+    Highrise(int NumOfFloors) {
+        numOfFloors = NumOfFloors;
     }
-            
-    void setNumOfFloors(int NumOfFloors)
-    {
-        numOfFloors = NumOfFloors; 
+
+    void setNumOfFloors(int NumOfFloors) {
+        numOfFloors = NumOfFloors;
     }
-    
-    int getNumOfFloors()
-    {
-        return numOfFloors; 
+
+    int getNumOfFloors() {
+        return numOfFloors;
     }
 }
