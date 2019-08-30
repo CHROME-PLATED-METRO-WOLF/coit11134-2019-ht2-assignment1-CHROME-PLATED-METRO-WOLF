@@ -127,6 +127,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
         modifyTechnicianForm.main();
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
+        
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
@@ -143,6 +144,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
     ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
     private void modifyInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInstallationsBtnActionPerformed
         modifyInstallationsForm.setVisible(true);
+        modifyInstallationsForm.main();
         
     }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
