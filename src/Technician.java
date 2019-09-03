@@ -1,5 +1,6 @@
-//This class will probably extend from user on assignment 2 when data is permenantly saved on disk.
-
+/*
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
+ */
 public class Technician {
 
     private String firstName;

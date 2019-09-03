@@ -1,4 +1,6 @@
-
+/*
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
+ */
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

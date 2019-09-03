@@ -1,5 +1,6 @@
-
-import java.util.Date;
+/*
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
+ */
 
 public class Installation {
 

@@ -1,4 +1,6 @@
-
+/*
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
+ */
 import java.awt.Image;
 import java.io.IOException;
 import java.net.MalformedURLException;

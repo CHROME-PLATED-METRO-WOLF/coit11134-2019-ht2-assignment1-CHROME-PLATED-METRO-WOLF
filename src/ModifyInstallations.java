@@ -23,14 +23,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.*;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
-/**
- *
- * @author caleb
- */
+
 public class ModifyInstallations extends javax.swing.JFrame {
 //ArrayList<Technician> technicians;
 
