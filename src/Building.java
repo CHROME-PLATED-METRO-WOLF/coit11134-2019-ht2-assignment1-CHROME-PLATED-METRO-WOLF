@@ -1,4 +1,6 @@
-
+/*
+ Created by Caleb Davidson for assignment 2 of Object Oriented Programming
+ */
 //building can be added without installation (pre inspection)
 public class Building {
 
