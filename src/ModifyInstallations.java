@@ -27,7 +27,7 @@ import javax.swing.table.*;
  */
 
 public class ModifyInstallations extends javax.swing.JFrame {
-//ArrayList<Technician> technicians;
+
 
     /**
      * Creates new form ModifyTechnician
@@ -240,18 +240,17 @@ public class ModifyInstallations extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Code for the add button
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
-        if (horsePowerField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
-
-        } else {
+        // if the horsepower field is empty append a default 0 to it
             if (horsePowerField.getText().equals("")) {
-                horsePowerField.setText(Integer.toString(0));
-
+                horsePowerField.setText("0");
             }
+            //Access array for MenuForm and add a new default installation
             MenuForm.installations.add(new Installation());
             try {
+                //setting the created objects variables to the ones entered in the gui components
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setHorsePower(Integer.parseInt(horsePowerField.getText()));
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setNumZones(Integer.parseInt(numZonesField.getText()));
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setOutlets(Integer.parseInt(numOutletsField.getText()));
@@ -260,21 +259,25 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
                 MenuForm.installations.get(MenuForm.installations.size() - 1).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
 
-                //MenuForm.technicians.get(technicianBox.getSelectedIndex()), MenuForm.buildings.get(buildingBox.getSelectedIndex()))
+               
             } catch (java.lang.NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-                //remove the last one since it errors
+                //eror message if numbers are not entered
+                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for HorsePower, Num Outlets and Num Zones.", "Error", JOptionPane.ERROR_MESSAGE);
+                //remove the last installation record since it errors
+                //otherwise there will be a blank one in the list
                 MenuForm.installations.remove(MenuForm.installations.size() - 1);
             }
-        }
+        //calles update table to, well update the table of records
         UpdateTable();
 
     }//GEN-LAST:event_addBtnActionPerformed
 
+    //button used to edit the selected item in the table of records
     private void editSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_editSelectedBtnActionPerformed
         try {
+            //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
-
+//Set all the gui components to the variables of the selected record
             horsePowerField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getHorsePower()));
             numZonesField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getNumZones()));
             numOutletsField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getOutlets()));
@@ -282,46 +285,52 @@ public class ModifyInstallations extends javax.swing.JFrame {
             buildingBox.setSelectedIndex(selectedRow);
 
         } catch (java.lang.IndexOutOfBoundsException exception) {
+            //if nothing is selected then through this error
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editSelectedBtnActionPerformed
 
+    //Button used to apply the updated information to the records
     private void updateSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_updateSelectedBtnActionPerformed
         try {
+            //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
+
+            // if horsePowerField is blank then add a default value of 0
             if (horsePowerField.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
+                horsePowerField.setText("0");
 
-            } else {
-                if (horsePowerField.getText().equals("")) {
-                    horsePowerField.setText(Integer.toString(0));
-
-                }
-
-                try {
-                    MenuForm.installations.get(selectedRow).setHorsePower(Integer.parseInt(horsePowerField.getText()));
-                    MenuForm.installations.get(selectedRow).setNumZones(Integer.parseInt(numZonesField.getText()));
-                    MenuForm.installations.get(selectedRow).setOutlets(Integer.parseInt(numOutletsField.getText()));
-                    MenuForm.installations.get(selectedRow).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
-                    MenuForm.installations.get(selectedRow).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
-                    MenuForm.installations.get(selectedRow).setStartDate(startDateField.getText());
-                    MenuForm.installations.get(selectedRow).setEnddate(endDateField.getText());
-                } catch (java.lang.NumberFormatException exception) {
-                    JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-
-                }
             }
+
+            try {
+//set all the variables of the selected record to the new ones entered into the fields.
+                MenuForm.installations.get(selectedRow).setHorsePower(Integer.parseInt(horsePowerField.getText()));
+                MenuForm.installations.get(selectedRow).setNumZones(Integer.parseInt(numZonesField.getText()));
+                MenuForm.installations.get(selectedRow).setOutlets(Integer.parseInt(numOutletsField.getText()));
+                MenuForm.installations.get(selectedRow).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
+                MenuForm.installations.get(selectedRow).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
+                MenuForm.installations.get(selectedRow).setStartDate(startDateField.getText());
+                MenuForm.installations.get(selectedRow).setEnddate(endDateField.getText());
+            } catch (java.lang.NumberFormatException exception) {
+                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         UpdateTable();
     }//GEN-LAST:event_updateSelectedBtnActionPerformed
 
+    //remove button code
     private void removeSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeSelectedBtnActionPerformed
         try {
+            //stores the selected row
             int selectedRow = technicianViewBox.getSelectedRow();
+            //removes the selected row from the records arraylist
             MenuForm.installations.remove(selectedRow);
         } catch (java.lang.IndexOutOfBoundsException exception) {
+            //Spit this error if nothing is selected in the table of records
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         UpdateTable();
@@ -331,34 +340,44 @@ public class ModifyInstallations extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_startDateFieldActionPerformed
 
+    //Update table method
     public void UpdateTable() {
+        //simple debig
         System.out.println("Running UpdateTable");
+        //calls clearRows to clears the table of records
         clearRows();
+        //calls UpdateTechnicians to update the technicians drop down with updated technicians
         UpdateTechnicians();
+        //calls UpdateBuildings to update the buildings drop down with updated buildings
         UpdateBuildings();
+        //keep track of loop
         int i = 0;
 
+        //loop through the array of installations
         while (i < MenuForm.installations.size()) {
+            //Adds a new row in the table of records for every technician
             AddRow(Integer.toString(MenuForm.installations.get(i).getHorsePower()), Integer.toString(MenuForm.installations.get(i).getNumZones()),
                     Integer.toString(MenuForm.installations.get(i).getOutlets()),
                     MenuForm.installations.get(i).technician.getFirstName() + " " + MenuForm.installations.get(i).technician.getLastName(),
                     MenuForm.installations.get(i).building.getAddress(), MenuForm.installations.get(i).getStartDate(), MenuForm.installations.get(i).getEnddate());
-
+//increment
             i++;
         }
     }
 
     private void UpdateTechnicians() {
         System.out.println("Running UpdateTechnicians");
+        //resets the technician drop down menu
         technicianBox.removeAllItems();
         int i = 0;
+        //loop through technicians array list
         while (i < MenuForm.technicians.size()) {
-
+//Adds all the technicians to the drop down menu
             technicianBox.addItem(MenuForm.technicians.get(i).getFirstName() + " " + MenuForm.technicians.get(i).getLastName());
             i++;
         }
     }
-
+//same as above but with buildins
     private void UpdateBuildings() {
         System.out.println("Running UpdateBuildings");
         buildingBox.removeAllItems();
@@ -369,16 +388,22 @@ public class ModifyInstallations extends javax.swing.JFrame {
         }
     }
 
+    //removes a single row for the table of records
+    //isnt used because its easier just to update the entire table
     private void RemoveRows(int index) {
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
         yourModel.removeRow(index);
     }
 
+    //Adds a row to the table of records
     private void AddRow(String horsePower, String numZones, String numOutlets, String technician, String building, String startDate, String endDate) {
+//changes the table to a default tablemodel       
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
+        //adds a row to the table with the information for each column
         yourModel.addRow(new Object[]{horsePower, numZones, numOutlets, technician, building, startDate, endDate});
     }
 
+    //clears all the rows
     private void clearRows() {
         DefaultTableModel Model = (DefaultTableModel) technicianViewBox.getModel();
         Model.setRowCount(0);
@@ -412,8 +437,9 @@ public class ModifyInstallations extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
 
-        // technicians = technicianArray;
+        //initial update of the table
         UpdateTable();
+        //debug info
         System.out.println("List Size" + MenuForm.installations.size());
 
         //technicianViewBox.removeAll();
