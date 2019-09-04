@@ -117,6 +117,7 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //method for debug messages
     public void debugMessage(String message) {
         System.out.println(message);
     }

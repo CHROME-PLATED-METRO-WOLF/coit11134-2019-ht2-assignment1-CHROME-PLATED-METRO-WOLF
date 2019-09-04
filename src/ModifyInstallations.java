@@ -1,12 +1,9 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,18 +13,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle;
-import javax.swing.WindowConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.*;
 
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
-
 public class ModifyInstallations extends javax.swing.JFrame {
-
 
     /**
      * Creates new form ModifyTechnician
@@ -244,29 +235,28 @@ public class ModifyInstallations extends javax.swing.JFrame {
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
         // if the horsepower field is empty append a default 0 to it
-            if (horsePowerField.getText().equals("")) {
-                horsePowerField.setText("0");
-            }
-            //Access array for MenuForm and add a new default installation
-            MenuForm.installations.add(new Installation());
-            try {
-                //setting the created objects variables to the ones entered in the gui components
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setHorsePower(Integer.parseInt(horsePowerField.getText()));
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setNumZones(Integer.parseInt(numZonesField.getText()));
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setOutlets(Integer.parseInt(numOutletsField.getText()));
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setStartDate(startDateField.getText());
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setEnddate(endDateField.getText());
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
-                MenuForm.installations.get(MenuForm.installations.size() - 1).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
+        if (horsePowerField.getText().equals("")) {
+            horsePowerField.setText("0");
+        }
+        //Access array for MenuForm and add a new default installation
+        MenuForm.installations.add(new Installation());
+        try {
+            //setting the created objects variables to the ones entered in the gui components
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setHorsePower(Integer.parseInt(horsePowerField.getText()));
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setNumZones(Integer.parseInt(numZonesField.getText()));
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setOutlets(Integer.parseInt(numOutletsField.getText()));
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setStartDate(startDateField.getText());
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setEnddate(endDateField.getText());
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setTechnitian(MenuForm.technicians.get(technicianBox.getSelectedIndex()));
+            MenuForm.installations.get(MenuForm.installations.size() - 1).setBuilding(MenuForm.buildings.get(buildingBox.getSelectedIndex()));
 
-               
-            } catch (java.lang.NumberFormatException exception) {
-                //eror message if numbers are not entered
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for HorsePower, Num Outlets and Num Zones.", "Error", JOptionPane.ERROR_MESSAGE);
-                //remove the last installation record since it errors
-                //otherwise there will be a blank one in the list
-                MenuForm.installations.remove(MenuForm.installations.size() - 1);
-            }
+        } catch (java.lang.NumberFormatException exception) {
+            //eror message if numbers are not entered
+            JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for HorsePower, Num Outlets and Num Zones.", "Error", JOptionPane.ERROR_MESSAGE);
+            //remove the last installation record since it errors
+            //otherwise there will be a blank one in the list
+            MenuForm.installations.remove(MenuForm.installations.size() - 1);
+        }
         //calles update table to, well update the table of records
         UpdateTable();
 
@@ -277,7 +267,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
         try {
             //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
-//Set all the gui components to the variables of the selected record
+            //Set all the gui components to the variables of the selected record
             horsePowerField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getHorsePower()));
             numZonesField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getNumZones()));
             numOutletsField.setText(Integer.toString(MenuForm.installations.get(selectedRow).getOutlets()));
@@ -303,7 +293,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
             }
 
             try {
-//set all the variables of the selected record to the new ones entered into the fields.
+                //set all the variables of the selected record to the new ones entered into the fields.
                 MenuForm.installations.get(selectedRow).setHorsePower(Integer.parseInt(horsePowerField.getText()));
                 MenuForm.installations.get(selectedRow).setNumZones(Integer.parseInt(numZonesField.getText()));
                 MenuForm.installations.get(selectedRow).setOutlets(Integer.parseInt(numOutletsField.getText()));
@@ -312,7 +302,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 MenuForm.installations.get(selectedRow).setStartDate(startDateField.getText());
                 MenuForm.installations.get(selectedRow).setEnddate(endDateField.getText());
             } catch (java.lang.NumberFormatException exception) {
-                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for HorsePower, Num Outlets and Num Zones.", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -360,7 +350,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                     Integer.toString(MenuForm.installations.get(i).getOutlets()),
                     MenuForm.installations.get(i).technician.getFirstName() + " " + MenuForm.installations.get(i).technician.getLastName(),
                     MenuForm.installations.get(i).building.getAddress(), MenuForm.installations.get(i).getStartDate(), MenuForm.installations.get(i).getEnddate());
-//increment
+            //increment
             i++;
         }
     }
@@ -372,12 +362,13 @@ public class ModifyInstallations extends javax.swing.JFrame {
         int i = 0;
         //loop through technicians array list
         while (i < MenuForm.technicians.size()) {
-//Adds all the technicians to the drop down menu
+            //Adds all the technicians to the drop down menu
             technicianBox.addItem(MenuForm.technicians.get(i).getFirstName() + " " + MenuForm.technicians.get(i).getLastName());
             i++;
         }
     }
-//same as above but with buildins
+
+    //same as above but with buildins
     private void UpdateBuildings() {
         System.out.println("Running UpdateBuildings");
         buildingBox.removeAllItems();
@@ -397,7 +388,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
 
     //Adds a row to the table of records
     private void AddRow(String horsePower, String numZones, String numOutlets, String technician, String building, String startDate, String endDate) {
-//changes the table to a default tablemodel       
+        //changes the table to a default tablemodel       
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
         //adds a row to the table with the information for each column
         yourModel.addRow(new Object[]{horsePower, numZones, numOutlets, technician, building, startDate, endDate});

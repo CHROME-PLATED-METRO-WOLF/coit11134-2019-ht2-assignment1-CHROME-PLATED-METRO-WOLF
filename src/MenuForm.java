@@ -1,28 +1,13 @@
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
-import java.awt.Image;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Terry
- */
+
 public class MenuForm extends javax.swing.JFrame {
 
+    //the 3 arrays which store technicians, buildings, installations
     public static ArrayList<Technician> technicians = new ArrayList<Technician>();
     public static ArrayList<Building> buildings = new ArrayList<Building>();
     public static ArrayList<Installation> installations = new ArrayList<Installation>();
@@ -123,13 +108,25 @@ public class MenuForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
+ModifyBuilding modifyBuildingForm = new ModifyBuilding();
+ ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
+        //creates the loginForm object
         MainForm loginForm = new MainForm();
+        //displays the form
         loginForm.setVisible(true);
+        //hides this form
         this.setVisible(false);
+        //destroys this form
+        //this will also distroy the arraylists so if they are not saved then
+        //all data is gone
         this.dispose();
+        //disposes the other forms
         modifyTechnicianForm.dispose();
+        modifyBuildingForm.dispose();
+        modifyInstallationsForm.dispose();
+        
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
 
@@ -138,12 +135,11 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
         modifyTechnicianForm.main();
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
-
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
-    ModifyBuilding modifyBuildingForm = new ModifyBuilding();
+    
     private void modifyBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBuildingsBtnActionPerformed
         modifyBuildingForm.setVisible(true);
         modifyBuildingForm.main();
@@ -152,7 +148,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
         modifyBuildingForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_modifyBuildingsBtnActionPerformed
 
-    ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
+   
     private void modifyInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInstallationsBtnActionPerformed
         modifyInstallationsForm.setVisible(true);
         modifyInstallationsForm.main();
@@ -164,11 +160,6 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
      */
     public static void main(String args[]) {
 
-       
-        
-
-
-        
             /* Set the Nimbus look and feel */
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
             /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -195,9 +186,7 @@ ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
                 java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
             //</editor-fold>
-            
-            
-            
+
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {

@@ -3,11 +3,9 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -17,22 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.LayoutStyle;
 import javax.swing.WindowConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author caleb
- */
 public class ModifyTechnician extends javax.swing.JFrame {
-//ArrayList<Technician> technicians;
 
     /**
      * Creates new form ModifyTechnician
@@ -216,59 +201,73 @@ public class ModifyTechnician extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //code for the add button
     private void addBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
 
+        //if the first name is blank through error. There must be at least a first name.
         if (nameField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
 
         } else {
+            //If age is empty default to 0
             if (ageField.getText().equals("")) {
-                ageField.setText(Integer.toString(0));
+                ageField.setText("0");
 
             }
+            //Access array for MenuForm and add a new default technician
             MenuForm.technicians.add(new Technician());
             try {
+                //setting the created objects variables to the ones entered in the gui components
                 MenuForm.technicians.get(MenuForm.technicians.size() - 1).setAge(Integer.parseInt(ageField.getText()));
                 MenuForm.technicians.get(MenuForm.technicians.size() - 1).setFirstName(nameField.getText());
                 MenuForm.technicians.get(MenuForm.technicians.size() - 1).setLastName(lastNameField.getText());
                 MenuForm.technicians.get(MenuForm.technicians.size() - 1).setPhoneNumber(phoneNumberField.getText());
                 MenuForm.technicians.get(MenuForm.technicians.size() - 1).setNotes(notesField.getText());
             } catch (java.lang.NumberFormatException exception) {
+                //eror message if numbers are not entered
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
-                //remove the last one since it errors
+                //remove the last installation record since it errors
+                //otherwise there will be a blank one in the list
                 MenuForm.technicians.remove(MenuForm.technicians.size() - 1);
             }
         }
+        //update the table with new informatio
         UpdateTable();
 
     }//GEN-LAST:event_addBtnActionPerformed
-
+    //button used to edit the selected item in the table of records
     private void editSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_editSelectedBtnActionPerformed
         try {
+            //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
-
+            //Set all the gui components to the variables of the selected record
             ageField.setText(Integer.toString(MenuForm.technicians.get(selectedRow).getAge()));
             nameField.setText(MenuForm.technicians.get(selectedRow).getFirstName());
             lastNameField.setText(MenuForm.technicians.get(selectedRow).getLastName());
             phoneNumberField.setText(MenuForm.technicians.get(selectedRow).getPhoneNumber());
             notesField.setText(MenuForm.technicians.get(selectedRow).getNotes());
         } catch (java.lang.IndexOutOfBoundsException exception) {
+            //if nothing is selected then through this error
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_editSelectedBtnActionPerformed
 
+    //Button used to apply the updated information to the records
     private void updateSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_updateSelectedBtnActionPerformed
         try {
+            //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
+            // if name field is blank throug an eror
             if (nameField.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter at least a first name", "Error", JOptionPane.ERROR_MESSAGE);
 
             } else {
+                //if age field is blank set to default value of zero
                 if (ageField.getText().equals("")) {
-                    ageField.setText(Integer.toString(0));
+                    ageField.setText("0");
 
                 }
-
+                //set all the variables of the selected record to the new ones entered into the fields.
                 try {
                     MenuForm.technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
                     MenuForm.technicians.get(selectedRow).setFirstName(nameField.getText());
@@ -286,11 +285,15 @@ public class ModifyTechnician extends javax.swing.JFrame {
         UpdateTable();
     }//GEN-LAST:event_updateSelectedBtnActionPerformed
 
+    //remove button code
     private void removeSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeSelectedBtnActionPerformed
         try {
+            //stores the selected row
             int selectedRow = technicianViewBox.getSelectedRow();
+            //removes the selected row from the records arraylist
             MenuForm.technicians.remove(selectedRow);
         } catch (java.lang.IndexOutOfBoundsException exception) {
+            //Spit this error if nothing is selected in the table of records
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
         UpdateTable();
@@ -300,7 +303,9 @@ public class ModifyTechnician extends javax.swing.JFrame {
         System.out.println("Running UpdateTable");
         clearRows();
         int i = 0;
+        //loop through the array of technicians
         while (i < MenuForm.technicians.size()) {
+            //Adds a new row in the table of records for every technician
             AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
                     MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
                     MenuForm.technicians.get(i).getNotes());
@@ -314,10 +319,13 @@ public class ModifyTechnician extends javax.swing.JFrame {
     }
 
     private void AddRow(String firstName, String lastName, String phoneNumber, int age, String notes) {
+        //changes the table to a default tablemodel
         DefaultTableModel yourModel = (DefaultTableModel) technicianViewBox.getModel();
+        //adds a row to the table with the information for each column
         yourModel.addRow(new Object[]{firstName, lastName, phoneNumber, age, notes});
     }
 
+    //clears rows
     private void clearRows() {
         DefaultTableModel Model = (DefaultTableModel) technicianViewBox.getModel();
         Model.setRowCount(0);

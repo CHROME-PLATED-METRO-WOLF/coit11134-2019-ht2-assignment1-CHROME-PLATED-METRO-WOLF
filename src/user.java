@@ -14,9 +14,11 @@ import javax.swing.JOptionPane;
 public class user {
 //private variables for user class
 
+    //variables
     private String userName;
     private String hashedPassword;
 
+    //This method generates the hash whic is stored
     private String generatePasswordHash(String password) {
         int iterations = 1000;
         try {
@@ -39,13 +41,15 @@ public class user {
         return null;
     }
 
+    //generates the random salt for the hashes
     private byte[] getSalt() throws NoSuchAlgorithmException {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         byte[] salt = new byte[16];
         sr.nextBytes(salt);
         return salt;
     }
-
+    
+    //converts stuff to hex
     private String toHex(byte[] array) throws NoSuchAlgorithmException {
         //converts a byte array to a haxidecimal string
         BigInteger bi = new BigInteger(1, array);
@@ -58,6 +62,7 @@ public class user {
         }
     }
 
+    //checks a supplied password against a stored hash
     private boolean validatePassword(String originalPassword, String storedPassword) {
         try {
             // splits string into an array of strings seperated by :
@@ -95,6 +100,7 @@ public class user {
         return false;
     }
 
+    //converts from hex
     private byte[] fromHex(String hex) throws NoSuchAlgorithmException {
         //converts hex into a byte array
         byte[] bytes = new byte[hex.length() / 2];

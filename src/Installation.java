@@ -8,7 +8,6 @@ public class Installation {
     private int numZones;
     private int numOutlets;
     //Assume that only one technitian can be assigned to one installation for now.
-    //Might need to be a pointer to technician to avoid copying of class
     public Technician technician;
     public Building building;
     private String startDate;
