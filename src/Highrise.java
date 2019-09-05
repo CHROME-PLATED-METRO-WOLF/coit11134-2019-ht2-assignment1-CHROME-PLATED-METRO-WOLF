@@ -1,7 +1,10 @@
+
+import java.io.Serializable;
+
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
-public class Highrise extends Building {
+public class Highrise extends Building implements Serializable {
     
     //variables
     private int numOfFloors;

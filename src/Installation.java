@@ -1,8 +1,11 @@
+
+import java.io.Serializable;
+
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
 
-public class Installation {
+public class Installation implements Serializable {
 
     private int horsePower;
     private int numZones;
