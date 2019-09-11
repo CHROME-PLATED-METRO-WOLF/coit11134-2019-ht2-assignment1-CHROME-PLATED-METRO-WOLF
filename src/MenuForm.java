@@ -1,13 +1,24 @@
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class MenuForm extends javax.swing.JFrame {
 
     //the 3 arrays which store technicians, buildings, installations
+    //Set as static so they can be accessed by other forms with having to pass
+    //references
     public static ArrayList<Technician> technicians = new ArrayList<Technician>();
     public static ArrayList<Building> buildings = new ArrayList<Building>();
     public static ArrayList<Installation> installations = new ArrayList<Installation>();
@@ -107,9 +118,10 @@ public class MenuForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
-ModifyBuilding modifyBuildingForm = new ModifyBuilding();
- ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
+
+    ModifyTechnician modifyTechnicianForm = new ModifyTechnician();
+    ModifyBuilding modifyBuildingForm = new ModifyBuilding();
+    ModifyInstallations modifyInstallationsForm = new ModifyInstallations();
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
         //creates the loginForm object
@@ -155,6 +167,167 @@ ModifyBuilding modifyBuildingForm = new ModifyBuilding();
 
     }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
+    
+    
+    public static void loadTechniciansText()
+    {
+        
+    }
+    
+    public static void saveInstallationsSerialize() {
+        try {
+            FileOutputStream file = new FileOutputStream("installationsdb.dat");
+            PrintWriter out = new PrintWriter(file);
+            
+            //craft a string line then write
+            
+            out.println(buildings);
+            
+            out.close(); 
+            file.close(); 
+            System.out.println("Written the installations array to file.");
+            
+        } catch (FileNotFoundException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: FIle installationsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+    
+    public static void saveBuildingsSerialize() {
+        try {
+            FileOutputStream file = new FileOutputStream("buildingsdb.dat");
+            PrintWriter out = new PrintWriter(file);
+            
+            //craft a string line then write
+            
+            out.println(buildings);
+            
+            out.close(); 
+            file.close(); 
+            System.out.println("Written the buildings array to file.");
+            
+        } catch (FileNotFoundException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: FIle buildingsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+    
+    public static void saveTechniciansSerialize() {
+        try {
+            FileOutputStream file = new FileOutputStream("techniciansdb.dat");
+            PrintWriter out = new PrintWriter(file);
+            
+            //craft a string line then write
+            
+            out.println(technicians);
+            
+            out.close(); 
+            file.close(); 
+            System.out.println("Written the technicians array to file.");
+            
+        } catch (FileNotFoundException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: FIle techniciansdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
+    
+    public static void loadTechniciansSerialize() {
+        FileInputStream file = null;
+        try {
+            file = new FileInputStream("techniciansdb.dat");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            technicians = (ArrayList<Technician>) in.readObject();
+
+            System.out.println("Loaded technician data from file");
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: FIle techniciansdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Object not found", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+            try {
+                file.close();
+            } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+    }
+    
+    public static void loadBuildingsSerialize() {
+        FileInputStream file = null;
+        try {
+            file = new FileInputStream("buildingsdb.dat");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            buildings = (ArrayList<Building>) in.readObject();
+
+            System.out.println("Loaded building data from file");
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: FIle buildingsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Object not found", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+            try {
+                file.close();
+            } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+    }
+    
+    public static void loadInstallationsSerialize() {
+        FileInputStream file = null;
+        try {
+            file = new FileInputStream("installationsdb.dat");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            installations = (ArrayList<Installation>) in.readObject();
+
+            System.out.println("Loaded installation data from file");
+
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: FIle installations.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Object not found", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+            try {
+                file.close();
+            } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
