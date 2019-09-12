@@ -1,9 +1,11 @@
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
@@ -44,6 +46,7 @@ public class MenuForm extends javax.swing.JFrame {
         modifyTechniciansBtn = new javax.swing.JButton();
         modifyBuildingsBtn = new javax.swing.JButton();
         modifyInstallationsBtn = new javax.swing.JButton();
+        saveTechBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +80,13 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        saveTechBtn.setText("Save technicians");
+        saveTechBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveTechBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,9 +105,12 @@ public class MenuForm extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(modifyTechniciansBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(modifyInstallationsBtn)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(modifyInstallationsBtn)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -111,7 +124,9 @@ public class MenuForm extends javax.swing.JFrame {
                     .addComponent(modifyTechniciansBtn)
                     .addComponent(modifyBuildingsBtn)
                     .addComponent(modifyInstallationsBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(saveTechBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
         );
@@ -167,13 +182,42 @@ public class MenuForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
-    
-    
-    public static void loadTechniciansText()
+    private void saveTechBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTechBtnActionPerformed
+        saveTechniciansText();
+    }//GEN-LAST:event_saveTechBtnActionPerformed
+
+    public static void loadAll()
     {
         
     }
     
+    public static void saveAll()
+    {
+        
+    }
+    
+    public static void saveTechniciansText()
+    {
+        File file = new File("techniciansdb.dat");
+        try { 
+            FileWriter writer = new FileWriter(file);
+        System.out.println("Writing the technicians array to file in clear text");
+        
+        String sep = ",";
+        int i = 0;
+        while(i < technicians.size())
+        {
+            writer.write(technicians.get(i).getFirstName() + sep + technicians.get(i).getLastName()
+            + sep + technicians.get(i).getPhoneNumber() + sep + technicians.get(i).getAge() + sep
+            + technicians.get(i).getNotes() + "\n");
+            writer.flush();
+            i++;
+        }
+        writer.close();
+        } catch (IOException ex) {
+            System.out.println("error cannot write to file");
+        }
+    }
     public static void saveInstallationsSerialize() {
         try {
             FileOutputStream file = new FileOutputStream("installationsdb.dat");
@@ -360,6 +404,9 @@ public class MenuForm extends javax.swing.JFrame {
             }
             //</editor-fold>
 
+            //load the files
+            
+            
             /* Create and display the form */
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
@@ -376,5 +423,6 @@ public class MenuForm extends javax.swing.JFrame {
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
+    private javax.swing.JButton saveTechBtn;
     // End of variables declaration//GEN-END:variables
 }
