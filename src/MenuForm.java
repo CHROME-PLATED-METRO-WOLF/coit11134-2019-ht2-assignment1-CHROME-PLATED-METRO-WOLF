@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

@@ -20,7 +20,6 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.*;
 
 public class ModifyBuilding extends javax.swing.JFrame {
 
