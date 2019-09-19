@@ -20,9 +20,11 @@ import javax.swing.table.DefaultTableModel;
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
 public class ModifyInstallations extends javax.swing.JFrame {
-private ArrayList<Building> buildings = new ArrayList<Building>();
-private ArrayList<Installation> installations = new ArrayList<Installation>();
-private ArrayList<Technician> technicians = new ArrayList<Technician>();
+
+    private ArrayList<Building> buildings = new ArrayList<Building>();
+    private ArrayList<Installation> installations = new ArrayList<Installation>();
+    private ArrayList<Technician> technicians = new ArrayList<Technician>();
+
     /**
      * Creates new form ModifyTechnician
      */

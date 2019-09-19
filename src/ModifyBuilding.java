@@ -25,6 +25,7 @@ import javax.swing.table.*;
 public class ModifyBuilding extends javax.swing.JFrame {
 
     private ArrayList<Building> buildings = new ArrayList<Building>();
+
     /**
      * Creates new form ModifyTechnician
      */
@@ -570,7 +571,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-buildings = buildingsList;
+        buildings = buildingsList;
         //debug info
         System.out.println("List Size" + buildings.size());
         System.out.println("row count:" + technicianViewBox.getRowCount());

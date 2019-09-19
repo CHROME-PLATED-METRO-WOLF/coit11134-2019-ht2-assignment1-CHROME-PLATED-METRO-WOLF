@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 public class MenuForm extends javax.swing.JFrame {
 
     //the 3 arrays which store technicians, buildings, installations
@@ -168,7 +167,7 @@ public class MenuForm extends javax.swing.JFrame {
         modifyTechnicianForm.dispose();
         modifyBuildingForm.dispose();
         modifyInstallationsForm.dispose();
-        
+
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
 
@@ -181,7 +180,7 @@ public class MenuForm extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_modifyTechniciansBtnActionPerformed
-    
+
     private void modifyBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBuildingsBtnActionPerformed
         modifyBuildingForm.setVisible(true);
         modifyBuildingForm.main(buildings);
@@ -190,7 +189,7 @@ public class MenuForm extends javax.swing.JFrame {
         modifyBuildingForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_modifyBuildingsBtnActionPerformed
 
-   
+
     private void modifyInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInstallationsBtnActionPerformed
         modifyInstallationsForm.setVisible(true);
         modifyInstallationsForm.main(buildings, installations, technicians);
@@ -205,130 +204,119 @@ public class MenuForm extends javax.swing.JFrame {
         loadTechniciansText();
     }//GEN-LAST:event_loadFileBtnActionPerformed
 
-    public static void loadAll()
-    {
-        
+    public static void loadAll() {
+
     }
-    
-    public static void saveAll()
-    {
-        
+
+    public static void saveAll() {
+
     }
-    
-    public static void saveTechniciansText()
-    {
+
+    public static void saveTechniciansText() {
         File file = new File("techniciansdb.dat");
-        try { 
+        try {
             FileWriter writer = new FileWriter(file);
-        System.out.println("Writing the technicians array to file in clear text");
-        
-        String sep = ",";
-        int i = 0;
-        while(i < technicians.size())
-        {
-            writer.write(technicians.get(i).getFirstName() + sep + technicians.get(i).getLastName()
-            + sep + technicians.get(i).getPhoneNumber() + sep + technicians.get(i).getAge() + sep
-            + technicians.get(i).getNotes() + "\n");
-            writer.flush();
-            i++;
-        }
-        writer.close();
+            System.out.println("Writing the technicians array to file in clear text");
+
+            String sep = ",";
+            int i = 0;
+            while (i < technicians.size()) {
+                writer.write(technicians.get(i).getFirstName() + sep + technicians.get(i).getLastName()
+                        + sep + technicians.get(i).getPhoneNumber() + sep + technicians.get(i).getAge() + sep
+                        + technicians.get(i).getNotes() + "\n");
+                writer.flush();
+                i++;
+            }
+            writer.close();
         } catch (IOException ex) {
             System.out.println("error cannot write to file");
         }
     }
-    
-    public static void loadTechniciansText()
-    {
+
+    public static void loadTechniciansText() {
         File file = new File("techniciansdb.dat");
-        try { 
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
-        System.out.println("Writing the technicians array to file in clear text");
-        String line = reader.readLine();
-   
+            System.out.println("Writing the technicians array to file in clear text");
+            String line = reader.readLine();
+
             while (line != null) {
                 System.out.println(line);
                 // read next line
                 line = reader.readLine();
             }
 
-        
-        System.out.println("Done reading");
-        
-        reader.close();
+            System.out.println("Done reading");
+
+            reader.close();
         } catch (IOException ex) {
             System.out.println("error cannot write to file");
-        }   
+        }
     }
-    
-    
-    
+
     public static void saveInstallationsSerialize() {
         try {
             FileOutputStream file = new FileOutputStream("installationsdb.dat");
             PrintWriter out = new PrintWriter(file);
-            
+
             //craft a string line then write
-            
             out.println(buildings);
-            
-            out.close(); 
-            file.close(); 
+
+            out.close();
+            file.close();
             System.out.println("Written the installations array to file.");
-            
+
         } catch (FileNotFoundException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: FIle installationsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: FIle installationsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
 
         } catch (IOException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }
-    
+
     public static void saveBuildingsSerialize() {
         try {
             FileOutputStream file = new FileOutputStream("buildingsdb.dat");
             PrintWriter out = new PrintWriter(file);
-            
+
             //craft a string line then write
-            
             out.println(buildings);
-            
-            out.close(); 
-            file.close(); 
+
+            out.close();
+            file.close();
             System.out.println("Written the buildings array to file.");
-            
+
         } catch (FileNotFoundException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: FIle buildingsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: FIle buildingsdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
 
         } catch (IOException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }
-    
+
     public static void saveTechniciansSerialize() {
         try {
             FileOutputStream file = new FileOutputStream("techniciansdb.dat");
             PrintWriter out = new PrintWriter(file);
-            
+
             //craft a string line then write
-            
             out.println(technicians);
-            
-            out.close(); 
-            file.close(); 
+
+            out.close();
+            file.close();
             System.out.println("Written the technicians array to file.");
-            
+
         } catch (FileNotFoundException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: FIle techniciansdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: FIle techniciansdb.dat not found. \n Should have been handled", "Error", JOptionPane.ERROR_MESSAGE);
 
         } catch (IOException ex) {
-         JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERROR: Unable to write to file", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }
-    
+
     public static void loadTechniciansSerialize() {
         FileInputStream file = null;
         try {
@@ -352,12 +340,12 @@ public class MenuForm extends javax.swing.JFrame {
             try {
                 file.close();
             } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
     }
-    
+
     public static void loadBuildingsSerialize() {
         FileInputStream file = null;
         try {
@@ -381,12 +369,12 @@ public class MenuForm extends javax.swing.JFrame {
             try {
                 file.close();
             } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
     }
-    
+
     public static void loadInstallationsSerialize() {
         FileInputStream file = null;
         try {
@@ -410,55 +398,48 @@ public class MenuForm extends javax.swing.JFrame {
             try {
                 file.close();
             } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "ERROR: Could not close file", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
         }
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
 
-            /* Set the Nimbus look and feel */
-            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
             * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-            */
-            
-            
-            
-            
-            try {
-                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
                 }
-            } catch (ClassNotFoundException ex) {
-                java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-            //</editor-fold>
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-            //load the files
-            
-            
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new MenuForm().setVisible(true);
-                }
-            });
-        
+        //load the files
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MenuForm().setVisible(true);
+            }
+        });
+
         //</editor-fold>
     }
 

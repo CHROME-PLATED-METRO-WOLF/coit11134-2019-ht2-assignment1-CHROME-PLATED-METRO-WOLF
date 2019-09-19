@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModifyTechnician extends javax.swing.JFrame {
 
+    private ArrayList<Technician> technicians = new ArrayList<Technician>();
 
-private ArrayList<Technician> technicians = new ArrayList<Technician>();
     /**
      * Creates new form ModifyTechnician
      */
@@ -361,7 +361,7 @@ private ArrayList<Technician> technicians = new ArrayList<Technician>();
         }
         //</editor-fold>
         /* Create and display the form */
-technicians = technicianList;
+        technicians = technicianList;
         // technicians = technicianArray;
         System.out.println("List Size" + technicians.size());
 
