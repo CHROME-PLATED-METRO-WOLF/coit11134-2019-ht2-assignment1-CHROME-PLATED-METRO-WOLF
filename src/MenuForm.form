@@ -39,17 +39,20 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="modifyTechniciansBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="modifyBuildingsBtn" min="-2" pref="124" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="modifyInstallationsBtn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="saveBuildingsBtn" max="32767" attributes="0"/>
+                                  <Component id="saveTechBtn" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="saveTechBtn" min="-2" pref="78" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="loadFileBtn" min="-2" pref="78" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="modifyBuildingsBtn" min="-2" pref="124" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="modifyInstallationsBtn" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="loadFileBtn" min="-2" pref="78" max="-2" attributes="0"/>
+                                  <Component id="loadBuildingsBtn" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -76,7 +79,12 @@
                   <Component id="saveTechBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="loadFileBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="saveBuildingsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="loadBuildingsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Component id="LogoutBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -135,6 +143,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadFileBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="saveBuildingsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Save build"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBuildingsBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="loadBuildingsBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="load"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadBuildingsBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

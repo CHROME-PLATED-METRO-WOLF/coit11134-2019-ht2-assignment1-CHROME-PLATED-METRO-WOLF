@@ -47,6 +47,8 @@ public class MenuForm extends javax.swing.JFrame {
         modifyInstallationsBtn = new javax.swing.JButton();
         saveTechBtn = new javax.swing.JButton();
         loadFileBtn = new javax.swing.JButton();
+        saveBuildingsBtn = new javax.swing.JButton();
+        loadBuildingsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +96,20 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        saveBuildingsBtn.setText("Save build");
+        saveBuildingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBuildingsBtnActionPerformed(evt);
+            }
+        });
+
+        loadBuildingsBtn.setText("load");
+        loadBuildingsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBuildingsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,15 +128,18 @@ public class MenuForm extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(modifyTechniciansBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(modifyInstallationsBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(140, 140, 140)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(saveBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(modifyInstallationsBtn)))))
+                                    .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(loadBuildingsBtn))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -138,7 +157,11 @@ public class MenuForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveTechBtn)
                     .addComponent(loadFileBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBuildingsBtn)
+                    .addComponent(loadBuildingsBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
         );
@@ -202,6 +225,14 @@ public class MenuForm extends javax.swing.JFrame {
         loadTechniciansText();
     }//GEN-LAST:event_loadFileBtnActionPerformed
 
+    private void saveBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBuildingsBtnActionPerformed
+        saveBuildingsText();
+    }//GEN-LAST:event_saveBuildingsBtnActionPerformed
+
+    private void loadBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBuildingsBtnActionPerformed
+        loadBuildingsText();
+    }//GEN-LAST:event_loadBuildingsBtnActionPerformed
+
     public static void loadAll() {
 
     }
@@ -209,7 +240,127 @@ public class MenuForm extends javax.swing.JFrame {
     public static void saveAll() {
 
     }
+    
+    public static void saveInstallationsText()
+    {
+        
+    }
+    
+    public static void loadBuildingsText() {
+        //creates a new file object
+        File file = new File("buildingsdb.dat");
+        //checks if the file exists
+        //if it exists continue else dont bother trying to load the data
+        if (file.exists()) {
+            try {
+                //creating a befferreader for the file
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                System.out.println("Loading the buildings file to array in clear text");
+                //storing the data of the current line into a string
+                String line = reader.readLine();
+                //ckear the technicians arraylist
+                buildings.clear();
+                //while not at the end of the file
+                while (line != null) {
+                    System.out.println(line);
 
+                    //splits the string into an array of strings
+                    String[] parts = line.split(",", -1);
+                    //if the array doesnt match the correct length for a technician object
+                    //error and disreguard the current line
+                    line = reader.readLine();
+                    //if the number of parts is 10 then it is not a highrise
+                    if (parts.length == 10) {
+
+                        System.out.println("Addeding: " + "\n" + parts[0] + "\n" + parts[1] + "\n" + parts[2] + "\n" + parts[3] + "\n" + parts[4] + "\n" + parts[5] + "\n" + parts[6]
+                                + "\n" + parts[7] + "\n" + parts[8] + "\n" + parts[9]);
+                        //add a normal building
+                        buildings.add(new Building(Integer.parseInt(parts[0]), parts[1], Integer.parseInt(parts[2]), parts[3], parts[4], parts[5], parts[6], Integer.parseInt(parts[7]), parts[8],
+                                parts[9]));
+                        //if the number of parts is 11 then its a highrise
+                    } else if (parts.length == 11) {
+                        System.out.println("This entry is a highrise");
+                        //add a new highrise
+                        buildings.add(new Highrise());
+                        //cast the current object in the arraylist into a highrise
+                        Highrise d = new Highrise();
+                        //add all the data to the highrise object                      
+                        d = (Highrise) buildings.get(buildings.size() - 1);
+                        d.setUnitNumber(Integer.parseInt(parts[0]));
+                        d.setAddress(parts[1]);
+                        d.setPostCode(Integer.parseInt(parts[2]));
+                        d.setSuburb(parts[3]);
+                        d.setCity(parts[4]);
+                        d.setState(parts[5]);
+                        d.setBuildingName(parts[6]);
+                        d.setRooms(Integer.parseInt(parts[7]));
+                        d.setNotes(parts[8]);
+                        d.setBuildingType(parts[9]);
+                        d.setNumOfFloors(Integer.parseInt(parts[10]));
+
+                    } else {
+
+                        System.out.println("Error corrupted data detected.");
+                        JOptionPane.showMessageDialog(null, "ERROR: Corrupted data detected", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    }
+                }
+
+                System.out.println("Done reading");
+                System.out.println("array size: " + technicians.size());
+                //close the reader
+                reader.close();
+
+            } catch (IOException ex) {
+                System.out.println("error cannot write to file");
+            }
+        } else {
+            System.out.println("File doesnt exist skipping load method");
+        }
+    }
+    
+    
+    public static void saveBuildingsText() {
+        File file = new File("buildingsdb.dat");
+        try {
+            FileWriter writer = new FileWriter(file);
+            System.out.println("Writing the buildings array to file in clear text");
+
+            String sep = ",";
+            int i = 0;
+            while (i < buildings.size()) {
+
+                //check if the building is a highrise
+                if (buildings.get(i) instanceof Highrise) {
+                    //debug print
+                    System.out.println("Index:" + (buildings.size() - 1) + "is a highrise");
+                    //create a highrise object
+                    Highrise d = new Highrise();
+                    //cast the current object in the arraylist into a highrise
+                    d = (Highrise) buildings.get(i);
+//write out all the data                                        
+                    writer.write(buildings.get(i).getUnitNumber() + sep + buildings.get(i).getAddress()
+                            + sep + buildings.get(i).getPostCode() + sep + buildings.get(i).getSuburb() + sep
+                            + buildings.get(i).getCity() + sep + buildings.get(i).getState() + sep + buildings.get(i).getBuildingName() + sep + buildings.get(i).getRooms()
+                            + sep + buildings.get(i).getNotes() + sep + buildings.get(i).getBuildingType() + sep + d.getNumOfFloors() + "\n");
+                } else {
+                    //write a normal building to file
+                    writer.write(buildings.get(i).getUnitNumber() + sep + buildings.get(i).getAddress()
+                            + sep + buildings.get(i).getPostCode() + sep + buildings.get(i).getSuburb() + sep
+                            + buildings.get(i).getCity() + sep + buildings.get(i).getState() + sep + buildings.get(i).getBuildingName() + sep + buildings.get(i).getRooms()
+                            + sep + buildings.get(i).getNotes() + sep + buildings.get(i).getBuildingType() + "\n");
+                }
+
+                writer.flush();
+                i++;
+            }
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println("error cannot write to file");
+        }
+    }
+
+    // these methods are made public and static to avoid having to duplicate the methods into each form
     public static void saveTechniciansText() {
         File file = new File("techniciansdb.dat");
         try {
@@ -232,23 +383,51 @@ public class MenuForm extends javax.swing.JFrame {
     }
 
     public static void loadTechniciansText() {
+        //creates a new file object
         File file = new File("techniciansdb.dat");
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            System.out.println("Writing the technicians array to file in clear text");
-            String line = reader.readLine();
+        //checks if the file exists
+        //if it exists continue else dont bother trying to load the data
+        if (file.exists()) {
+            try {
+                //creating a befferreader for the file
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                System.out.println("Loading the technicians file to array in clear text");
+                //storing the data of the current line into a string
+                String line = reader.readLine();
+                //ckear the technicians arraylist
+                technicians.clear();
+                //while not at the end of the file
+                while (line != null) {
+                    System.out.println(line);
 
-            while (line != null) {
-                System.out.println(line);
-                // read next line
-                line = reader.readLine();
+                    //splits the string into an array of strings
+                    String[] parts = line.split(",", -1);
+                    //if the array doesnt match the correct length for a technician object
+                    //error and disreguard the current line
+                    line = reader.readLine();
+                    if (parts.length == 5) {
+                        
+                        System.out.println("Addeding: " + "\n" + parts[0] + "\n" + parts[1] + "\n" + parts[2] + "\n" + parts[3] + "\n" + parts[4]);
+                        technicians.add(new Technician(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), parts[4]));
+                        
+                    } else {
+                        
+                        System.out.println("Error corrupted data detected.");
+                        JOptionPane.showMessageDialog(null, "ERROR: Corrupted data detected", "Error", JOptionPane.ERROR_MESSAGE);
+                        
+                    }
+                }
+
+                System.out.println("Done reading");
+                System.out.println("array size: " + technicians.size());
+                //close the reader
+                reader.close();
+                
+            } catch (IOException ex) {
+                System.out.println("error cannot write to file");
             }
-
-            System.out.println("Done reading");
-
-            reader.close();
-        } catch (IOException ex) {
-            System.out.println("error cannot write to file");
+        } else {
+            System.out.println("File doesnt exist skipping load method");
         }
     }
 
@@ -444,10 +623,12 @@ public class MenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton loadBuildingsBtn;
     private javax.swing.JButton loadFileBtn;
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
+    private javax.swing.JButton saveBuildingsBtn;
     private javax.swing.JButton saveTechBtn;
     // End of variables declaration//GEN-END:variables
 }
