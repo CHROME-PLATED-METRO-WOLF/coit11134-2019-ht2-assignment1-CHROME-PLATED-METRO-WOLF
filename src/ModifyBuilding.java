@@ -3,6 +3,7 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ import javax.swing.table.*;
 
 public class ModifyBuilding extends javax.swing.JFrame {
 
+    private ArrayList<Building> buildings = new ArrayList<Building>();
     /**
      * Creates new form ModifyTechnician
      */
@@ -325,32 +327,32 @@ public class ModifyBuilding extends javax.swing.JFrame {
             //if highrise is checked then run this method
             if (highRiseCheck.isSelected()) {
                 //creates a new highrise if selected
-                MenuForm.buildings.add(new Highrise());
+                buildings.add(new Highrise());
             } else {
                 //if highrise isnt selected then create a building
-                MenuForm.buildings.add(new Building());
+                buildings.add(new Building());
             }
             try {
                 //add relevent details from the gui components to the object
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setSuburb((suburbField.getText()));
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setAddress(addressField.getText());
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setPostCode(Integer.parseInt(postCodeField.getText()));
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setCity(cityField.getText());
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setState(stateField.getText());
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingName(buildingNameField.getText());
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setRooms(Integer.parseInt(roomsField.getText()));
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setNotes(notesField.getText());
-                MenuForm.buildings.get(MenuForm.buildings.size() - 1).setBuildingType(buildingTypeField.getText());
+                buildings.get(buildings.size() - 1).setSuburb((suburbField.getText()));
+                buildings.get(buildings.size() - 1).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
+                buildings.get(buildings.size() - 1).setAddress(addressField.getText());
+                buildings.get(buildings.size() - 1).setPostCode(Integer.parseInt(postCodeField.getText()));
+                buildings.get(buildings.size() - 1).setCity(cityField.getText());
+                buildings.get(buildings.size() - 1).setState(stateField.getText());
+                buildings.get(buildings.size() - 1).setBuildingName(buildingNameField.getText());
+                buildings.get(buildings.size() - 1).setRooms(Integer.parseInt(roomsField.getText()));
+                buildings.get(buildings.size() - 1).setNotes(notesField.getText());
+                buildings.get(buildings.size() - 1).setBuildingType(buildingTypeField.getText());
 
                 //if the current selected object is a highrise then add number of floors
-                if (MenuForm.buildings.get(MenuForm.buildings.size() - 1) instanceof Highrise) {
+                if (buildings.get(buildings.size() - 1) instanceof Highrise) {
                     //debug print
-                    System.out.println("Index:" + (MenuForm.buildings.size() - 1) + "is a highrise");
+                    System.out.println("Index:" + (buildings.size() - 1) + "is a highrise");
                     //create a highrise object
                     Highrise d = new Highrise();
                     //cast the current object in the arraylist into a highrise
-                    d = (Highrise) MenuForm.buildings.get(MenuForm.buildings.size() - 1);
+                    d = (Highrise) buildings.get(buildings.size() - 1);
                     //set the number of floors for the current object
                     d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
 
@@ -359,7 +361,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
             } catch (java.lang.NumberFormatException exception) {
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms", "Error", JOptionPane.ERROR_MESSAGE);
                 //remove the last one since it errors
-                MenuForm.buildings.remove(MenuForm.buildings.size() - 1);
+                buildings.remove(buildings.size() - 1);
             }
         }
         //run the update table method
@@ -372,26 +374,26 @@ public class ModifyBuilding extends javax.swing.JFrame {
             //store current selected row
             int selectedRow = technicianViewBox.getSelectedRow();
             //if the current item in the arraylist is a highrise then
-            if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+            if (buildings.get(selectedRow) instanceof Highrise) {
                 //check the highrise checkbox
                 highRiseCheck.setSelected(true);
                 //casting highrise again
                 Highrise d = new Highrise();
-                d = (Highrise) MenuForm.buildings.get(selectedRow);
+                d = (Highrise) buildings.get(selectedRow);
                 //set gui component to the number of floors value
                 numOfFloorsField.setText(Integer.toString(d.getNumOfFloors()));
             }
             //setting the rest of the gui components
-            suburbField.setText(MenuForm.buildings.get(selectedRow).getSuburb());
-            unitNumberField.setText(Integer.toString(MenuForm.buildings.get(selectedRow).getUnitNumber()));
-            addressField.setText(MenuForm.buildings.get(selectedRow).getAddress());
-            postCodeField.setText(Integer.toString(MenuForm.buildings.get(selectedRow).getPostCode()));
-            cityField.setText(MenuForm.buildings.get(selectedRow).getCity());
-            stateField.setText(MenuForm.buildings.get(selectedRow).getState());
-            buildingNameField.setText(MenuForm.buildings.get(selectedRow).getBuildingName());
-            roomsField.setText(Integer.toString(MenuForm.buildings.get(selectedRow).getRooms()));
-            notesField.setText(MenuForm.buildings.get(selectedRow).getNotes());
-            buildingTypeField.setText(MenuForm.buildings.get(selectedRow).getBuildingType());
+            suburbField.setText(buildings.get(selectedRow).getSuburb());
+            unitNumberField.setText(Integer.toString(buildings.get(selectedRow).getUnitNumber()));
+            addressField.setText(buildings.get(selectedRow).getAddress());
+            postCodeField.setText(Integer.toString(buildings.get(selectedRow).getPostCode()));
+            cityField.setText(buildings.get(selectedRow).getCity());
+            stateField.setText(buildings.get(selectedRow).getState());
+            buildingNameField.setText(buildings.get(selectedRow).getBuildingName());
+            roomsField.setText(Integer.toString(buildings.get(selectedRow).getRooms()));
+            notesField.setText(buildings.get(selectedRow).getNotes());
+            buildingTypeField.setText(buildings.get(selectedRow).getBuildingType());
             //if nothing is selected
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
@@ -421,22 +423,22 @@ public class ModifyBuilding extends javax.swing.JFrame {
 
                 try {
                     //setting selected objects variables to the ones entered into the gui components
-                    MenuForm.buildings.get(selectedRow).setSuburb((suburbField.getText()));
-                    MenuForm.buildings.get(selectedRow).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
-                    MenuForm.buildings.get(selectedRow).setAddress(addressField.getText());
-                    MenuForm.buildings.get(selectedRow).setPostCode(Integer.parseInt(postCodeField.getText()));
-                    MenuForm.buildings.get(selectedRow).setCity(cityField.getText());
-                    MenuForm.buildings.get(selectedRow).setState(stateField.getText());
-                    MenuForm.buildings.get(selectedRow).setBuildingName(buildingNameField.getText());
-                    MenuForm.buildings.get(selectedRow).setRooms(Integer.parseInt(roomsField.getText()));
-                    MenuForm.buildings.get(selectedRow).setNotes(notesField.getText());
-                    MenuForm.buildings.get(selectedRow).setBuildingType(buildingTypeField.getText());
+                    buildings.get(selectedRow).setSuburb((suburbField.getText()));
+                    buildings.get(selectedRow).setUnitNumber(Integer.parseInt(unitNumberField.getText()));
+                    buildings.get(selectedRow).setAddress(addressField.getText());
+                    buildings.get(selectedRow).setPostCode(Integer.parseInt(postCodeField.getText()));
+                    buildings.get(selectedRow).setCity(cityField.getText());
+                    buildings.get(selectedRow).setState(stateField.getText());
+                    buildings.get(selectedRow).setBuildingName(buildingNameField.getText());
+                    buildings.get(selectedRow).setRooms(Integer.parseInt(roomsField.getText()));
+                    buildings.get(selectedRow).setNotes(notesField.getText());
+                    buildings.get(selectedRow).setBuildingType(buildingTypeField.getText());
 
                     //if the currently selected object is a highrise
-                    if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+                    if (buildings.get(selectedRow) instanceof Highrise) {
                         //casting so we can access the number of floors variable
                         Highrise d = new Highrise();
-                        d = (Highrise) MenuForm.buildings.get(selectedRow);
+                        d = (Highrise) buildings.get(selectedRow);
 
                         d.setNumOfFloors(Integer.parseInt(numOfFloorsField.getText()));
                     }
@@ -445,7 +447,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                     String message;
                     //depending if the item is a highrise or just a building display a different
                     //error
-                    if (MenuForm.buildings.get(selectedRow) instanceof Highrise) {
+                    if (buildings.get(selectedRow) instanceof Highrise) {
                         message = "ERROR: Please enter a number for Unit Number, Post Code, Number of Rooms and Number of Floors";
                     } else {
                         message = "ERROR: Please enter a number for Unit Number, Post Code and Number of Rooms";
@@ -466,7 +468,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
     private void removeSelectedBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_removeSelectedBtnActionPerformed
         try {
             int selectedRow = technicianViewBox.getSelectedRow();
-            MenuForm.buildings.remove(selectedRow);
+            buildings.remove(selectedRow);
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -492,24 +494,24 @@ public class ModifyBuilding extends javax.swing.JFrame {
         clearRows();
         int i = 0;
         //loop through building array
-        while (i < MenuForm.buildings.size()) {
+        while (i < buildings.size()) {
             //if the current item is a highrise
-            if (MenuForm.buildings.get(i) instanceof Highrise) {
+            if (buildings.get(i) instanceof Highrise) {
                 //casting the highrise again
                 Highrise d = new Highrise();
-                d = (Highrise) MenuForm.buildings.get(i);
+                d = (Highrise) buildings.get(i);
                 //adding a row with the number of floors value
-                AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
-                        Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
-                        MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
-                        Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType(), Integer.toString(d.getNumOfFloors()));
+                AddRow(Integer.toString(buildings.get(i).getUnitNumber()), buildings.get(i).getAddress(),
+                        Integer.toString(buildings.get(i).getPostCode()), buildings.get(i).getSuburb(),
+                        buildings.get(i).getCity(), buildings.get(i).getState(), buildings.get(i).getBuildingName(),
+                        Integer.toString(buildings.get(i).getRooms()), buildings.get(i).getNotes(), buildings.get(i).getBuildingType(), Integer.toString(d.getNumOfFloors()));
 
             } else {
                 //run the normal addrow without the num of floors variables
-                AddRow(Integer.toString(MenuForm.buildings.get(i).getUnitNumber()), MenuForm.buildings.get(i).getAddress(),
-                        Integer.toString(MenuForm.buildings.get(i).getPostCode()), MenuForm.buildings.get(i).getSuburb(),
-                        MenuForm.buildings.get(i).getCity(), MenuForm.buildings.get(i).getState(), MenuForm.buildings.get(i).getBuildingName(),
-                        Integer.toString(MenuForm.buildings.get(i).getRooms()), MenuForm.buildings.get(i).getNotes(), MenuForm.buildings.get(i).getBuildingType());
+                AddRow(Integer.toString(buildings.get(i).getUnitNumber()), buildings.get(i).getAddress(),
+                        Integer.toString(buildings.get(i).getPostCode()), buildings.get(i).getSuburb(),
+                        buildings.get(i).getCity(), buildings.get(i).getState(), buildings.get(i).getBuildingName(),
+                        Integer.toString(buildings.get(i).getRooms()), buildings.get(i).getNotes(), buildings.get(i).getBuildingType());
             }
             i++;
         }
@@ -544,7 +546,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void main() {
+    public void main(ArrayList<Building> buildingsList) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -568,9 +570,9 @@ public class ModifyBuilding extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-
+buildings = buildingsList;
         //debug info
-        System.out.println("List Size" + MenuForm.buildings.size());
+        System.out.println("List Size" + buildings.size());
         System.out.println("row count:" + technicianViewBox.getRowCount());
         System.out.println("colum count:" + technicianViewBox.getColumnCount());
 

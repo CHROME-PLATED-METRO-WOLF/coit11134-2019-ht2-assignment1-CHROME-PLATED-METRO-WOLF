@@ -1,10 +1,12 @@
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,9 +23,9 @@ public class MenuForm extends javax.swing.JFrame {
     //the 3 arrays which store technicians, buildings, installations
     //Set as static so they can be accessed by other forms with having to pass
     //references
-    public static ArrayList<Technician> technicians = new ArrayList<Technician>();
-    public static ArrayList<Building> buildings = new ArrayList<Building>();
-    public static ArrayList<Installation> installations = new ArrayList<Installation>();
+    private static ArrayList<Technician> technicians = new ArrayList<Technician>();
+    private static ArrayList<Building> buildings = new ArrayList<Building>();
+    private static ArrayList<Installation> installations = new ArrayList<Installation>();
 
     /**
      * Creates new form MenuForm
@@ -47,6 +49,7 @@ public class MenuForm extends javax.swing.JFrame {
         modifyBuildingsBtn = new javax.swing.JButton();
         modifyInstallationsBtn = new javax.swing.JButton();
         saveTechBtn = new javax.swing.JButton();
+        loadFileBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +90,13 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        loadFileBtn.setText("LoadFile");
+        loadFileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadFileBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +116,10 @@ public class MenuForm extends javax.swing.JFrame {
                                 .addComponent(modifyTechniciansBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -125,7 +138,9 @@ public class MenuForm extends javax.swing.JFrame {
                     .addComponent(modifyBuildingsBtn)
                     .addComponent(modifyInstallationsBtn))
                 .addGap(83, 83, 83)
-                .addComponent(saveTechBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveTechBtn)
+                    .addComponent(loadFileBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(LogoutBtn)
                 .addContainerGap())
@@ -159,7 +174,7 @@ public class MenuForm extends javax.swing.JFrame {
 
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
         modifyTechnicianForm.setVisible(true);
-        modifyTechnicianForm.main();
+        modifyTechnicianForm.main(technicians);
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -169,7 +184,7 @@ public class MenuForm extends javax.swing.JFrame {
     
     private void modifyBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBuildingsBtnActionPerformed
         modifyBuildingForm.setVisible(true);
-        modifyBuildingForm.main();
+        modifyBuildingForm.main(buildings);
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyBuildingForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -178,13 +193,17 @@ public class MenuForm extends javax.swing.JFrame {
    
     private void modifyInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInstallationsBtnActionPerformed
         modifyInstallationsForm.setVisible(true);
-        modifyInstallationsForm.main();
+        modifyInstallationsForm.main(buildings, installations, technicians);
 
     }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
     private void saveTechBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTechBtnActionPerformed
         saveTechniciansText();
     }//GEN-LAST:event_saveTechBtnActionPerformed
+
+    private void loadFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileBtnActionPerformed
+        loadTechniciansText();
+    }//GEN-LAST:event_loadFileBtnActionPerformed
 
     public static void loadAll()
     {
@@ -218,6 +237,32 @@ public class MenuForm extends javax.swing.JFrame {
             System.out.println("error cannot write to file");
         }
     }
+    
+    public static void loadTechniciansText()
+    {
+        File file = new File("techniciansdb.dat");
+        try { 
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+        System.out.println("Writing the technicians array to file in clear text");
+        String line = reader.readLine();
+   
+            while (line != null) {
+                System.out.println(line);
+                // read next line
+                line = reader.readLine();
+            }
+
+        
+        System.out.println("Done reading");
+        
+        reader.close();
+        } catch (IOException ex) {
+            System.out.println("error cannot write to file");
+        }   
+    }
+    
+    
+    
     public static void saveInstallationsSerialize() {
         try {
             FileOutputStream file = new FileOutputStream("installationsdb.dat");
@@ -420,6 +465,7 @@ public class MenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton loadFileBtn;
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;

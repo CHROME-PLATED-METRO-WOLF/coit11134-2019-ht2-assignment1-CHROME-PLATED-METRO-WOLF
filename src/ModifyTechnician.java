@@ -3,6 +3,7 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -19,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModifyTechnician extends javax.swing.JFrame {
 
+
+private ArrayList<Technician> technicians = new ArrayList<Technician>();
     /**
      * Creates new form ModifyTechnician
      */
@@ -215,20 +218,20 @@ public class ModifyTechnician extends javax.swing.JFrame {
 
             }
             //Access array for MenuForm and add a new default technician
-            MenuForm.technicians.add(new Technician());
+            technicians.add(new Technician());
             try {
                 //setting the created objects variables to the ones entered in the gui components
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setAge(Integer.parseInt(ageField.getText()));
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setFirstName(nameField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setLastName(lastNameField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setPhoneNumber(phoneNumberField.getText());
-                MenuForm.technicians.get(MenuForm.technicians.size() - 1).setNotes(notesField.getText());
+                technicians.get(technicians.size() - 1).setAge(Integer.parseInt(ageField.getText()));
+                technicians.get(technicians.size() - 1).setFirstName(nameField.getText());
+                technicians.get(technicians.size() - 1).setLastName(lastNameField.getText());
+                technicians.get(technicians.size() - 1).setPhoneNumber(phoneNumberField.getText());
+                technicians.get(technicians.size() - 1).setNotes(notesField.getText());
             } catch (java.lang.NumberFormatException exception) {
                 //eror message if numbers are not entered
                 JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
                 //remove the last installation record since it errors
                 //otherwise there will be a blank one in the list
-                MenuForm.technicians.remove(MenuForm.technicians.size() - 1);
+                technicians.remove(technicians.size() - 1);
             }
         }
         //update the table with new informatio
@@ -241,11 +244,11 @@ public class ModifyTechnician extends javax.swing.JFrame {
             //store the currently selected row
             int selectedRow = technicianViewBox.getSelectedRow();
             //Set all the gui components to the variables of the selected record
-            ageField.setText(Integer.toString(MenuForm.technicians.get(selectedRow).getAge()));
-            nameField.setText(MenuForm.technicians.get(selectedRow).getFirstName());
-            lastNameField.setText(MenuForm.technicians.get(selectedRow).getLastName());
-            phoneNumberField.setText(MenuForm.technicians.get(selectedRow).getPhoneNumber());
-            notesField.setText(MenuForm.technicians.get(selectedRow).getNotes());
+            ageField.setText(Integer.toString(technicians.get(selectedRow).getAge()));
+            nameField.setText(technicians.get(selectedRow).getFirstName());
+            lastNameField.setText(technicians.get(selectedRow).getLastName());
+            phoneNumberField.setText(technicians.get(selectedRow).getPhoneNumber());
+            notesField.setText(technicians.get(selectedRow).getNotes());
         } catch (java.lang.IndexOutOfBoundsException exception) {
             //if nothing is selected then through this error
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
@@ -269,11 +272,11 @@ public class ModifyTechnician extends javax.swing.JFrame {
                 }
                 //set all the variables of the selected record to the new ones entered into the fields.
                 try {
-                    MenuForm.technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
-                    MenuForm.technicians.get(selectedRow).setFirstName(nameField.getText());
-                    MenuForm.technicians.get(selectedRow).setLastName(lastNameField.getText());
-                    MenuForm.technicians.get(selectedRow).setPhoneNumber(phoneNumberField.getText());
-                    MenuForm.technicians.get(selectedRow).setNotes(notesField.getText());
+                    technicians.get(selectedRow).setAge(Integer.parseInt(ageField.getText()));
+                    technicians.get(selectedRow).setFirstName(nameField.getText());
+                    technicians.get(selectedRow).setLastName(lastNameField.getText());
+                    technicians.get(selectedRow).setPhoneNumber(phoneNumberField.getText());
+                    technicians.get(selectedRow).setNotes(notesField.getText());
                 } catch (java.lang.NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "ERROR: Please enter a number for age", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -291,7 +294,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
             //stores the selected row
             int selectedRow = technicianViewBox.getSelectedRow();
             //removes the selected row from the records arraylist
-            MenuForm.technicians.remove(selectedRow);
+            technicians.remove(selectedRow);
         } catch (java.lang.IndexOutOfBoundsException exception) {
             //Spit this error if nothing is selected in the table of records
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
@@ -304,11 +307,11 @@ public class ModifyTechnician extends javax.swing.JFrame {
         clearRows();
         int i = 0;
         //loop through the array of technicians
-        while (i < MenuForm.technicians.size()) {
+        while (i < technicians.size()) {
             //Adds a new row in the table of records for every technician
-            AddRow(MenuForm.technicians.get(i).getFirstName(), MenuForm.technicians.get(i).getLastName(),
-                    MenuForm.technicians.get(i).getPhoneNumber(), MenuForm.technicians.get(i).getAge(),
-                    MenuForm.technicians.get(i).getNotes());
+            AddRow(technicians.get(i).getFirstName(), technicians.get(i).getLastName(),
+                    technicians.get(i).getPhoneNumber(), technicians.get(i).getAge(),
+                    technicians.get(i).getNotes());
             i++;
         }
     }
@@ -334,7 +337,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void main() {
+    public void main(ArrayList<Technician> technicianList) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -358,9 +361,9 @@ public class ModifyTechnician extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-
+technicians = technicianList;
         // technicians = technicianArray;
-        System.out.println("List Size" + MenuForm.technicians.size());
+        System.out.println("List Size" + technicians.size());
 
         //technicianViewBox.removeAll();
         System.out.println("row count:" + technicianViewBox.getRowCount());
