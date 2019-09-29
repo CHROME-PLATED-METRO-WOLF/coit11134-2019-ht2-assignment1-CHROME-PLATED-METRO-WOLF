@@ -575,6 +575,31 @@ public class ModifyBuilding extends javax.swing.JFrame {
         //if thread is not found return null
         return null;
     }
+    
+    public Thread getThread(long threadID) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+//loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads id matches then
+            if (allThreads[i].getId()== threadID) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
 
     private static ThreadGroup getRootThreadGroup(Thread thread) {
         ThreadGroup rootGroup = thread.getThreadGroup();
