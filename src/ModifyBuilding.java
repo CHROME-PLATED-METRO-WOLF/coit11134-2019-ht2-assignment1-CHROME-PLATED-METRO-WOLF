@@ -3,11 +3,7 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.management.ManagementFactory;
-import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -562,7 +558,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
         Thread[] allThreads = new Thread[allActiveThreads];
         //enumerate through all thread groups and add the threads to the list
         threadGroup.enumerate(allThreads);
-//loop through this list
+        //loop through this list
         for (int i = 0; i < allThreads.length; i++) {
             //if the threads name matches then
             if (allThreads[i].getName().equals(threadName)) {
@@ -575,7 +571,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
         //if thread is not found return null
         return null;
     }
-    
+
     public Thread getThread(long threadID) {
         //gets the curent thred (gui thread)
         Thread currentThread = Thread.currentThread();
@@ -587,10 +583,10 @@ public class ModifyBuilding extends javax.swing.JFrame {
         Thread[] allThreads = new Thread[allActiveThreads];
         //enumerate through all thread groups and add the threads to the list
         threadGroup.enumerate(allThreads);
-//loop through this list
+        //loop through this list
         for (int i = 0; i < allThreads.length; i++) {
             //if the threads id matches then
-            if (allThreads[i].getId()== threadID) {
+            if (allThreads[i].getId() == threadID) {
                 System.out.println("Thread found");
                 //return that thread
                 return allThreads[i];
@@ -639,7 +635,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
         /* Create and display the form */
         buildings = buildingsList;
 
-// create a new watchdog object
+        // create a new watchdog object
         WatchDog object = new WatchDog();
         //check if a thread is allready running for the watch dog object
         //This was so difficult to figure out took me ages
