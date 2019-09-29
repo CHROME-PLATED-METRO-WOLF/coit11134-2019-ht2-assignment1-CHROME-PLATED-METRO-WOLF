@@ -179,8 +179,25 @@ public class Building implements Serializable{
                 + "BuildingName: " + buildingName + "\n" + "Rooms: " + rooms + "\n" + "Notes: " + notes + "\n"
                 + "Building Type: " + buildingType;
     }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (int) unitNumber;
+        hash = 31 * hash + address.hashCode();
+        hash = 31 * hash + (int) postcode;
+        hash = 31 * hash + suburb.hashCode();
+        hash = 31 * hash + city.hashCode();
+        hash = 31 * hash + state.hashCode();
+        hash = 31 * hash + buildingName.hashCode();
+        hash = 31 * hash + (int) rooms;
+        hash = 31 * hash + notes.hashCode();
+        hash = 31 * hash + buildingType.hashCode();
+        
+        return hash;
 
-    //setters
+    }
+       //setters
     void setUnitNumber(int number) {
         unitNumber = number;
     }
