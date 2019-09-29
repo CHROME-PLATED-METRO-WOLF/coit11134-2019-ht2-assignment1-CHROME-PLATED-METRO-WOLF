@@ -49,6 +49,8 @@ public class MenuForm extends javax.swing.JFrame {
         loadFileBtn = new javax.swing.JButton();
         saveBuildingsBtn = new javax.swing.JButton();
         loadBuildingsBtn = new javax.swing.JButton();
+        saveInstallationsBtn = new javax.swing.JButton();
+        loadInstallationsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +112,20 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        saveInstallationsBtn.setText("Save Install");
+        saveInstallationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveInstallationsBtnActionPerformed(evt);
+            }
+        });
+
+        loadInstallationsBtn.setText("Load Instal");
+        loadInstallationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadInstallationsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,12 +150,18 @@ public class MenuForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(140, 140, 140)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(saveInstallationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(saveBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(loadFileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(loadBuildingsBtn))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(loadFileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(loadBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(loadInstallationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -161,9 +183,17 @@ public class MenuForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBuildingsBtn)
                     .addComponent(loadBuildingsBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(LogoutBtn)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(LogoutBtn)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(saveInstallationsBtn)
+                            .addComponent(loadInstallationsBtn))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -233,6 +263,54 @@ public class MenuForm extends javax.swing.JFrame {
         loadBuildingsText();
     }//GEN-LAST:event_loadBuildingsBtnActionPerformed
 
+    private void saveInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInstallationsBtnActionPerformed
+        saveInstallationsText();
+    }//GEN-LAST:event_saveInstallationsBtnActionPerformed
+
+    private void loadInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadInstallationsBtnActionPerformed
+        loadInstallationsText();
+    }//GEN-LAST:event_loadInstallationsBtnActionPerformed
+
+    
+    private static Technician searchTechnicians(String FirstName, String LastName) {
+        int i = 0;
+        System.out.println("Searching for: " + FirstName + " " + LastName);
+        System.out.println("Technician array size is: " + technicians.size());
+        while (i < technicians.size()) {
+            if (technicians.get(i).getFirstName().compareTo(FirstName) == 0 && technicians.get(i).getLastName().compareTo(LastName) == 0) {
+                System.out.println("MATCHES: " + i + " " + technicians.get(i).getFirstName() + " " + technicians.get(i).getLastName());
+                return technicians.get(i);
+            }
+
+            System.out.println(FirstName + "" + LastName + " Doesn't match: " + technicians.get(i).getFirstName() + " " + technicians.get(i).getLastName());
+            i++;
+        }
+        //return null if it fails to find anything
+        return null;
+
+    }
+
+    private static Building searchBuildings(String Address) {
+        int i = 0;
+        System.out.println("Searching for: " + Address);
+        while (i < buildings.size()) {
+            if (buildings.get(i).getAddress().compareTo(Address) == 0) {
+                System.out.println("MATCHES: " + i + " " + buildings.get(i).getAddress());
+                
+                return buildings.get(i);
+                
+            }
+
+            System.out.println("Searching: " + i + " " + buildings.get(i).getAddress());
+            i++;
+        }
+        System.out.println("Building net found!");
+        //return null if it fails to find anything
+        return null;
+    }
+
+    
+    
     public static void loadAll() {
 
     }
@@ -241,9 +319,99 @@ public class MenuForm extends javax.swing.JFrame {
 
     }
     
+    public static void loadInstallationsText() {
+        //creates a new file object
+        File file = new File("installationsdb.dat");
+        //checks if the file exists
+        //if it exists continue else dont bother trying to load the data
+        if (file.exists()) {
+            try {
+                //creating a befferreader for the file
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                System.out.println("Loading the installations file to array in clear text");
+                //storing the data of the current line into a string
+                String line = reader.readLine();
+                //ckear the technicians arraylist
+                installations.clear();
+                //while not at the end of the file
+                while (line != null) {
+                    System.out.println(line);
+
+                    //splits the string into an array of strings
+                    String[] parts = line.split(",", -1);
+                    //if the array doesnt match the correct length for a installations object
+                    //error and disreguard the current line
+                    line = reader.readLine();
+                    if (parts.length == 8) {
+
+                        Technician technician = searchTechnicians(parts[3], parts[4]);
+                        Building building = searchBuildings(parts[5]);
+                        
+                        
+                        if (technician == null && building == null) {
+                            JOptionPane.showMessageDialog(null, "ERROR: Technician and Building not found", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else if (technician == null) {
+                            JOptionPane.showMessageDialog(null, "ERROR: Technician not found", "Error", JOptionPane.ERROR_MESSAGE);
+
+                        } else if (building == null) {
+                            JOptionPane.showMessageDialog(null, "ERROR: Building not found", "Error", JOptionPane.ERROR_MESSAGE);
+
+                        } else {
+                            int i = 0;
+                            while (i < parts.length)
+                            {
+                                System.out.println(parts[i]);
+                                i++;
+                            }
+                            
+                          
+                            System.out.println("Addeding: " + "\n" + technician.getFirstName() + "\n" + building.getAddress() + "\n" + parts[0] + "\n" + parts[1] + "\n" + parts[2] + "\n" + parts[6] + "\n" + parts[7]);
+                            installations.add(new Installation(technician, building, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), parts[6], parts[7]));
+                            
+                        }
+
+                    } else {
+
+                        System.out.println("Error corrupted data detected.");
+                        JOptionPane.showMessageDialog(null, "ERROR: Corrupted data detected", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    }
+                }
+
+                System.out.println("Done reading");
+                System.out.println("array size: " + installations.size());
+                //close the reader
+                reader.close();
+                
+            } catch (IOException ex) {
+                System.out.println("error cannot write to file");
+            }
+        } else {
+            System.out.println("File doesnt exist skipping load method");
+        }
+    }
+    
+    
     public static void saveInstallationsText()
     {
-        
+        File file = new File("installationsdb.dat");
+        try {
+            FileWriter writer = new FileWriter(file);
+            System.out.println("Writing the installations array to file in clear text");
+
+            String sep = ",";
+            int i = 0;
+            while (i < installations.size()) {
+                writer.write(installations.get(i).getHorsePower() + sep + installations.get(i).getNumZones()
+                        + sep + installations.get(i).getOutlets()+ sep + installations.get(i).getTechnician().getFirstName() + sep + installations.get(i).getTechnician().getLastName()
+                         + sep + installations.get(i).getBuilding().getAddress() + sep + installations.get(i).getStartDate() + sep + installations.get(i).getEnddate() + "\n");
+                writer.flush();
+                i++;
+            }
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println("error cannot write to file");
+        }
     }
     
     public static void loadBuildingsText() {
@@ -625,10 +793,12 @@ public class MenuForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton loadBuildingsBtn;
     private javax.swing.JButton loadFileBtn;
+    private javax.swing.JButton loadInstallationsBtn;
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
     private javax.swing.JButton saveBuildingsBtn;
+    private javax.swing.JButton saveInstallationsBtn;
     private javax.swing.JButton saveTechBtn;
     // End of variables declaration//GEN-END:variables
 }
