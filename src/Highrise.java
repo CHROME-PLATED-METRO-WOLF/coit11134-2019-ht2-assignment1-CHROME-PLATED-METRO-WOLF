@@ -27,4 +27,12 @@ public class Highrise extends Building implements Serializable {
     int getNumOfFloors() {
         return numOfFloors;
     }
+    @Override
+    public int hashCode()
+    {
+       
+        int hash = super.hashCode();
+        hash = 31 * hash + (int) numOfFloors;
+        return hash;
+    }
 }
