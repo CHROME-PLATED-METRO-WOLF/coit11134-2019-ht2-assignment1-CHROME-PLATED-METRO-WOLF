@@ -24,49 +24,55 @@ public class Installation implements Serializable {
 
     }
 
-    Installation(Technician Technician, Building building) {
+    Installation(Technician Technician, Building building1) {
         horsePower = 0;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
+        building = building1;
     }
 
-    Installation(Technician Technician, Building building, int HorsePower) {
+    Installation(Technician Technician, Building building1, int HorsePower) {
         horsePower = HorsePower;
         numZones = 0;
         numOutlets = 0;
         technician = Technician;
+        building = building1;
     }
 
-    Installation(Technician Technician, Building building, int HorsePower, int NumZones) {
+    Installation(Technician Technician, Building building1, int HorsePower, int NumZones) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = 0;
         technician = Technician;
+        building = building1;
     }
 
-    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets) {
+    Installation(Technician Technician, Building building1, int HorsePower, int NumZones, int NumOutlets) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
+        building = building1;
     }
 
-    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets, String StartDate) {
+    Installation(Technician Technician, Building building1, int HorsePower, int NumZones, int NumOutlets, String StartDate) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
         startDate = StartDate;
+        building = building1;
     }
 
-    Installation(Technician Technician, Building building, int HorsePower, int NumZones, int NumOutlets, String StartDate, String EndDate) {
+    Installation(Technician Technician, Building building1, int HorsePower, int NumZones, int NumOutlets, String StartDate, String EndDate) {
         horsePower = HorsePower;
         numZones = NumZones;
         numOutlets = NumOutlets;
         technician = Technician;
         startDate = StartDate;
         endDate = EndDate;
+        building = building1;
     }
 
     //Setters
@@ -117,6 +123,16 @@ public class Installation implements Serializable {
 
     String getEnddate() {
         return endDate;
+    }
+    
+    Technician getTechnician()
+    {
+        return technician;
+    }
+    
+    Building getBuilding()
+    {
+       return building; 
     }
 
 }
