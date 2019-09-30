@@ -4,7 +4,6 @@ import java.io.Serializable;
 /*
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
-
 public class Installation implements Serializable {
 
     private int horsePower;
@@ -75,6 +74,19 @@ public class Installation implements Serializable {
         building = building1;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + (int) horsePower;
+        hash = 31 * hash + (int) numZones;
+        hash = 31 * hash + (int) numOutlets;
+        hash = 31 * hash + technician.hashCode();
+        hash = 31 * hash + startDate.hashCode();
+        hash = 31 * hash + endDate.hashCode();
+        hash = 31 * hash + building.hashCode();
+        return hash;
+    }
+
     //Setters
     void setHorsePower(int HorsePower) {
         horsePower = HorsePower;
@@ -124,15 +136,13 @@ public class Installation implements Serializable {
     String getEnddate() {
         return endDate;
     }
-    
-    Technician getTechnician()
-    {
+
+    Technician getTechnician() {
         return technician;
     }
-    
-    Building getBuilding()
-    {
-       return building; 
+
+    Building getBuilding() {
+        return building;
     }
 
 }
