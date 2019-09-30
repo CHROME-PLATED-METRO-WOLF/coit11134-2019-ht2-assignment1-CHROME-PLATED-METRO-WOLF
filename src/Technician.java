@@ -58,6 +58,17 @@ public class Technician {
         notes = Notes;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + firstName.hashCode();
+        hash = 31 * hash + lastName.hashCode();
+        hash = 31 * hash + phoneNumber.hashCode();
+        hash = 31 * hash + (int) age;
+        hash = 31 * hash + notes.hashCode();
+        return hash;
+    }
+
     //Setters
     void setFirstName(String FirstName) {
         firstName = FirstName;
