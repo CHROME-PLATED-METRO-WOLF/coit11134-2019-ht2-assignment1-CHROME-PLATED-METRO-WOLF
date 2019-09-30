@@ -1,9 +1,14 @@
+
+import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Terry
@@ -26,21 +31,334 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        bWatchDogStatusTxt = new javax.swing.JTextField();
+        tWatchDogStatusTxt = new javax.swing.JTextField();
+        iWatchDogStatusTxt = new javax.swing.JTextField();
+        getStatusBtn = new javax.swing.JButton();
+        killBuildingWDBtn = new javax.swing.JButton();
+        killInstallationWDBtn = new javax.swing.JButton();
+        killTechnicianWDBtn = new javax.swing.JButton();
+        suspendBuildingWatchDogBtn = new javax.swing.JButton();
+        buildingStartBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        commandOutputTxt = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        buildingDaemonbtn = new javax.swing.JRadioButton();
+        buildingPriorityBox = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Program Manager and Admin Panel");
+
+        jLabel2.setText("Building watchdog thread");
+
+        jLabel3.setText("Technician watchdog thread");
+
+        jLabel4.setText("Installation watchdog thread");
+
+        jLabel5.setText("Status");
+
+        jLabel6.setText("Status");
+
+        jLabel7.setText("Status");
+
+        getStatusBtn.setText("Get");
+        getStatusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getStatusBtnActionPerformed(evt);
+            }
+        });
+
+        killBuildingWDBtn.setText("Stop");
+        killBuildingWDBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                killBuildingWDBtnActionPerformed(evt);
+            }
+        });
+
+        killInstallationWDBtn.setText("kill");
+
+        killTechnicianWDBtn.setText("kill");
+
+        suspendBuildingWatchDogBtn.setText("Suspend");
+        suspendBuildingWatchDogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suspendBuildingWatchDogBtnActionPerformed(evt);
+            }
+        });
+
+        buildingStartBtn.setText("Start");
+        buildingStartBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buildingStartBtnActionPerformed(evt);
+            }
+        });
+
+        commandOutputTxt.setColumns(20);
+        commandOutputTxt.setRows(5);
+        jScrollPane1.setViewportView(commandOutputTxt);
+
+        jLabel8.setText("Command OutPut");
+
+        buildingDaemonbtn.setText("IsDaemon");
+        buildingDaemonbtn.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                buildingDaemonbtnItemStateChanged(evt);
+            }
+        });
+        buildingDaemonbtn.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                buildingDaemonbtnStateChanged(evt);
+            }
+        });
+
+        buildingPriorityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Priority 1", "Priority 2", "Priority 3", "Priority 4", "Priority 5", "Priority 6", "Priority 7", "Priority 8", "Priority 9", "Priority 10" }));
+        buildingPriorityBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                buildingPriorityBoxItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 877, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(325, 325, 325)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addComponent(getStatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6))
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bWatchDogStatusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                            .addComponent(tWatchDogStatusTxt)
+                            .addComponent(iWatchDogStatusTxt))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(killInstallationWDBtn)
+                            .addComponent(killTechnicianWDBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(killBuildingWDBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(suspendBuildingWatchDogBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buildingStartBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buildingPriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buildingDaemonbtn))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(413, 413, 413)
+                        .addComponent(jLabel8)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getStatusBtn)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(bWatchDogStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(killBuildingWDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(suspendBuildingWatchDogBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buildingStartBtn)
+                    .addComponent(buildingDaemonbtn)
+                    .addComponent(buildingPriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
+                    .addComponent(tWatchDogStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(killTechnicianWDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(iWatchDogStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(killInstallationWDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void getStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getStatusBtnActionPerformed
+        Thread buildingThread = getThread("Building Watch Dog");
+        Thread installationThread = getThread("Installations Watch Dog");
+        Thread technicianThread = getThread("Technicians Watch Dog");
+
+        bWatchDogStatusTxt.setText(buildingThread.getState().toString());
+        iWatchDogStatusTxt.setText(installationThread.getState().toString());
+        tWatchDogStatusTxt.setText(technicianThread.getState().toString());
+        System.out.println("Building thread is priority: " + buildingThread.getPriority());
+        buildingPriorityBox.setSelectedIndex(buildingThread.getPriority() - 1);
+
+
+    }//GEN-LAST:event_getStatusBtnActionPerformed
+
+    private void killBuildingWDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killBuildingWDBtnActionPerformed
+        //get the watch dog thread
+        Thread thread = getThread("Building Watch Dog");
+        //cast that thread into a watchdog object so we can call its methods
+        ModifyBuilding.WatchDog watchdog = (ModifyBuilding.WatchDog) thread;
+        //call the stoprunning method to safely kill the thread
+        watchdog.stopRunning();
+
+    }//GEN-LAST:event_killBuildingWDBtnActionPerformed
+
+    private void suspendBuildingWatchDogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendBuildingWatchDogBtnActionPerformed
+        //get the watch dog thread
+        Thread thread = getThread("Building Watch Dog");
+
+        try {
+            thread.wait();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_suspendBuildingWatchDogBtnActionPerformed
+
+    private void buildingStartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingStartBtnActionPerformed
+        ModifyBuilding x = new ModifyBuilding();
+        ModifyBuilding.WatchDog watchdog = x.new WatchDog();
+        watchdog.setDaemon(false);
+        //setting its name
+        watchdog.setName("Building Watch Dog");
+        watchdog.start();
+    }//GEN-LAST:event_buildingStartBtnActionPerformed
+
+    private void buildingPriorityBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buildingPriorityBoxItemStateChanged
+        System.out.println("Building priority changed");
+        Thread thread = getThread("Building Watch Dog");
+        thread.setPriority(buildingPriorityBox.getSelectedIndex() + 1);
+        System.out.println("Building thread is now priority: " + thread.getPriority());
+
+    }//GEN-LAST:event_buildingPriorityBoxItemStateChanged
+
+    private void buildingDaemonbtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buildingDaemonbtnItemStateChanged
+        Thread thread = getThread("Building Watch Dog");
+        if (thread == null) {
+            ModifyBuilding x = new ModifyBuilding();
+            ModifyBuilding.WatchDog watchdog = x.new WatchDog();
+            watchdog.setName("Building Watch Dog");
+            if (buildingDaemonbtn.isSelected()) {
+                System.out.println("Setting building thread to daemon");
+
+                //setting its name
+                watchdog.setDaemon(true);
+
+            } else if (buildingDaemonbtn.isSelected() == false) {
+                System.out.println("Setting building thread to NOT daemon");
+                watchdog.setDaemon(false);
+            }
+            watchdog.start();
+        } else {
+            System.out.println("error thread is allready running");
+            commandOutputTxt.append("error thread is allready running");
+        }
+    }//GEN-LAST:event_buildingDaemonbtnItemStateChanged
+
+    
+    private void buildingDaemonbtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_buildingDaemonbtnStateChanged
+        
+        
+        
+        
+    }//GEN-LAST:event_buildingDaemonbtnStateChanged
+
+    public Thread getThread(String threadName) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads name matches then
+            if (allThreads[i].getName().equals(threadName)) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    public Thread getThread(long threadID) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads id matches then
+            if (allThreads[i].getId() == threadID) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    private static ThreadGroup getRootThreadGroup(Thread thread) {
+        ThreadGroup rootGroup = thread.getThreadGroup();
+        while (true) {
+            ThreadGroup parentGroup = rootGroup.getParent();
+            if (parentGroup == null) {
+                break;
+            }
+            rootGroup = parentGroup;
+        }
+        return rootGroup;
+    }
 
     /**
      * @param args the command line arguments
@@ -68,7 +386,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProgramManagerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-      
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -78,5 +396,26 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bWatchDogStatusTxt;
+    private javax.swing.JRadioButton buildingDaemonbtn;
+    private javax.swing.JComboBox<String> buildingPriorityBox;
+    private javax.swing.JButton buildingStartBtn;
+    private javax.swing.JTextArea commandOutputTxt;
+    private javax.swing.JButton getStatusBtn;
+    private javax.swing.JTextField iWatchDogStatusTxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton killBuildingWDBtn;
+    private javax.swing.JButton killInstallationWDBtn;
+    private javax.swing.JButton killTechnicianWDBtn;
+    private javax.swing.JButton suspendBuildingWatchDogBtn;
+    private javax.swing.JTextField tWatchDogStatusTxt;
     // End of variables declaration//GEN-END:variables
 }
