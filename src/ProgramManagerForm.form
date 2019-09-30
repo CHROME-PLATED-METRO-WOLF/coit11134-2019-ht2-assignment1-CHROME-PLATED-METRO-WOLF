@@ -57,19 +57,24 @@
                           <Component id="iWatchDogStatusTxt" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="killInstallationWDBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="killTechnicianWDBtn" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="killInstallationWDBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="killTechnicianWDBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="killBuildingWDBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="suspendBuildingWatchDogBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="buildingStartBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buildingStartDaemonBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="buildingPriorityBox" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="buildingDaemonbtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -97,8 +102,8 @@
                   <Component id="killBuildingWDBtn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="suspendBuildingWatchDogBtn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="buildingStartBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buildingDaemonbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buildingPriorityBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buildingStartDaemonBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -227,15 +232,6 @@
         <Property name="text" type="java.lang.String" value="Command OutPut"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="buildingDaemonbtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="IsDaemon"/>
-      </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="buildingDaemonbtnItemStateChanged"/>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="buildingDaemonbtnStateChanged"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JComboBox" name="buildingPriorityBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -259,6 +255,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="buildingStartDaemonBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start Daemon"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buildingStartDaemonBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
