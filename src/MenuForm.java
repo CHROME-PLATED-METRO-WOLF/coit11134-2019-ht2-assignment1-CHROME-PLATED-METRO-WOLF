@@ -312,16 +312,25 @@ public class MenuForm extends javax.swing.JFrame {
     }//GEN-LAST:event_loadALLBtnActionPerformed
 
     private void programManagerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programManagerBtnActionPerformed
-        ProgramManagerForm form = new ProgramManagerForm();
-        form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        form.setVisible(true);
-        
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        //Saves the result of the dialog in a variable
+        int dialogResult = JOptionPane.showConfirmDialog(null, "This is for administrators and debuging only continue?", "Continue?", dialogButton);
+        //if yes was clicked
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            System.out.println("Yes was clicked starting");
+            ProgramManagerForm form = new ProgramManagerForm();
+            form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            form.setVisible(true);
+        } else {
+            System.out.println("The dialog was closed or no was selected. NOT starting.");
+
+        }
     }//GEN-LAST:event_programManagerBtnActionPerformed
 
     private static Technician searchTechnicians(String FirstName, String LastName) {
         int i = 0;
         System.out.println("Technician Searching:  " + FirstName + " " + LastName);
-        
+
         while (i < technicians.size()) {
             if (technicians.get(i).getFirstName().compareTo(FirstName) == 0 && technicians.get(i).getLastName().compareTo(LastName) == 0) {
                 System.out.println("MATCHES: " + i + " " + technicians.get(i).getFirstName() + " " + technicians.get(i).getLastName());
@@ -424,7 +433,7 @@ public class MenuForm extends javax.swing.JFrame {
                 }
 
                 System.out.println("Done reading");
-                
+
                 //close the reader
                 reader.close();
 
