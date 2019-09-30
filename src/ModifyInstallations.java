@@ -277,8 +277,10 @@ public class ModifyInstallations extends javax.swing.JFrame {
             horsePowerField.setText(Integer.toString(installations.get(selectedRow).getHorsePower()));
             numZonesField.setText(Integer.toString(installations.get(selectedRow).getNumZones()));
             numOutletsField.setText(Integer.toString(installations.get(selectedRow).getOutlets()));
-            technicianBox.setSelectedIndex(selectedRow);
-            buildingBox.setSelectedIndex(selectedRow);
+            startDateField.setText(installations.get(selectedRow).getStartDate());
+            endDateField.setText(installations.get(selectedRow).getEnddate());
+            technicianBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician()));
+            buildingBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician()));
 
         } catch (java.lang.IndexOutOfBoundsException exception) {
             //if nothing is selected then through this error
