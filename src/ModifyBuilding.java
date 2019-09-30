@@ -4,6 +4,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -639,7 +640,9 @@ public class ModifyBuilding extends javax.swing.JFrame {
         WatchDog object = new WatchDog();
         //check if a thread is allready running for the watch dog object
         //This was so difficult to figure out took me ages
-        if (watchDogThread == null && getThread("Building Watch Dog") == null) {
+
+        if (watchDogThread == null) {
+            System.out.println("watchdog variable is null");
             System.out.println("Starting watchdog");
             //Making sure the thread exis when the class is destroyed (form is destroyed)
             //otherwise JVM will never exit and error will occure when the program is closed
@@ -650,6 +653,17 @@ public class ModifyBuilding extends javax.swing.JFrame {
             //start the thread
             object.start();
 
+        } else if (getThread("Building Watch Dog") == null) {
+            System.out.println("getThread cant find watchdog");
+            System.out.println("Starting watchdog");
+            //Making sure the thread exis when the class is destroyed (form is destroyed)
+            //otherwise JVM will never exit and error will occure when the program is closed
+            object.setDaemon(false);
+            //setting its name
+            object.setName("Building Watch Dog");
+
+            //start the thread
+            object.start();
         } else {
             System.out.println("Watchdog is running");
 
@@ -704,8 +718,16 @@ public class ModifyBuilding extends javax.swing.JFrame {
     //the variable allready had a number larger than a byte, when it was changed it overwrote one of the other variables in the object. I tried setting the origonal 
     //variable to a long and using the max value possible and forceing the variable to a single byte and it crashed the program with no stack trace JVM just crashed
     //maybe this was some kind of buffer overflow :)
-    class WatchDog extends Thread {
+    public class WatchDog extends Thread {
 
+        boolean flag = true;
+
+        public void stopRunning() {
+            flag = false;
+        }
+        
+       
+        
         //run method which is called when the thread is started
         public void run() {
             try {
@@ -718,7 +740,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                 int currentHash = buildings.hashCode();
                 //Control loop will keep checking if any objects are changed inside the array and if any change
                 //then it will run UpdateTable() to update the table
-                while (true) {
+                while (flag) {
                     //sleep for 400ms so it doesnt consume too much cpu time (so it doesnt 100% cpu all the time)
                     sleep(400);
                     //calculate a new hash code
@@ -741,10 +763,12 @@ public class ModifyBuilding extends javax.swing.JFrame {
                     }
                     //System.out.println(Thread.currentThread().getId());
                 }
+                System.out.println("Building WatchDog: flag false stopping");
                 //Catch all exceptions
             } catch (Exception e) {
                 //Should be unlikely that this will crash
                 System.out.println("Critical: Buildings array watchdog has just crashed");
+                System.out.println(e);
             }
         }
     }
