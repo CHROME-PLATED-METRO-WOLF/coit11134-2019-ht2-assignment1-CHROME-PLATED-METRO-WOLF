@@ -5,7 +5,7 @@ import java.io.Serializable;
  Created by Caleb Davidson for assignment 2 of Object Oriented Programming
  */
 //building can be added without installation (pre inspection)
-public class Building implements Serializable{
+public class Building implements Serializable {
 
     //Data assumes australia as the country
     //Basic data for a building
@@ -179,7 +179,7 @@ public class Building implements Serializable{
                 + "BuildingName: " + buildingName + "\n" + "Rooms: " + rooms + "\n" + "Notes: " + notes + "\n"
                 + "Building Type: " + buildingType;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -193,11 +193,10 @@ public class Building implements Serializable{
         hash = 31 * hash + (int) rooms;
         hash = 31 * hash + notes.hashCode();
         hash = 31 * hash + buildingType.hashCode();
-        
         return hash;
-
     }
-       //setters
+    //setters
+
     void setUnitNumber(int number) {
         unitNumber = number;
     }
