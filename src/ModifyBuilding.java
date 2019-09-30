@@ -729,13 +729,22 @@ public class ModifyBuilding extends javax.swing.JFrame {
                         currentHash = newHash;
                         //update the table
                         UpdateTable();
+                        //saves it to file
+                        //Doing it this was has a small issue if the hard drive is really slow or the program has trouble accessing the file
+                        //If the arrays are modified really quickly the table wont update untill the file is saved
+                        //At least it doesnt block the gui. I used this threading method cause my usb stick has really long file seek times
+                        //it take like 5-10 secs to access a file so the gui was constantly blocked whenever i made a change which was so anoying
+                        //If these were being saved over the netwok similar issues could happen. Ive done a lot of testing trying to break this
+                        //saving mechanism and i havent found any ways of corrupting, crashing or causing malfunctions when using the multi threaded
+                        //method
+                        MenuForm.saveBuildingsText();
                     }
                     System.out.println(Thread.currentThread().getId());
                 }
                 //Catch all exceptions
             } catch (Exception e) {
-
-                System.out.println("Buildings array watchdog has just crashed");
+                //Should be unlikely that this will crash
+                System.out.println("Critical: Buildings array watchdog has just crashed");
             }
         }
     }
