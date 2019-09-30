@@ -235,26 +235,22 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             tWatchDogStatusTxt.setText(technicianThread.getState().toString());
         }
 
-        
-
 
     }//GEN-LAST:event_getStatusBtnActionPerformed
 
     private void killBuildingWDBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killBuildingWDBtnActionPerformed
         //get the watch dog thread
         Thread thread = getThread("Building Watch Dog");
-        if (thread == null)
-        {
-            
-        }else
-        {
-          //cast that thread into a watchdog object so we can call its methods
-        ModifyBuilding.WatchDog watchdog = (ModifyBuilding.WatchDog) thread;
-        //call the stoprunning method to safely kill the thread
-        watchdog.stopRunning();  
-        commandOutputTxt.append("\n stopped thread: " + thread.getId() + " " + thread.getName());
+        if (thread == null) {
+
+        } else {
+            //cast that thread into a watchdog object so we can call its methods
+            ModifyBuilding.WatchDog watchdog = (ModifyBuilding.WatchDog) thread;
+            //call the stoprunning method to safely kill the thread
+            watchdog.stopRunning();
+            commandOutputTxt.append("\n stopped thread: " + thread.getId() + " " + thread.getName());
         }
-        
+
 
     }//GEN-LAST:event_killBuildingWDBtnActionPerformed
 
@@ -275,51 +271,47 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_suspendBuildingWatchDogBtnActionPerformed
 
     private void buildingStartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingStartBtnActionPerformed
-        if(getThread("Building Watch Dog") == null)
-        {
-        ModifyBuilding x = new ModifyBuilding();
-        ModifyBuilding.WatchDog watchdog = x.new WatchDog();
-        watchdog.setDaemon(false);
-        //setting its name
-        watchdog.setName("Building Watch Dog");
-        watchdog.start();
-        commandOutputTxt.append("\n new building watchdog thread started");
-        }else
-        {
+        if (getThread("Building Watch Dog") == null) {
+            ModifyBuilding x = new ModifyBuilding();
+            ModifyBuilding.WatchDog watchdog = x.new WatchDog();
+            watchdog.setDaemon(false);
+            //setting its name
+            watchdog.setName("Building Watch Dog");
+            watchdog.start();
+            commandOutputTxt.append("\n new building watchdog thread started");
+        } else {
             commandOutputTxt.append("\n Building watch dog all ready running");
         }
     }//GEN-LAST:event_buildingStartBtnActionPerformed
 
     private void buildingPriorityBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buildingPriorityBoxItemStateChanged
         Thread thread = getThread("Building Watch Dog");
-        if(thread == null)
-        {
-           commandOutputTxt.append("\n building thread not running"); 
-        }else
-        {
+        if (thread == null) {
+            commandOutputTxt.append("\n building thread not running");
+        } else {
             System.out.println("Building priority changed");
             commandOutputTxt.append("\n Building priority changed");
 
             thread.setPriority(buildingPriorityBox.getSelectedIndex() + 1);
             System.out.println("Building thread is now priority: " + thread.getPriority());
-            commandOutputTxt.append("\n Building thread is now priority:" + thread.getPriority()); 
+            commandOutputTxt.append("\n Building thread is now priority:" + thread.getPriority());
         }
-        
+
 
     }//GEN-LAST:event_buildingPriorityBoxItemStateChanged
 
-    
+
     private void buildingStartDaemonBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingStartDaemonBtnActionPerformed
         Thread thread = getThread("Building Watch Dog");
         if (thread == null) {
             ModifyBuilding x = new ModifyBuilding();
             ModifyBuilding.WatchDog watchdog = x.new WatchDog();
             watchdog.setName("Building Watch Dog");
-            
-                System.out.println("Setting building thread to daemon");
-                commandOutputTxt.append("\n Setting building thread to daemon");
-                //setting its name
-                watchdog.setDaemon(true);
+
+            System.out.println("Setting building thread to daemon");
+            commandOutputTxt.append("\n Setting building thread to daemon");
+            //setting its name
+            watchdog.setDaemon(true);
 
             commandOutputTxt.append("\n starting Building watchdog");
             watchdog.start();
