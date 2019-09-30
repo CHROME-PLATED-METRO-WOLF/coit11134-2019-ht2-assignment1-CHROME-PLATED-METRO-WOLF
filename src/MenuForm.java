@@ -51,6 +51,8 @@ public class MenuForm extends javax.swing.JFrame {
         loadBuildingsBtn = new javax.swing.JButton();
         saveInstallationsBtn = new javax.swing.JButton();
         loadInstallationsBtn = new javax.swing.JButton();
+        loadALLBtn = new javax.swing.JButton();
+        saveALLBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +128,20 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
+        loadALLBtn.setText("Load ALL");
+        loadALLBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadALLBtnActionPerformed(evt);
+            }
+        });
+
+        saveALLBtn.setText("Save ALL");
+        saveALLBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveALLBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,16 +168,19 @@ public class MenuForm extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(saveInstallationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(saveBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(saveALLBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(loadFileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(loadBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(loadInstallationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(loadInstallationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(loadFileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(loadBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(loadALLBtn, javax.swing.GroupLayout.Alignment.TRAILING))))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -175,7 +194,11 @@ public class MenuForm extends javax.swing.JFrame {
                     .addComponent(modifyTechniciansBtn)
                     .addComponent(modifyBuildingsBtn)
                     .addComponent(modifyInstallationsBtn))
-                .addGap(83, 83, 83)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loadALLBtn)
+                    .addComponent(saveALLBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveTechBtn)
                     .addComponent(loadFileBtn))
@@ -271,7 +294,14 @@ public class MenuForm extends javax.swing.JFrame {
         loadInstallationsText();
     }//GEN-LAST:event_loadInstallationsBtnActionPerformed
 
-    
+    private void saveALLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveALLBtnActionPerformed
+        saveAll();
+    }//GEN-LAST:event_saveALLBtnActionPerformed
+
+    private void loadALLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadALLBtnActionPerformed
+        loadAll();
+    }//GEN-LAST:event_loadALLBtnActionPerformed
+
     private static Technician searchTechnicians(String FirstName, String LastName) {
         int i = 0;
         System.out.println("Searching for: " + FirstName + " " + LastName);
@@ -296,9 +326,9 @@ public class MenuForm extends javax.swing.JFrame {
         while (i < buildings.size()) {
             if (buildings.get(i).getAddress().compareTo(Address) == 0) {
                 System.out.println("MATCHES: " + i + " " + buildings.get(i).getAddress());
-                
+
                 return buildings.get(i);
-                
+
             }
 
             System.out.println("Searching: " + i + " " + buildings.get(i).getAddress());
@@ -309,16 +339,18 @@ public class MenuForm extends javax.swing.JFrame {
         return null;
     }
 
-    
-    
     public static void loadAll() {
-
+        loadTechniciansText();
+        loadBuildingsText();
+        loadInstallationsText();
     }
 
     public static void saveAll() {
-
+        saveTechniciansText();
+        saveBuildingsText();
+        saveInstallationsText();
     }
-    
+
     public static void loadInstallationsText() {
         //creates a new file object
         File file = new File("installationsdb.dat");
@@ -346,8 +378,7 @@ public class MenuForm extends javax.swing.JFrame {
 
                         Technician technician = searchTechnicians(parts[3], parts[4]);
                         Building building = searchBuildings(parts[5]);
-                        
-                        
+
                         if (technician == null && building == null) {
                             JOptionPane.showMessageDialog(null, "ERROR: Technician and Building not found", "Error", JOptionPane.ERROR_MESSAGE);
                         } else if (technician == null) {
@@ -358,16 +389,14 @@ public class MenuForm extends javax.swing.JFrame {
 
                         } else {
                             int i = 0;
-                            while (i < parts.length)
-                            {
+                            while (i < parts.length) {
                                 System.out.println(parts[i]);
                                 i++;
                             }
-                            
-                          
+
                             System.out.println("Addeding: " + "\n" + technician.getFirstName() + "\n" + building.getAddress() + "\n" + parts[0] + "\n" + parts[1] + "\n" + parts[2] + "\n" + parts[6] + "\n" + parts[7]);
                             installations.add(new Installation(technician, building, Integer.parseInt(parts[0]), Integer.parseInt(parts[1]), Integer.parseInt(parts[2]), parts[6], parts[7]));
-                            
+
                         }
 
                     } else {
@@ -382,7 +411,7 @@ public class MenuForm extends javax.swing.JFrame {
                 System.out.println("array size: " + installations.size());
                 //close the reader
                 reader.close();
-                
+
             } catch (IOException ex) {
                 System.out.println("error cannot write to file");
             }
@@ -390,10 +419,8 @@ public class MenuForm extends javax.swing.JFrame {
             System.out.println("File doesnt exist skipping load method");
         }
     }
-    
-    
-    public static void saveInstallationsText()
-    {
+
+    public static void saveInstallationsText() {
         File file = new File("installationsdb.dat");
         try {
             FileWriter writer = new FileWriter(file);
@@ -403,8 +430,8 @@ public class MenuForm extends javax.swing.JFrame {
             int i = 0;
             while (i < installations.size()) {
                 writer.write(installations.get(i).getHorsePower() + sep + installations.get(i).getNumZones()
-                        + sep + installations.get(i).getOutlets()+ sep + installations.get(i).getTechnician().getFirstName() + sep + installations.get(i).getTechnician().getLastName()
-                         + sep + installations.get(i).getBuilding().getAddress() + sep + installations.get(i).getStartDate() + sep + installations.get(i).getEnddate() + "\n");
+                        + sep + installations.get(i).getOutlets() + sep + installations.get(i).getTechnician().getFirstName() + sep + installations.get(i).getTechnician().getLastName()
+                        + sep + installations.get(i).getBuilding().getAddress() + sep + installations.get(i).getStartDate() + sep + installations.get(i).getEnddate() + "\n");
                 writer.flush();
                 i++;
             }
@@ -413,7 +440,7 @@ public class MenuForm extends javax.swing.JFrame {
             System.out.println("error cannot write to file");
         }
     }
-    
+
     public static void loadBuildingsText() {
         //creates a new file object
         File file = new File("buildingsdb.dat");
@@ -486,8 +513,7 @@ public class MenuForm extends javax.swing.JFrame {
             System.out.println("File doesnt exist skipping load method");
         }
     }
-    
-    
+
     public static void saveBuildingsText() {
         File file = new File("buildingsdb.dat");
         try {
@@ -574,15 +600,15 @@ public class MenuForm extends javax.swing.JFrame {
                     //error and disreguard the current line
                     line = reader.readLine();
                     if (parts.length == 5) {
-                        
+
                         System.out.println("Addeding: " + "\n" + parts[0] + "\n" + parts[1] + "\n" + parts[2] + "\n" + parts[3] + "\n" + parts[4]);
                         technicians.add(new Technician(parts[0], parts[1], parts[2], Integer.parseInt(parts[3]), parts[4]));
-                        
+
                     } else {
-                        
+
                         System.out.println("Error corrupted data detected.");
                         JOptionPane.showMessageDialog(null, "ERROR: Corrupted data detected", "Error", JOptionPane.ERROR_MESSAGE);
-                        
+
                     }
                 }
 
@@ -590,7 +616,7 @@ public class MenuForm extends javax.swing.JFrame {
                 System.out.println("array size: " + technicians.size());
                 //close the reader
                 reader.close();
-                
+
             } catch (IOException ex) {
                 System.out.println("error cannot write to file");
             }
@@ -791,12 +817,14 @@ public class MenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton loadALLBtn;
     private javax.swing.JButton loadBuildingsBtn;
     private javax.swing.JButton loadFileBtn;
     private javax.swing.JButton loadInstallationsBtn;
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
+    private javax.swing.JButton saveALLBtn;
     private javax.swing.JButton saveBuildingsBtn;
     private javax.swing.JButton saveInstallationsBtn;
     private javax.swing.JButton saveTechBtn;
