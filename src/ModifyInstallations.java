@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModifyInstallations extends javax.swing.JFrame {
 
+    public Thread watchDogThread;
     private ArrayList<Building> buildings = new ArrayList<Building>();
     private ArrayList<Installation> installations = new ArrayList<Installation>();
     private ArrayList<Technician> technicians = new ArrayList<Technician>();
@@ -262,8 +264,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
             //otherwise there will be a blank one in the list
             installations.remove(installations.size() - 1);
         }
-        //calles update table to, well update the table of records
-        UpdateTable();
+
 
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -314,7 +315,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        UpdateTable();
+
     }//GEN-LAST:event_updateSelectedBtnActionPerformed
 
     //remove button code
@@ -328,7 +329,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
             //Spit this error if nothing is selected in the table of records
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        UpdateTable();
+
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
     private void startDateFieldActionPerformed(ActionEvent evt) {//GEN-FIRST:event_startDateFieldActionPerformed
@@ -408,6 +409,68 @@ public class ModifyInstallations extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public Thread getThread(String threadName) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads name matches then
+            if (allThreads[i].getName().equals(threadName)) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    public Thread getThread(long threadID) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads id matches then
+            if (allThreads[i].getId() == threadID) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    private static ThreadGroup getRootThreadGroup(Thread thread) {
+        ThreadGroup rootGroup = thread.getThreadGroup();
+        while (true) {
+            ThreadGroup parentGroup = rootGroup.getParent();
+            if (parentGroup == null) {
+                break;
+            }
+            rootGroup = parentGroup;
+        }
+        return rootGroup;
+    }
+
     public void main(ArrayList<Building> buildingsList, ArrayList<Installation> installationList, ArrayList<Technician> technicianList) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -436,14 +499,28 @@ public class ModifyInstallations extends javax.swing.JFrame {
         installations = installationList;
         technicians = technicianList;
 
-        //initial update of the table
+        //inital update of table
         UpdateTable();
-        //debug info
-        System.out.println("List Size" + installations.size());
 
-        //technicianViewBox.removeAll();
-        System.out.println("row count:" + technicianViewBox.getRowCount());
-        System.out.println("colum count:" + technicianViewBox.getColumnCount());
+        // create a new watchdog object
+        WatchDog object = new WatchDog();
+        //check if a thread is allready running for the watch dog object
+        //This was so difficult to figure out took me ages
+        if (watchDogThread == null && getThread("Installations Watch Dog") == null) {
+            System.out.println("Starting watchdog");
+            //Making sure the thread exis when the class is destroyed (form is destroyed)
+            //otherwise JVM will never exit and error will occure when the program is closed
+            object.setDaemon(false);
+            //setting its name
+            object.setName("Installations Watch Dog");
+
+            //start the thread
+            object.start();
+
+        } else {
+            System.out.println("Watchdog is running");
+
+        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -477,4 +554,57 @@ public class ModifyInstallations extends javax.swing.JFrame {
     private JTable technicianViewBox;
     private JButton updateSelectedBtn;
     // End of variables declaration//GEN-END:variables
+
+//Using a threaded watchdog is better than hard coding update code into every part of the program that "might" make a change to the array.
+    //This way no matter what happens to the array it will update it if it is changed. It will even update if a external memory modification program 
+    //such as cheat enine is used to manually change a value and yes i tested that. However if an external program force the value type to change to something
+    //other than what it is for example an int to a string weird behavour can happen. Thanks to c++ i forced the number of floors value in the array to a single byte.
+    //the variable allready had a number larger than a byte, when it was changed it overwrote one of the other variables in the object. I tried setting the origonal 
+    //variable to a long and using the max value possible and forceing the variable to a single byte and it crashed the program with no stack trace JVM just crashed
+    //maybe this was some kind of buffer overflow :)
+    class WatchDog extends Thread {
+
+        //run method which is called when the thread is started
+        public void run() {
+            try {
+                // Displaying the thread that is running 
+                // prints out the thread status
+                System.out.println("Installations array watch dog is running on thread:  " + Thread.currentThread().getId());
+                //set the thread number so we can check its status elsewhere
+                watchDogThread = Thread.currentThread();
+                //get the current (first) hash code of the array and all of its objects
+                int currentHash = installations.hashCode();
+                //Control loop will keep checking if any objects are changed inside the array and if any change
+                //then it will run UpdateTable() to update the table
+                while (true) {
+                    //sleep for 400ms so it doesnt consume too much cpu time (so it doesnt 100% cpu all the time)
+                    sleep(400);
+                    //calculate a new hash code
+                    int newHash = installations.hashCode();
+                    //compare if it is different to the old hash code
+                    if (currentHash != newHash) {
+                        //set the old hash to the new one (to avoid looping updateTable()
+                        currentHash = newHash;
+                        //update the table
+                        UpdateTable();
+                        //saves it to file
+                        //Doing it this was has a small issue if the hard drive is really slow or the program has trouble accessing the file
+                        //If the arrays are modified really quickly the table wont update untill the file is saved
+                        //At least it doesnt block the gui. I used this threading method cause my usb stick has really long file seek times
+                        //it take like 5-10 secs to access a file so the gui was constantly blocked whenever i made a change which was so anoying
+                        //If these were being saved over the netwok similar issues could happen. Ive done a lot of testing trying to break this
+                        //saving mechanism and i havent found any ways of corrupting, crashing or causing malfunctions when using the multi threaded
+                        //method
+                        MenuForm.saveInstallationsText();
+                    }
+                    //System.out.println(Thread.currentThread().getId());
+                }
+                //Catch all exceptions
+            } catch (Exception e) {
+                //Should be unlikely that this will crash
+                System.out.println("Critical: Installations array watchdog has just crashed");
+            }
+        }
+    }
+
 }

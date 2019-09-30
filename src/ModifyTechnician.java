@@ -3,6 +3,7 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.GroupLayout;
@@ -19,7 +20,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class ModifyTechnician extends javax.swing.JFrame {
-
+    public Thread watchDogThread;
     private ArrayList<Technician> technicians = new ArrayList<Technician>();
 
     /**
@@ -235,7 +236,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
             }
         }
         //update the table with new informatio
-        UpdateTable();
+        
 
     }//GEN-LAST:event_addBtnActionPerformed
     //button used to edit the selected item in the table of records
@@ -285,7 +286,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
         } catch (java.lang.IndexOutOfBoundsException exception) {
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        UpdateTable();
+        
     }//GEN-LAST:event_updateSelectedBtnActionPerformed
 
     //remove button code
@@ -299,7 +300,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
             //Spit this error if nothing is selected in the table of records
             JOptionPane.showMessageDialog(null, "ERROR: Nothing is selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        UpdateTable();
+        
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
     private void UpdateTable() {
@@ -333,6 +334,69 @@ public class ModifyTechnician extends javax.swing.JFrame {
         DefaultTableModel Model = (DefaultTableModel) technicianViewBox.getModel();
         Model.setRowCount(0);
     }
+    
+    public Thread getThread(String threadName) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads name matches then
+            if (allThreads[i].getName().equals(threadName)) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    public Thread getThread(long threadID) {
+        //gets the curent thred (gui thread)
+        Thread currentThread = Thread.currentThread();
+        //gets the group the gui belongs to which should be the main group
+        ThreadGroup threadGroup = getRootThreadGroup(currentThread);
+        //gets number of active threads
+        int allActiveThreads = threadGroup.activeCount();
+        //creats an array of all the threads in the thread group
+        Thread[] allThreads = new Thread[allActiveThreads];
+        //enumerate through all thread groups and add the threads to the list
+        threadGroup.enumerate(allThreads);
+        //loop through this list
+        for (int i = 0; i < allThreads.length; i++) {
+            //if the threads id matches then
+            if (allThreads[i].getId() == threadID) {
+                System.out.println("Thread found");
+                //return that thread
+                return allThreads[i];
+            }
+        }
+        System.out.println("Thread not found");
+        //if thread is not found return null
+        return null;
+    }
+
+    private static ThreadGroup getRootThreadGroup(Thread thread) {
+        ThreadGroup rootGroup = thread.getThreadGroup();
+        while (true) {
+            ThreadGroup parentGroup = rootGroup.getParent();
+            if (parentGroup == null) {
+                break;
+            }
+            rootGroup = parentGroup;
+        }
+        return rootGroup;
+    }
+    
 
     /**
      * @param args the command line arguments
@@ -363,11 +427,28 @@ public class ModifyTechnician extends javax.swing.JFrame {
         /* Create and display the form */
         technicians = technicianList;
         // technicians = technicianArray;
-        System.out.println("List Size" + technicians.size());
+        //inital update of table
+        UpdateTable();
 
-        //technicianViewBox.removeAll();
-        System.out.println("row count:" + technicianViewBox.getRowCount());
-        System.out.println("colum count:" + technicianViewBox.getColumnCount());
+        // create a new watchdog object
+        WatchDog object = new WatchDog();
+        //check if a thread is allready running for the watch dog object
+        //This was so difficult to figure out took me ages
+        if (watchDogThread == null && getThread("Technicians Watch Dog") == null) {
+            System.out.println("Starting watchdog");
+            //Making sure the thread exis when the class is destroyed (form is destroyed)
+            //otherwise JVM will never exit and error will occure when the program is closed
+            object.setDaemon(false);
+            //setting its name
+            object.setName("Technicians Watch Dog");
+
+            //start the thread
+            object.start();
+
+        } else {
+            System.out.println("Watchdog is running");
+
+        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -397,4 +478,50 @@ public class ModifyTechnician extends javax.swing.JFrame {
     private JTable technicianViewBox;
     private JButton updateSelectedBtn;
     // End of variables declaration//GEN-END:variables
+
+class WatchDog extends Thread {
+
+        //run method which is called when the thread is started
+        public void run() {
+            try {
+                // Displaying the thread that is running 
+                // prints out the thread status
+                System.out.println("technicians array watch dog is running on thread:  " + Thread.currentThread().getId());
+                //set the thread number so we can check its status elsewhere
+                watchDogThread = Thread.currentThread();
+                //get the current (first) hash code of the array and all of its objects
+                int currentHash = technicians.hashCode();
+                //Control loop will keep checking if any objects are changed inside the array and if any change
+                //then it will run UpdateTable() to update the table
+                while (true) {
+                    //sleep for 400ms so it doesnt consume too much cpu time (so it doesnt 100% cpu all the time)
+                    sleep(400);
+                    //calculate a new hash code
+                    int newHash = technicians.hashCode();
+                    //compare if it is different to the old hash code
+                    if (currentHash != newHash) {
+                        //set the old hash to the new one (to avoid looping updateTable()
+                        currentHash = newHash;
+                        //update the table
+                        UpdateTable();
+                        //saves it to file
+                        //Doing it this was has a small issue if the hard drive is really slow or the program has trouble accessing the file
+                        //If the arrays are modified really quickly the table wont update untill the file is saved
+                        //At least it doesnt block the gui. I used this threading method cause my usb stick has really long file seek times
+                        //it take like 5-10 secs to access a file so the gui was constantly blocked whenever i made a change which was so anoying
+                        //If these were being saved over the netwok similar issues could happen. Ive done a lot of testing trying to break this
+                        //saving mechanism and i havent found any ways of corrupting, crashing or causing malfunctions when using the multi threaded
+                        //method
+                        MenuForm.saveTechniciansText();
+                    }
+                    //System.out.println(Thread.currentThread().getId());
+                }
+                //Catch all exceptions
+            } catch (Exception e) {
+                //Should be unlikely that this will crash
+                System.out.println("Critical: technicians array watchdog has just crashed");
+            }
+        }
+    }
+
 }

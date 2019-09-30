@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModifyBuilding extends javax.swing.JFrame {
 
+    public Thread watchDogThread;
     private ArrayList<Building> buildings = new ArrayList<Building>();
 
     /**
@@ -542,8 +543,6 @@ public class ModifyBuilding extends javax.swing.JFrame {
         Model.setRowCount(0);
     }
 
-    public Thread watchDogThread;
-
     /**
      * @param args the command line arguments
      */
@@ -634,7 +633,8 @@ public class ModifyBuilding extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
         buildings = buildingsList;
-
+        //inital update of table
+        UpdateTable();
         // create a new watchdog object
         WatchDog object = new WatchDog();
         //check if a thread is allready running for the watch dog object
@@ -739,7 +739,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                         //method
                         MenuForm.saveBuildingsText();
                     }
-                    System.out.println(Thread.currentThread().getId());
+                    //System.out.println(Thread.currentThread().getId());
                 }
                 //Catch all exceptions
             } catch (Exception e) {

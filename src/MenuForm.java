@@ -304,8 +304,8 @@ public class MenuForm extends javax.swing.JFrame {
 
     private static Technician searchTechnicians(String FirstName, String LastName) {
         int i = 0;
-        System.out.println("Searching for: " + FirstName + " " + LastName);
-        System.out.println("Technician array size is: " + technicians.size());
+        System.out.println("Technician Searching:  " + FirstName + " " + LastName);
+        
         while (i < technicians.size()) {
             if (technicians.get(i).getFirstName().compareTo(FirstName) == 0 && technicians.get(i).getLastName().compareTo(LastName) == 0) {
                 System.out.println("MATCHES: " + i + " " + technicians.get(i).getFirstName() + " " + technicians.get(i).getLastName());
@@ -322,7 +322,7 @@ public class MenuForm extends javax.swing.JFrame {
 
     private static Building searchBuildings(String Address) {
         int i = 0;
-        System.out.println("Searching for: " + Address);
+        System.out.println("Building Search: Searching for: " + Address);
         while (i < buildings.size()) {
             if (buildings.get(i).getAddress().compareTo(Address) == 0) {
                 System.out.println("MATCHES: " + i + " " + buildings.get(i).getAddress());
@@ -408,7 +408,7 @@ public class MenuForm extends javax.swing.JFrame {
                 }
 
                 System.out.println("Done reading");
-                System.out.println("array size: " + installations.size());
+                
                 //close the reader
                 reader.close();
 
