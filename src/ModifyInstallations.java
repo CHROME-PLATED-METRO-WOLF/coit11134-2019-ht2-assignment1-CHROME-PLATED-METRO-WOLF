@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ModifyInstallations extends javax.swing.JFrame {
 
-    public Thread watchDogThread;
     private ArrayList<Building> buildings = new ArrayList<Building>();
     private ArrayList<Installation> installations = new ArrayList<Installation>();
     private ArrayList<Technician> technicians = new ArrayList<Technician>();
@@ -263,6 +262,9 @@ public class ModifyInstallations extends javax.swing.JFrame {
             //remove the last installation record since it errors
             //otherwise there will be a blank one in the list
             installations.remove(installations.size() - 1);
+        }catch(Exception IndexOutOfBoundsException)
+        {
+          JOptionPane.showMessageDialog(null, "ERROR: No technician and or building selected", "Error", JOptionPane.ERROR_MESSAGE);  
         }
 
 
@@ -279,8 +281,31 @@ public class ModifyInstallations extends javax.swing.JFrame {
             numOutletsField.setText(Integer.toString(installations.get(selectedRow).getOutlets()));
             startDateField.setText(installations.get(selectedRow).getStartDate());
             endDateField.setText(installations.get(selectedRow).getEnddate());
-            technicianBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician()));
-            buildingBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician()));
+            try {
+                technicianBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician()));
+
+            } catch (Exception IllegalArgumentException) {
+                if(technicianBox.getItemCount() == 0)
+                {
+                    technicianBox.setSelectedIndex(-1);
+                }else
+                {
+                technicianBox.setSelectedIndex(0);
+                }
+            }
+            try {
+                buildingBox.setSelectedIndex(technicians.indexOf(installations.get(selectedRow).getTechnician())); 
+                
+            } catch (Exception IllegalArgumentException) {
+                if(buildingBox.getItemCount() == 0)
+                {
+                buildingBox.setSelectedIndex(-1);
+                }else
+                {
+                   buildingBox.setSelectedIndex(0);
+                }
+                
+            }
 
         } catch (java.lang.IndexOutOfBoundsException exception) {
             //if nothing is selected then through this error
@@ -571,6 +596,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
         public void stopRunning() {
             flag = false;
         }
+
         //run method which is called when the thread is started
         public void run() {
             try {
@@ -578,7 +604,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 // prints out the thread status
                 System.out.println("Installations array watch dog is running on thread:  " + Thread.currentThread().getId());
                 //set the thread number so we can check its status elsewhere
-                watchDogThread = Thread.currentThread();
+
                 //get the current (first) hash code of the array and all of its objects
                 int currentHash = installations.hashCode();
                 //Control loop will keep checking if any objects are changed inside the array and if any change

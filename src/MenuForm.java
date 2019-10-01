@@ -155,7 +155,7 @@ public class MenuForm extends javax.swing.JFrame {
 
     private void modifyTechniciansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTechniciansBtnActionPerformed
         modifyTechnicianForm.setVisible(true);
-        modifyTechnicianForm.main(technicians);
+        modifyTechnicianForm.main(technicians, installations);
         //This will keep the form alive incase the user leaves data in the data fields
         //the next time the user opens the form it will still have the data entered
         modifyTechnicianForm.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

@@ -20,9 +20,9 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class ModifyTechnician extends javax.swing.JFrame {
-    public Thread watchDogThread;
+    
     private ArrayList<Technician> technicians = new ArrayList<Technician>();
-
+private ArrayList<Installation> installations = new ArrayList<Installation>();
     /**
      * Creates new form ModifyTechnician
      */
@@ -58,6 +58,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
         editSelectedBtn = new JButton();
         updateSelectedBtn = new JButton();
         removeSelectedBtn = new JButton();
+        findInstallationsBtn = new JButton();
 
         jList1.setModel(new AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -128,6 +129,13 @@ public class ModifyTechnician extends javax.swing.JFrame {
             }
         });
 
+        findInstallationsBtn.setText("Find Installations");
+        findInstallationsBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                findInstallationsBtnActionPerformed(evt);
+            }
+        });
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -135,7 +143,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(addBtn, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
@@ -157,9 +165,13 @@ public class ModifyTechnician extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                     .addComponent(nameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lastNameField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(phoneNumberField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ageField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(notesField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(notesField, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(phoneNumberField, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(findInstallationsBtn)
+                                        .addGap(71, 71, 71)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -184,7 +196,8 @@ public class ModifyTechnician extends javax.swing.JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(findInstallationsBtn))
                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(ageField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -199,7 +212,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
                     .addComponent(editSelectedBtn)
                     .addComponent(updateSelectedBtn)
                     .addComponent(removeSelectedBtn))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,6 +316,14 @@ public class ModifyTechnician extends javax.swing.JFrame {
         
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
+    private void findInstallationsBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_findInstallationsBtnActionPerformed
+        findInstallationsForm form = new findInstallationsForm();
+        
+        form.setVisible(true);
+        form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        form.main(technicians.get(technicianViewBox.getSelectedRow()), installations);
+    }//GEN-LAST:event_findInstallationsBtnActionPerformed
+
     private void UpdateTable() {
         System.out.println("Running UpdateTable");
         clearRows();
@@ -401,7 +422,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void main(ArrayList<Technician> technicianList) {
+    public void main(ArrayList<Technician> technicianList, ArrayList<Installation> installationList) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -426,6 +447,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
         //</editor-fold>
         /* Create and display the form */
         technicians = technicianList;
+        installations = installationList;
         // technicians = technicianArray;
         //inital update of table
         UpdateTable();
@@ -461,6 +483,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
     private JToggleButton addBtn;
     private JTextField ageField;
     private JButton editSelectedBtn;
+    private JButton findInstallationsBtn;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
@@ -493,7 +516,7 @@ public class ModifyTechnician extends javax.swing.JFrame {
                 // prints out the thread status
                 System.out.println("technicians array watch dog is running on thread:  " + Thread.currentThread().getId());
                 //set the thread number so we can check its status elsewhere
-                watchDogThread = Thread.currentThread();
+                
                 //get the current (first) hash code of the array and all of its objects
                 int currentHash = technicians.hashCode();
                 //Control loop will keep checking if any objects are changed inside the array and if any change

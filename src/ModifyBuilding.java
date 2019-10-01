@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModifyBuilding extends javax.swing.JFrame {
 
-    public Thread watchDogThread;
+    
     private ArrayList<Building> buildings = new ArrayList<Building>();
 
     /**
@@ -725,7 +725,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
                 // prints out the thread status
                 System.out.println("Building array watch dog is running on thread:  " + Thread.currentThread().getId());
                 //set the thread number so we can check its status elsewhere
-                watchDogThread = Thread.currentThread();
+                
                 //get the current (first) hash code of the array and all of its objects
                 int currentHash = buildings.hashCode();
                 //Control loop will keep checking if any objects are changed inside the array and if any change
