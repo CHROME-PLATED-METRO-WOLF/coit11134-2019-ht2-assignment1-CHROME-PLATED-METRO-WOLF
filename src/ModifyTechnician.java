@@ -317,11 +317,17 @@ private ArrayList<Installation> installations = new ArrayList<Installation>();
     }//GEN-LAST:event_removeSelectedBtnActionPerformed
 
     private void findInstallationsBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_findInstallationsBtnActionPerformed
-        findInstallationsForm form = new findInstallationsForm();
-        
-        form.setVisible(true);
-        form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        form.main(technicians.get(technicianViewBox.getSelectedRow()), installations);
+        if (technicianViewBox.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "ERROR: Please select a technician", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            findInstallationsForm form = new findInstallationsForm();
+
+            form.setVisible(true);
+            form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            form.main(technicians.get(technicianViewBox.getSelectedRow()), installations);
+        }
+
     }//GEN-LAST:event_findInstallationsBtnActionPerformed
 
     private void UpdateTable() {
