@@ -27,7 +27,7 @@ public class AboutForm extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("This Program was created by Caleb Davidson \nstudent number: 12110634.\n\nThere is 3,967 lines of code give or take 50-100.\n\nBelow are a collection of users and their passwords that\ncan be used to login.\n\nUserName\tPassword\n------------------------------------\nCEO \tBestBossEver\nTechnician \tBestAcInstallerEver\nAdmin \tAdmin123\nCaleb\tI Made This Program\n\n\nThank you for using my program :).");
+        jTextArea1.setText("This Program was created by Caleb Davidson \nstudent number: 12110634.\n\nThere is 3,967 lines of code give or take 50-100.\n\nGitHub\nhttps://github.com/CHROME-PLATED-METRO-WOLF/coit11134-2019-ht2-assignment1-CHROME-PLATED-METRO-WOLF/tree/assignment-2\n\nBelow are a collection of users and their passwords that\ncan be used to login.\n\nUserName\tPassword\n------------------------------------\nCEO \tBestBossEver\nTechnician \tBestAcInstallerEver\nAdmin \tAdmin123\nCaleb\tI Made This Program\n\n\nThank you for using my program :).");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel1.setText("About");
@@ -38,12 +38,12 @@ public class AboutForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(391, 391, 391))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -51,7 +51,7 @@ public class AboutForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
