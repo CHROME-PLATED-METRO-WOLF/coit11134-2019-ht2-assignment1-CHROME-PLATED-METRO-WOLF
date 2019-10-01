@@ -139,7 +139,7 @@ public class MainForm extends javax.swing.JFrame {
                 debugMessage("Password and Username Matches");
                 //creates a new logged in form
                 MenuForm menuForm = new MenuForm();
-
+                menuForm.main();
                 //makes it visible
                 menuForm.setVisible(true);
                 //gets rid of the current window

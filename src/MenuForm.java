@@ -45,14 +45,6 @@ public class MenuForm extends javax.swing.JFrame {
         modifyTechniciansBtn = new javax.swing.JButton();
         modifyBuildingsBtn = new javax.swing.JButton();
         modifyInstallationsBtn = new javax.swing.JButton();
-        saveTechBtn = new javax.swing.JButton();
-        loadFileBtn = new javax.swing.JButton();
-        saveBuildingsBtn = new javax.swing.JButton();
-        loadBuildingsBtn = new javax.swing.JButton();
-        saveInstallationsBtn = new javax.swing.JButton();
-        loadInstallationsBtn = new javax.swing.JButton();
-        loadALLBtn = new javax.swing.JButton();
-        saveALLBtn = new javax.swing.JButton();
         programManagerBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,62 +79,6 @@ public class MenuForm extends javax.swing.JFrame {
             }
         });
 
-        saveTechBtn.setText("Save technicians");
-        saveTechBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveTechBtnActionPerformed(evt);
-            }
-        });
-
-        loadFileBtn.setText("LoadFile");
-        loadFileBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadFileBtnActionPerformed(evt);
-            }
-        });
-
-        saveBuildingsBtn.setText("Save build");
-        saveBuildingsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBuildingsBtnActionPerformed(evt);
-            }
-        });
-
-        loadBuildingsBtn.setText("load");
-        loadBuildingsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadBuildingsBtnActionPerformed(evt);
-            }
-        });
-
-        saveInstallationsBtn.setText("Save Install");
-        saveInstallationsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveInstallationsBtnActionPerformed(evt);
-            }
-        });
-
-        loadInstallationsBtn.setText("Load Instal");
-        loadInstallationsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadInstallationsBtnActionPerformed(evt);
-            }
-        });
-
-        loadALLBtn.setText("Load ALL");
-        loadALLBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadALLBtnActionPerformed(evt);
-            }
-        });
-
-        saveALLBtn.setText("Save ALL");
-        saveALLBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveALLBtnActionPerformed(evt);
-            }
-        });
-
         programManagerBtn.setText("Program Manager");
         programManagerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,29 +96,12 @@ public class MenuForm extends javax.swing.JFrame {
                         .addContainerGap(451, Short.MAX_VALUE)
                         .addComponent(LogoutBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(modifyTechniciansBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(modifyInstallationsBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(140, 140, 140)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(saveInstallationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(saveBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(saveTechBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(saveALLBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(loadInstallationsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(loadFileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(loadBuildingsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(loadALLBtn, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                        .addContainerGap()
+                        .addComponent(modifyTechniciansBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modifyBuildingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(modifyInstallationsBtn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(181, 181, 181)
@@ -203,29 +122,9 @@ public class MenuForm extends javax.swing.JFrame {
                     .addComponent(modifyTechniciansBtn)
                     .addComponent(modifyBuildingsBtn)
                     .addComponent(modifyInstallationsBtn))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loadALLBtn)
-                    .addComponent(saveALLBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveTechBtn)
-                    .addComponent(loadFileBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBuildingsBtn)
-                    .addComponent(loadBuildingsBtn))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(LogoutBtn)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(saveInstallationsBtn)
-                            .addComponent(loadInstallationsBtn))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addComponent(LogoutBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -279,48 +178,18 @@ public class MenuForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_modifyInstallationsBtnActionPerformed
 
-    private void saveTechBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTechBtnActionPerformed
-        saveTechniciansText();
-    }//GEN-LAST:event_saveTechBtnActionPerformed
-
-    private void loadFileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadFileBtnActionPerformed
-        loadTechniciansText();
-    }//GEN-LAST:event_loadFileBtnActionPerformed
-
-    private void saveBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBuildingsBtnActionPerformed
-        saveBuildingsText();
-    }//GEN-LAST:event_saveBuildingsBtnActionPerformed
-
-    private void loadBuildingsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBuildingsBtnActionPerformed
-        loadBuildingsText();
-    }//GEN-LAST:event_loadBuildingsBtnActionPerformed
-
-    private void saveInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInstallationsBtnActionPerformed
-        saveInstallationsText();
-    }//GEN-LAST:event_saveInstallationsBtnActionPerformed
-
-    private void loadInstallationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadInstallationsBtnActionPerformed
-        loadInstallationsText();
-    }//GEN-LAST:event_loadInstallationsBtnActionPerformed
-
-    private void saveALLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveALLBtnActionPerformed
-        saveAll();
-    }//GEN-LAST:event_saveALLBtnActionPerformed
-
-    private void loadALLBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadALLBtnActionPerformed
-        loadAll();
-    }//GEN-LAST:event_loadALLBtnActionPerformed
-
     private void programManagerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programManagerBtnActionPerformed
         int dialogButton = JOptionPane.YES_NO_OPTION;
         //Saves the result of the dialog in a variable
-        int dialogResult = JOptionPane.showConfirmDialog(null, "This is for administrators and debuging only continue?", "Continue?", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "This is for administrators and debuging only continue? \n PLEASE DO NOT USE THE THREADING CONTROLS WHEN YOU ARE MARKING/TESTING THE FUNCTIONALITY OF THE PROGRAM"
+                + "THEY CAN BREAK FUNCTIONALITY the save and load controls can be used", "Continue?", dialogButton);
         //if yes was clicked
         if (dialogResult == JOptionPane.YES_OPTION) {
             System.out.println("Yes was clicked starting");
             ProgramManagerForm form = new ProgramManagerForm();
-            form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             form.setVisible(true);
+            form.main(buildings, installations, technicians);
+            form.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         } else {
             System.out.println("The dialog was closed or no was selected. NOT starting.");
 
@@ -803,7 +672,7 @@ public class MenuForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main() {
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -827,12 +696,12 @@ public class MenuForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        loadAll();
         //load the files
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuForm().setVisible(true);
+                
             }
         });
 
@@ -842,17 +711,9 @@ public class MenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogoutBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton loadALLBtn;
-    private javax.swing.JButton loadBuildingsBtn;
-    private javax.swing.JButton loadFileBtn;
-    private javax.swing.JButton loadInstallationsBtn;
     private javax.swing.JButton modifyBuildingsBtn;
     private javax.swing.JButton modifyInstallationsBtn;
     private javax.swing.JButton modifyTechniciansBtn;
     private javax.swing.JButton programManagerBtn;
-    private javax.swing.JButton saveALLBtn;
-    private javax.swing.JButton saveBuildingsBtn;
-    private javax.swing.JButton saveInstallationsBtn;
-    private javax.swing.JButton saveTechBtn;
     // End of variables declaration//GEN-END:variables
 }

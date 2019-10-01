@@ -1,5 +1,6 @@
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,9 @@ import java.util.logging.Logger;
  * @author Terry
  */
 public class ProgramManagerForm extends javax.swing.JFrame {
-
+ private ArrayList<Building> buildings = new ArrayList<Building>();
+    private ArrayList<Installation> installations = new ArrayList<Installation>();
+    private ArrayList<Technician> technicians = new ArrayList<Technician>();
     /**
      * Creates new form ProgramManagerForm
      */
@@ -798,7 +801,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(ArrayList<Building> buildingsList, ArrayList<Installation> installationList, ArrayList<Technician> technicianList) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -821,11 +824,14 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProgramManagerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        buildings = buildingsList;
+        installations = installationList;
+        technicians = technicianList;
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProgramManagerForm().setVisible(true);
+                
             }
         });
     }
