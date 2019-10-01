@@ -641,8 +641,8 @@ public class ModifyBuilding extends javax.swing.JFrame {
         //check if a thread is allready running for the watch dog object
         //This was so difficult to figure out took me ages
 
-        if (watchDogThread == null) {
-            System.out.println("watchdog variable is null");
+        if (getThread("Building Watch Dog") == null) {
+            
             System.out.println("Starting watchdog");
             //Making sure the thread exis when the class is destroyed (form is destroyed)
             //otherwise JVM will never exit and error will occure when the program is closed
@@ -653,17 +653,7 @@ public class ModifyBuilding extends javax.swing.JFrame {
             //start the thread
             object.start();
 
-        } else if (getThread("Building Watch Dog") == null) {
-            System.out.println("getThread cant find watchdog");
-            System.out.println("Starting watchdog");
-            //Making sure the thread exis when the class is destroyed (form is destroyed)
-            //otherwise JVM will never exit and error will occure when the program is closed
-            object.setDaemon(false);
-            //setting its name
-            object.setName("Building Watch Dog");
-
-            //start the thread
-            object.start();
+        
         } else {
             System.out.println("Watchdog is running");
 

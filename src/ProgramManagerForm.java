@@ -43,8 +43,6 @@ public class ProgramManagerForm extends javax.swing.JFrame {
         iWatchDogStatusTxt = new javax.swing.JTextField();
         getStatusBtn = new javax.swing.JButton();
         killBuildingWDBtn = new javax.swing.JButton();
-        killInstallationWDBtn = new javax.swing.JButton();
-        killTechnicianWDBtn = new javax.swing.JButton();
         suspendBuildingWatchDogBtn = new javax.swing.JButton();
         buildingStartBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -52,6 +50,27 @@ public class ProgramManagerForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         buildingPriorityBox = new javax.swing.JComboBox<>();
         buildingStartDaemonBtn = new javax.swing.JButton();
+        killTechnicianWDBtn1 = new javax.swing.JButton();
+        suspendTechnicianWatchDogBtn1 = new javax.swing.JButton();
+        technicianStartBtn1 = new javax.swing.JButton();
+        technicianStartDaemonBtn1 = new javax.swing.JButton();
+        technicianPriorityBox1 = new javax.swing.JComboBox<>();
+        killInstallationsWDBtn2 = new javax.swing.JButton();
+        suspendInstallationsWatchDogBtn2 = new javax.swing.JButton();
+        installationsStartBtn2 = new javax.swing.JButton();
+        installationsStartDaemonBtn2 = new javax.swing.JButton();
+        installationsPriorityBox2 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        buildingsSaveBtn = new javax.swing.JButton();
+        buildingsLoadBtn = new javax.swing.JButton();
+        technicianSaveBtn = new javax.swing.JButton();
+        technicianLoadBtn = new javax.swing.JButton();
+        installationSaveBtn = new javax.swing.JButton();
+        installationLoadBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +101,6 @@ public class ProgramManagerForm extends javax.swing.JFrame {
                 killBuildingWDBtnActionPerformed(evt);
             }
         });
-
-        killInstallationWDBtn.setText("kill");
-
-        killTechnicianWDBtn.setText("kill");
 
         suspendBuildingWatchDogBtn.setText("Suspend");
         suspendBuildingWatchDogBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +136,138 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             }
         });
 
+        killTechnicianWDBtn1.setText("Stop");
+        killTechnicianWDBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                killTechnicianWDBtn1ActionPerformed(evt);
+            }
+        });
+
+        suspendTechnicianWatchDogBtn1.setText("Suspend");
+        suspendTechnicianWatchDogBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suspendTechnicianWatchDogBtn1ActionPerformed(evt);
+            }
+        });
+
+        technicianStartBtn1.setText("Start");
+        technicianStartBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                technicianStartBtn1ActionPerformed(evt);
+            }
+        });
+
+        technicianStartDaemonBtn1.setText("Start Daemon");
+        technicianStartDaemonBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                technicianStartDaemonBtn1ActionPerformed(evt);
+            }
+        });
+
+        technicianPriorityBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Priority 1", "Priority 2", "Priority 3", "Priority 4", "Priority 5", "Priority 6", "Priority 7", "Priority 8", "Priority 9", "Priority 10" }));
+        technicianPriorityBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                technicianPriorityBox1ItemStateChanged(evt);
+            }
+        });
+
+        killInstallationsWDBtn2.setText("Stop");
+        killInstallationsWDBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                killInstallationsWDBtn2ActionPerformed(evt);
+            }
+        });
+
+        suspendInstallationsWatchDogBtn2.setText("Suspend");
+        suspendInstallationsWatchDogBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suspendInstallationsWatchDogBtn2ActionPerformed(evt);
+            }
+        });
+
+        installationsStartBtn2.setText("Start");
+        installationsStartBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                installationsStartBtn2ActionPerformed(evt);
+            }
+        });
+
+        installationsStartDaemonBtn2.setText("Start Daemon");
+        installationsStartDaemonBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                installationsStartDaemonBtn2ActionPerformed(evt);
+            }
+        });
+
+        installationsPriorityBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Priority 1", "Priority 2", "Priority 3", "Priority 4", "Priority 5", "Priority 6", "Priority 7", "Priority 8", "Priority 9", "Priority 10" }));
+        installationsPriorityBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                installationsPriorityBox2ItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setText("Building");
+
+        jLabel10.setText("Technician");
+
+        jLabel11.setText("Installation");
+
+        buildingsSaveBtn.setText("Save");
+        buildingsSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buildingsSaveBtnActionPerformed(evt);
+            }
+        });
+
+        buildingsLoadBtn.setText("Load");
+        buildingsLoadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buildingsLoadBtnActionPerformed(evt);
+            }
+        });
+
+        technicianSaveBtn.setText("Save");
+        technicianSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                technicianSaveBtnActionPerformed(evt);
+            }
+        });
+
+        technicianLoadBtn.setText("Load");
+        technicianLoadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                technicianLoadBtnActionPerformed(evt);
+            }
+        });
+
+        installationSaveBtn.setText("Save");
+        installationSaveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                installationSaveBtnActionPerformed(evt);
+            }
+        });
+
+        installationLoadBtn.setText("Load");
+        installationLoadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                installationLoadBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Load All");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,41 +285,84 @@ public class ProgramManagerForm extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bWatchDogStatusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                            .addComponent(tWatchDogStatusTxt)
-                            .addComponent(iWatchDogStatusTxt))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(28, 28, 28)
+                                .addComponent(buildingsSaveBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buildingsLoadBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(technicianSaveBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(technicianLoadBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(installationSaveBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(installationLoadBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGap(64, 64, 64)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(killInstallationWDBtn)
-                                    .addComponent(killTechnicianWDBtn))
-                                .addGap(303, 303, 303))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(killBuildingWDBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(suspendBuildingWatchDogBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buildingStartBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buildingStartDaemonBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buildingPriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(413, 413, 413)
-                        .addComponent(jLabel8)))
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(bWatchDogStatusTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                    .addComponent(tWatchDogStatusTxt)
+                                    .addComponent(iWatchDogStatusTxt))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(killBuildingWDBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(suspendBuildingWatchDogBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(buildingStartBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buildingStartDaemonBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(buildingPriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(killTechnicianWDBtn1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(suspendTechnicianWatchDogBtn1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(technicianStartBtn1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(technicianStartDaemonBtn1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(technicianPriorityBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(killInstallationsWDBtn2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(suspendInstallationsWatchDogBtn2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(installationsStartBtn2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(installationsStartDaemonBtn2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(installationsPriorityBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(402, 402, 402))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,23 +381,44 @@ public class ProgramManagerForm extends javax.swing.JFrame {
                     .addComponent(buildingStartBtn)
                     .addComponent(buildingPriorityBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buildingStartDaemonBtn))
-                .addGap(8, 8, 8)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel7)
                     .addComponent(tWatchDogStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(killTechnicianWDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                    .addComponent(killTechnicianWDBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(suspendTechnicianWatchDogBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(technicianStartBtn1)
+                    .addComponent(technicianPriorityBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(technicianStartDaemonBtn1))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6)
                     .addComponent(iWatchDogStatusTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(killInstallationWDBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(killInstallationsWDBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(suspendInstallationsWatchDogBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(installationsStartBtn2)
+                    .addComponent(installationsPriorityBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(installationsStartDaemonBtn2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(buildingsSaveBtn)
+                    .addComponent(buildingsLoadBtn)
+                    .addComponent(jLabel10)
+                    .addComponent(technicianSaveBtn)
+                    .addComponent(technicianLoadBtn)
+                    .addComponent(jLabel11)
+                    .addComponent(installationSaveBtn)
+                    .addComponent(installationLoadBtn)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -228,11 +439,15 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             iWatchDogStatusTxt.setText("Not Running");
         } else {
             iWatchDogStatusTxt.setText(installationThread.getState().toString());
+            System.out.println("Installation thread is priority: " + installationThread.getPriority());
+            installationsPriorityBox2.setSelectedIndex(installationThread.getPriority() - 1);
         }
         if (technicianThread == null) {
             tWatchDogStatusTxt.setText("Not Running");
         } else {
             tWatchDogStatusTxt.setText(technicianThread.getState().toString());
+            System.out.println("Technician thread is priority: " + technicianThread.getPriority());
+            technicianPriorityBox1.setSelectedIndex(technicianThread.getPriority() - 1);
         }
 
 
@@ -320,6 +535,203 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             commandOutputTxt.append("\n error thread is allready running");
         }
     }//GEN-LAST:event_buildingStartDaemonBtnActionPerformed
+
+    private void killTechnicianWDBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killTechnicianWDBtn1ActionPerformed
+        //get the watch dog thread
+        Thread thread = getThread("Technicians Watch Dog");
+        if (thread == null) {
+
+        } else {
+            //cast that thread into a watchdog object so we can call its methods
+            ModifyTechnician.WatchDog watchdog = (ModifyTechnician.WatchDog) thread;
+            //call the stoprunning method to safely kill the thread
+            watchdog.stopRunning();
+            commandOutputTxt.append("\n stopped thread: " + thread.getId() + " " + thread.getName());
+        }
+
+    }//GEN-LAST:event_killTechnicianWDBtn1ActionPerformed
+
+    private void suspendTechnicianWatchDogBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendTechnicianWatchDogBtn1ActionPerformed
+        //get the watch dog thread
+        Thread thread = getThread("Technicians Watch Dog");
+        if (thread == null) {
+            commandOutputTxt.append("\n no building watch dog running");
+        } else {
+            try {
+                thread.wait();
+            } catch (Exception e) {
+                commandOutputTxt.append("\n ERROR: could not suspend thread: \n" + e);
+            }
+
+        }
+
+    }//GEN-LAST:event_suspendTechnicianWatchDogBtn1ActionPerformed
+
+    private void technicianStartBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicianStartBtn1ActionPerformed
+        if (getThread("Technicians Watch Dog") == null) {
+            ModifyTechnician x = new ModifyTechnician();
+            ModifyTechnician.WatchDog watchdog = x.new WatchDog();
+            watchdog.setDaemon(false);
+            //setting its name
+            watchdog.setName("Technicians Watch Dog");
+            watchdog.start();
+            commandOutputTxt.append("\n new technicians watchdog thread started");
+        } else {
+            commandOutputTxt.append("\n Technicians watch dog all ready running");
+        }
+    }//GEN-LAST:event_technicianStartBtn1ActionPerformed
+
+    private void technicianStartDaemonBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicianStartDaemonBtn1ActionPerformed
+        Thread thread = getThread("Technicians Watch Dog");
+        if (thread == null) {
+            ModifyBuilding x = new ModifyBuilding();
+            ModifyBuilding.WatchDog watchdog = x.new WatchDog();
+            watchdog.setName("Technicians Watch Dog");
+
+            System.out.println("Setting technician thread to daemon");
+            commandOutputTxt.append("\n Setting technician thread to daemon");
+            //setting its name
+            watchdog.setDaemon(true);
+
+            commandOutputTxt.append("\n starting technician watchdog");
+            watchdog.start();
+        } else {
+            System.out.println("error thread is allready running");
+            commandOutputTxt.append("\n error thread is allready running");
+        }
+    }//GEN-LAST:event_technicianStartDaemonBtn1ActionPerformed
+
+    private void technicianPriorityBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_technicianPriorityBox1ItemStateChanged
+        Thread thread = getThread("Technicians Watch Dog");
+        if (thread == null) {
+            commandOutputTxt.append("\n technician thread not running");
+        } else {
+            System.out.println("Technician priority changed");
+            commandOutputTxt.append("\n Technicians priority changed");
+
+            thread.setPriority(technicianPriorityBox1.getSelectedIndex() + 1);
+            System.out.println("Technicians thread is now priority: " + thread.getPriority());
+            commandOutputTxt.append("\n Technicians thread is now priority:" + thread.getPriority());
+        }
+    }//GEN-LAST:event_technicianPriorityBox1ItemStateChanged
+
+    private void killInstallationsWDBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killInstallationsWDBtn2ActionPerformed
+          //get the watch dog thread
+        Thread thread = getThread("Installations Watch Dog");
+        if (thread == null) {
+
+        } else {
+            //cast that thread into a watchdog object so we can call its methods
+            ModifyInstallations.WatchDog watchdog = (ModifyInstallations.WatchDog) thread;
+            //call the stoprunning method to safely kill the thread
+            watchdog.stopRunning();
+            commandOutputTxt.append("\n stopped thread: " + thread.getId() + " " + thread.getName());
+        }
+
+    }//GEN-LAST:event_killInstallationsWDBtn2ActionPerformed
+
+    private void suspendInstallationsWatchDogBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendInstallationsWatchDogBtn2ActionPerformed
+        //get the watch dog thread
+        Thread thread = getThread("Installations Watch Dog");
+        if (thread == null) {
+            commandOutputTxt.append("\n no Installations watch dog running");
+        } else {
+            try {
+                thread.wait();
+            } catch (Exception e) {
+                commandOutputTxt.append("\n ERROR: could not suspend thread: \n" + e);
+            }
+
+        }
+    }//GEN-LAST:event_suspendInstallationsWatchDogBtn2ActionPerformed
+
+    private void installationsStartBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installationsStartBtn2ActionPerformed
+         if (getThread("Installations Watch Dog") == null) {
+            ModifyInstallations x = new ModifyInstallations();
+            ModifyInstallations.WatchDog watchdog = x.new WatchDog();
+            watchdog.setDaemon(false);
+            //setting its name
+            watchdog.setName("Installations Watch Dog");
+            watchdog.start();
+            commandOutputTxt.append("\n new Installations watchdog thread started");
+        } else {
+            commandOutputTxt.append("\n Installations watch dog all ready running");
+        }
+    }//GEN-LAST:event_installationsStartBtn2ActionPerformed
+
+    private void installationsStartDaemonBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installationsStartDaemonBtn2ActionPerformed
+        Thread thread = getThread("Installations Watch Dog");
+        if (thread == null) {
+            ModifyInstallations x = new ModifyInstallations();
+            ModifyInstallations.WatchDog watchdog = x.new WatchDog();
+            watchdog.setName("Installations Watch Dog");
+
+            System.out.println("Setting Installations thread to daemon");
+            commandOutputTxt.append("\n Setting Installations thread to daemon");
+            //setting its name
+            watchdog.setDaemon(true);
+
+            commandOutputTxt.append("\n starting Installations watchdog");
+            watchdog.start();
+        } else {
+            System.out.println("error thread is allready running");
+            commandOutputTxt.append("\n error thread is allready running");
+        }
+    }//GEN-LAST:event_installationsStartDaemonBtn2ActionPerformed
+
+    private void installationsPriorityBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_installationsPriorityBox2ItemStateChanged
+        Thread thread = getThread("Installations Watch Dog");
+        if (thread == null) {
+            commandOutputTxt.append("\n Installations thread not running");
+        } else {
+            System.out.println("Installations priority changed");
+            commandOutputTxt.append("\n Installations priority changed");
+
+            thread.setPriority(installationsPriorityBox2.getSelectedIndex() + 1);
+            System.out.println("Installations thread is now priority: " + thread.getPriority());
+            commandOutputTxt.append("\n Installations thread is now priority:" + thread.getPriority());
+        }
+    }//GEN-LAST:event_installationsPriorityBox2ItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        commandOutputTxt.append("\n Loading All");
+        MenuForm.loadAll();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        commandOutputTxt.append("\n Saving ALL");
+        MenuForm.saveAll();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void buildingsSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingsSaveBtnActionPerformed
+       commandOutputTxt.append("\n Saving buildings");
+        MenuForm.saveBuildingsText();
+    }//GEN-LAST:event_buildingsSaveBtnActionPerformed
+
+    private void buildingsLoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingsLoadBtnActionPerformed
+       commandOutputTxt.append("\n Loading buildings");
+        MenuForm.loadBuildingsText();
+    }//GEN-LAST:event_buildingsLoadBtnActionPerformed
+
+    private void technicianSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicianSaveBtnActionPerformed
+        commandOutputTxt.append("\n Saving technicians");
+        MenuForm.saveTechniciansText();
+    }//GEN-LAST:event_technicianSaveBtnActionPerformed
+
+    private void technicianLoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_technicianLoadBtnActionPerformed
+        commandOutputTxt.append("\n Loading technicians");
+        MenuForm.loadTechniciansText();
+    }//GEN-LAST:event_technicianLoadBtnActionPerformed
+
+    private void installationSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installationSaveBtnActionPerformed
+        commandOutputTxt.append("\n Saving installations");
+        MenuForm.saveInstallationsText();
+    }//GEN-LAST:event_installationSaveBtnActionPerformed
+
+    private void installationLoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installationLoadBtnActionPerformed
+        commandOutputTxt.append("\n Loading installations");
+        MenuForm.loadInstallationsText();
+    }//GEN-LAST:event_installationLoadBtnActionPerformed
 
     public Thread getThread(String threadName) {
         //gets the curent thred (gui thread)
@@ -423,10 +835,21 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> buildingPriorityBox;
     private javax.swing.JButton buildingStartBtn;
     private javax.swing.JButton buildingStartDaemonBtn;
+    private javax.swing.JButton buildingsLoadBtn;
+    private javax.swing.JButton buildingsSaveBtn;
     private javax.swing.JTextArea commandOutputTxt;
     private javax.swing.JButton getStatusBtn;
     private javax.swing.JTextField iWatchDogStatusTxt;
+    private javax.swing.JButton installationLoadBtn;
+    private javax.swing.JButton installationSaveBtn;
+    private javax.swing.JComboBox<String> installationsPriorityBox2;
+    private javax.swing.JButton installationsStartBtn2;
+    private javax.swing.JButton installationsStartDaemonBtn2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -434,11 +857,19 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton killBuildingWDBtn;
-    private javax.swing.JButton killInstallationWDBtn;
-    private javax.swing.JButton killTechnicianWDBtn;
+    private javax.swing.JButton killInstallationsWDBtn2;
+    private javax.swing.JButton killTechnicianWDBtn1;
     private javax.swing.JButton suspendBuildingWatchDogBtn;
+    private javax.swing.JButton suspendInstallationsWatchDogBtn2;
+    private javax.swing.JButton suspendTechnicianWatchDogBtn1;
     private javax.swing.JTextField tWatchDogStatusTxt;
+    private javax.swing.JButton technicianLoadBtn;
+    private javax.swing.JComboBox<String> technicianPriorityBox1;
+    private javax.swing.JButton technicianSaveBtn;
+    private javax.swing.JButton technicianStartBtn1;
+    private javax.swing.JButton technicianStartDaemonBtn1;
     // End of variables declaration//GEN-END:variables
 }

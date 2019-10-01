@@ -508,7 +508,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
         WatchDog object = new WatchDog();
         //check if a thread is allready running for the watch dog object
         //This was so difficult to figure out took me ages
-        if (watchDogThread == null && getThread("Installations Watch Dog") == null) {
+        if (getThread("Installations Watch Dog") == null) {
             System.out.println("Starting watchdog");
             //Making sure the thread exis when the class is destroyed (form is destroyed)
             //otherwise JVM will never exit and error will occure when the program is closed
@@ -566,6 +566,11 @@ public class ModifyInstallations extends javax.swing.JFrame {
     //maybe this was some kind of buffer overflow :)
     class WatchDog extends Thread {
 
+        boolean flag = true;
+
+        public void stopRunning() {
+            flag = false;
+        }
         //run method which is called when the thread is started
         public void run() {
             try {
@@ -578,7 +583,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                 int currentHash = installations.hashCode();
                 //Control loop will keep checking if any objects are changed inside the array and if any change
                 //then it will run UpdateTable() to update the table
-                while (true) {
+                while (flag) {
                     //sleep for 400ms so it doesnt consume too much cpu time (so it doesnt 100% cpu all the time)
                     sleep(400);
                     //calculate a new hash code
@@ -601,6 +606,7 @@ public class ModifyInstallations extends javax.swing.JFrame {
                     }
                     //System.out.println(Thread.currentThread().getId());
                 }
+                System.out.println("Building WatchDog: flag false stopping");
                 //Catch all exceptions
             } catch (Exception e) {
                 //Should be unlikely that this will crash
