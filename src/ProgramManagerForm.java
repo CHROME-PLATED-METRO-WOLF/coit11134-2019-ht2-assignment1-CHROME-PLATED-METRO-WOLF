@@ -1,10 +1,7 @@
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,9 +13,11 @@ import java.util.logging.Logger;
  * @author Terry
  */
 public class ProgramManagerForm extends javax.swing.JFrame {
- private ArrayList<Building> buildings = new ArrayList<Building>();
+
+    private ArrayList<Building> buildings = new ArrayList<Building>();
     private ArrayList<Installation> installations = new ArrayList<Installation>();
     private ArrayList<Technician> technicians = new ArrayList<Technician>();
+
     /**
      * Creates new form ProgramManagerForm
      */
@@ -632,7 +631,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_technicianPriorityBox1ItemStateChanged
 
     private void killInstallationsWDBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_killInstallationsWDBtn2ActionPerformed
-          //get the watch dog thread
+        //get the watch dog thread
         Thread thread = getThread("Installations Watch Dog");
         if (thread == null) {
 
@@ -662,7 +661,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_suspendInstallationsWatchDogBtn2ActionPerformed
 
     private void installationsStartBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installationsStartBtn2ActionPerformed
-         if (getThread("Installations Watch Dog") == null) {
+        if (getThread("Installations Watch Dog") == null) {
             ModifyInstallations x = new ModifyInstallations();
             ModifyInstallations.WatchDog watchdog = x.new WatchDog();
             watchdog.setDaemon(false);
@@ -720,12 +719,12 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buildingsSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingsSaveBtnActionPerformed
-       commandOutputTxt.append("\n Saving buildings");
+        commandOutputTxt.append("\n Saving buildings");
         MenuForm.saveBuildingsText();
     }//GEN-LAST:event_buildingsSaveBtnActionPerformed
 
     private void buildingsLoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buildingsLoadBtnActionPerformed
-       commandOutputTxt.append("\n Loading buildings");
+        commandOutputTxt.append("\n Loading buildings");
         MenuForm.loadBuildingsText();
     }//GEN-LAST:event_buildingsLoadBtnActionPerformed
 
@@ -750,19 +749,16 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_installationLoadBtnActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-Set<Thread> threads = Thread.getAllStackTraces().keySet();
-for (Thread t : threads) {
-    String name = t.getName();
-    Thread.State state = t.getState();
-    int priority = t.getPriority();
-    String type = t.isDaemon() ? "Daemon" : "Normal";
-        System.out.printf("%-20s \t %s \t %d \t %s\n", name, state, priority, type);
-    commandOutputTxt.append(String.format("%-20s \t %s \t %d \t %s\n", name, state, priority, type));
-}
-        
-          //  ("\n" + Thread.getAllStackTraces());
-        
-        
+        Set<Thread> threads = Thread.getAllStackTraces().keySet();
+        commandOutputTxt.append("\n");
+        for (Thread t : threads) {
+            String name = t.getName();
+            Thread.State state = t.getState();
+            int priority = t.getPriority();
+            String type = t.isDaemon() ? "Daemon" : "Normal";
+            System.out.printf("%-20s \t %s \t %d \t %s\n", name, state, priority, type);
+            commandOutputTxt.append(String.format("%-20s \t %s \t %d \t %s\n", name, state, priority, type));
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     public Thread getThread(String threadName) {
@@ -856,11 +852,11 @@ for (Thread t : threads) {
         buildings = buildingsList;
         installations = installationList;
         technicians = technicianList;
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
