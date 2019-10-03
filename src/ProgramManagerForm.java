@@ -1,6 +1,7 @@
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
         installationLoadBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +93,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
 
         jLabel7.setText("Status");
 
-        getStatusBtn.setText("Get");
+        getStatusBtn.setText("Get Status");
         getStatusBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getStatusBtnActionPerformed(evt);
@@ -271,6 +273,13 @@ public class ProgramManagerForm extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Get all threads");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,7 +291,9 @@ public class ProgramManagerForm extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(383, 383, 383)
-                        .addComponent(getStatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(getStatusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -373,7 +384,9 @@ public class ProgramManagerForm extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(getStatusBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(getStatusBtn)
+                    .addComponent(jToggleButton1))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -736,6 +749,22 @@ public class ProgramManagerForm extends javax.swing.JFrame {
         MenuForm.loadInstallationsText();
     }//GEN-LAST:event_installationLoadBtnActionPerformed
 
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+Set<Thread> threads = Thread.getAllStackTraces().keySet();
+for (Thread t : threads) {
+    String name = t.getName();
+    Thread.State state = t.getState();
+    int priority = t.getPriority();
+    String type = t.isDaemon() ? "Daemon" : "Normal";
+        System.out.printf("%-20s \t %s \t %d \t %s\n", name, state, priority, type);
+    commandOutputTxt.append(String.format("%-20s \t %s \t %d \t %s\n", name, state, priority, type));
+}
+        
+          //  ("\n" + Thread.getAllStackTraces());
+        
+        
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
     public Thread getThread(String threadName) {
         //gets the curent thred (gui thread)
         Thread currentThread = Thread.currentThread();
@@ -831,7 +860,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProgramManagerForm().setVisible(true);
+                
             }
         });
     }
@@ -865,6 +894,7 @@ public class ProgramManagerForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JButton killBuildingWDBtn;
     private javax.swing.JButton killInstallationsWDBtn2;
     private javax.swing.JButton killTechnicianWDBtn1;
